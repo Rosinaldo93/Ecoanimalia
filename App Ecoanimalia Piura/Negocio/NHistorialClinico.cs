@@ -21,6 +21,16 @@ namespace App_Ecoanimalia_Piura.Negocio
             int band = new DHistorialClinico().D_registrar_historial(historial);
             return band;
         }
+        public int N_Modificar_Historial_Clinico(DateTime fecha, String descripcion, Decimal precio,int id_Historial)
+        {
+            HistorialClinico historial = new HistorialClinico();
+            historial.Id = id_Historial;
+            historial.Fecha = fecha;
+            historial.Descripcion = descripcion;
+            historial.Precio = precio;
+            int band = new DHistorialClinico().D_modificar_historial(historial);
+            return band;
+        }
         public List<HistorialClinico> Historial_Clinico_ByMascota(int serie)
         {
             List<HistorialClinico> lista = new DHistorialClinico().Listar_HistorialByMascota(serie);

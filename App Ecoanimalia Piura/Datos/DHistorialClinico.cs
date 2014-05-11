@@ -44,17 +44,16 @@ namespace App_Ecoanimalia_Piura.Datos
         public int D_modificar_historial(HistorialClinico clinico)
         {
             String cadena = DConexion.cadena;
-            String sql = "UPDATE historialclinico SET ID_MASCOTA=@id_mascota,FECHA=@fecha,DESCRIPCION=@descripcion,PRECIO=@precio  where ID=@id";
+            String sql = "UPDATE historialclinico SET FECHA=@FECHA,DESCRIPCION=@DESCRIPCION,PRECIO=@PRECIO  where ID=@ID";
             cone = new MySqlConnection(cadena);
             MySqlCommand com = new MySqlCommand(sql, cone);
             cone.Open();
-            com.Parameters.AddWithValue("@id_mascota", clinico.Mascota.Serie);
-            com.Parameters.AddWithValue("@fecha", clinico.Fecha);
-            com.Parameters.AddWithValue("@descripcion", clinico.Descripcion);
-            com.Parameters.AddWithValue("@precio", clinico.Precio);
+            com.Parameters.AddWithValue("@FECHA", clinico.Fecha);
+            com.Parameters.AddWithValue("@DESCRIPCION", clinico.Descripcion);
+            com.Parameters.AddWithValue("@PRECIO", clinico.Precio);
 
 
-            com.Parameters.AddWithValue("@id",clinico.Id);
+            com.Parameters.AddWithValue("@ID", clinico.Id);
             int band;
             try
             {

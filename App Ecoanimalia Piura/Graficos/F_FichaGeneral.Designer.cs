@@ -87,7 +87,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tab_Historial = new System.Windows.Forms.TabPage();
-            this.lb_idHistorial = new System.Windows.Forms.Label();
+            this.btn_eliminar_histo = new System.Windows.Forms.Button();
+            this.btn_cancelar_histo = new System.Windows.Forms.Button();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.btn_modificar_histo = new System.Windows.Forms.Button();
             this.btn_registrar_histo = new System.Windows.Forms.Button();
@@ -149,8 +152,6 @@
             this.btn_siguiente = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.grilla_general = new System.Windows.Forms.DataGridView();
-            this.label14 = new System.Windows.Forms.Label();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SERIE_FORMATO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_RESCATISTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SERIE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -168,10 +169,8 @@
             this.COLOR = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EDAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ESTERILIZADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.btn_cancelar_histo = new System.Windows.Forms.Button();
-            this.btn_eliminar_histo = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.Tab_Mascota.SuspendLayout();
             this.tab_principal.SuspendLayout();
             this.group_temporal.SuspendLayout();
@@ -838,7 +837,6 @@
             this.tab_Historial.Controls.Add(this.btn_cancelar_histo);
             this.tab_Historial.Controls.Add(this.label40);
             this.tab_Historial.Controls.Add(this.label39);
-            this.tab_Historial.Controls.Add(this.lb_idHistorial);
             this.tab_Historial.Controls.Add(this.label20);
             this.tab_Historial.Controls.Add(this.btn_modificar_histo);
             this.tab_Historial.Controls.Add(this.btn_registrar_histo);
@@ -861,15 +859,45 @@
             this.tab_Historial.Text = "      Historial Clinico        ";
             this.tab_Historial.UseVisualStyleBackColor = true;
             // 
-            // lb_idHistorial
+            // btn_eliminar_histo
             // 
-            this.lb_idHistorial.AutoSize = true;
-            this.lb_idHistorial.Location = new System.Drawing.Point(79, 37);
-            this.lb_idHistorial.Name = "lb_idHistorial";
-            this.lb_idHistorial.Size = new System.Drawing.Size(66, 13);
-            this.lb_idHistorial.TabIndex = 41;
-            this.lb_idHistorial.Text = "lb_idHistorial";
-            this.lb_idHistorial.Visible = false;
+            this.btn_eliminar_histo.Enabled = false;
+            this.btn_eliminar_histo.Location = new System.Drawing.Point(285, 375);
+            this.btn_eliminar_histo.Name = "btn_eliminar_histo";
+            this.btn_eliminar_histo.Size = new System.Drawing.Size(102, 37);
+            this.btn_eliminar_histo.TabIndex = 45;
+            this.btn_eliminar_histo.Text = "Eliminar";
+            this.btn_eliminar_histo.UseVisualStyleBackColor = true;
+            this.btn_eliminar_histo.Click += new System.EventHandler(this.btn_eliminar_histo_Click);
+            // 
+            // btn_cancelar_histo
+            // 
+            this.btn_cancelar_histo.Enabled = false;
+            this.btn_cancelar_histo.Location = new System.Drawing.Point(151, 375);
+            this.btn_cancelar_histo.Name = "btn_cancelar_histo";
+            this.btn_cancelar_histo.Size = new System.Drawing.Size(102, 37);
+            this.btn_cancelar_histo.TabIndex = 44;
+            this.btn_cancelar_histo.Text = "Cancelar";
+            this.btn_cancelar_histo.UseVisualStyleBackColor = true;
+            this.btn_cancelar_histo.Click += new System.EventHandler(this.btn_cancelar_histo_Click);
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(186, 269);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(22, 13);
+            this.label40.TabIndex = 43;
+            this.label40.Text = "S./";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(315, 269);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(42, 13);
+            this.label39.TabIndex = 42;
+            this.label39.Text = "SOLES";
             // 
             // label20
             // 
@@ -887,8 +915,9 @@
             this.btn_modificar_histo.Name = "btn_modificar_histo";
             this.btn_modificar_histo.Size = new System.Drawing.Size(102, 37);
             this.btn_modificar_histo.TabIndex = 39;
-            this.btn_modificar_histo.Text = "Modificar";
+            this.btn_modificar_histo.Text = "Editar";
             this.btn_modificar_histo.UseVisualStyleBackColor = true;
+            this.btn_modificar_histo.Click += new System.EventHandler(this.btn_modificar_histo_Click);
             // 
             // btn_registrar_histo
             // 
@@ -965,10 +994,11 @@
             // lb_id_historial
             // 
             this.lb_id_historial.AutoSize = true;
-            this.lb_id_historial.Location = new System.Drawing.Point(309, 116);
+            this.lb_id_historial.Location = new System.Drawing.Point(208, 22);
             this.lb_id_historial.Name = "lb_id_historial";
-            this.lb_id_historial.Size = new System.Drawing.Size(0, 13);
+            this.lb_id_historial.Size = new System.Drawing.Size(56, 13);
             this.lb_id_historial.TabIndex = 34;
+            this.lb_id_historial.Text = "id_historial";
             // 
             // text_precio_histo
             // 
@@ -989,7 +1019,7 @@
             // 
             // text_descripcion_histo
             // 
-            this.text_descripcion_histo.Location = new System.Drawing.Point(189, 146);
+            this.text_descripcion_histo.Location = new System.Drawing.Point(189, 145);
             this.text_descripcion_histo.Multiline = true;
             this.text_descripcion_histo.Name = "text_descripcion_histo";
             this.text_descripcion_histo.Size = new System.Drawing.Size(233, 100);
@@ -1008,15 +1038,15 @@
             // 
             this.fecha_historial.CustomFormat = "yyyy-MM-dd";
             this.fecha_historial.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.fecha_historial.Location = new System.Drawing.Point(189, 109);
+            this.fecha_historial.Location = new System.Drawing.Point(189, 101);
             this.fecha_historial.Name = "fecha_historial";
-            this.fecha_historial.Size = new System.Drawing.Size(200, 20);
+            this.fecha_historial.Size = new System.Drawing.Size(233, 20);
             this.fecha_historial.TabIndex = 29;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(79, 109);
+            this.label16.Location = new System.Drawing.Point(79, 108);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(43, 13);
             this.label16.TabIndex = 28;
@@ -1478,21 +1508,6 @@
             this.grilla_general.TabIndex = 2;
             this.grilla_general.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grilla_general_CellClick);
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(598, 518);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(168, 23);
-            this.label14.TabIndex = 3;
-            this.label14.Text = "LISTADO  DE FICHAS";
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.Filter = "Archivos JPG|*.jpg|Archivos PNG|*.png|Archivos GIF°|*.gif|Todos los archivos|*.*";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
-            // 
             // SERIE_FORMATO
             // 
             this.SERIE_FORMATO.HeaderText = "N°SERIE";
@@ -1598,44 +1613,20 @@
             this.ESTERILIZADO.Name = "ESTERILIZADO";
             this.ESTERILIZADO.ReadOnly = true;
             // 
-            // label39
+            // label14
             // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(315, 269);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(42, 13);
-            this.label39.TabIndex = 42;
-            this.label39.Text = "SOLES";
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Arial Narrow", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(598, 518);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(168, 23);
+            this.label14.TabIndex = 3;
+            this.label14.Text = "LISTADO  DE FICHAS";
             // 
-            // label40
+            // openFileDialog1
             // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(186, 269);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(22, 13);
-            this.label40.TabIndex = 43;
-            this.label40.Text = "S./";
-            // 
-            // btn_cancelar_histo
-            // 
-            this.btn_cancelar_histo.Enabled = false;
-            this.btn_cancelar_histo.Location = new System.Drawing.Point(151, 375);
-            this.btn_cancelar_histo.Name = "btn_cancelar_histo";
-            this.btn_cancelar_histo.Size = new System.Drawing.Size(102, 37);
-            this.btn_cancelar_histo.TabIndex = 44;
-            this.btn_cancelar_histo.Text = "Cancelar";
-            this.btn_cancelar_histo.UseVisualStyleBackColor = true;
-            this.btn_cancelar_histo.Click += new System.EventHandler(this.btn_cancelar_histo_Click);
-            // 
-            // btn_eliminar_histo
-            // 
-            this.btn_eliminar_histo.Enabled = false;
-            this.btn_eliminar_histo.Location = new System.Drawing.Point(285, 375);
-            this.btn_eliminar_histo.Name = "btn_eliminar_histo";
-            this.btn_eliminar_histo.Size = new System.Drawing.Size(102, 37);
-            this.btn_eliminar_histo.TabIndex = 45;
-            this.btn_eliminar_histo.Text = "Eliminar";
-            this.btn_eliminar_histo.UseVisualStyleBackColor = true;
+            this.openFileDialog1.Filter = "Archivos JPG|*.jpg|Archivos PNG|*.png|Archivos GIF°|*.gif|Todos los archivos|*.*";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // F_FichaGeneral
             // 
@@ -1802,7 +1793,6 @@
         private System.Windows.Forms.Label lb_serie_mascota;
         private System.Windows.Forms.Label lb_id_usuario;
         private System.Windows.Forms.Button btn_cancelar_registro;
-        private System.Windows.Forms.Label lb_idHistorial;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn FECHA;
         private System.Windows.Forms.DataGridViewTextBoxColumn DESCRIPCION;

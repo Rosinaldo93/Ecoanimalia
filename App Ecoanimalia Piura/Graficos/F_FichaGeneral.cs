@@ -15,6 +15,7 @@ namespace App_Ecoanimalia_Piura.Graficos
 {
     public partial class F_FichaGeneral : Form
     {
+        int maldito = 1;
         static List<ImagenMascota> lista_imagenes = new List<ImagenMascota>();
         static int contador = 0;
         public static FichaTemporal fichatem;
@@ -904,6 +905,7 @@ namespace App_Ecoanimalia_Piura.Graficos
                         MessageBox.Show("Registrado Correctamente");
                         Lista_HistorialClinicobyMascota(serie);
                         limpieza_cajasHistorial();
+                        Inhabilitar_CajasHistorial();
                         btn_registrar_histo.Enabled = false;
                         btn_cancelar_histo.Enabled = false;
                         btn_nuevo_histo.Enabled = true;
@@ -1137,6 +1139,87 @@ namespace App_Ecoanimalia_Piura.Graficos
             btn_registrar_histo.Enabled = false;
             btn_cancelar_histo.Enabled = false;
             btn_nuevo_histo.Enabled = true;
+            btn_modificar_histo.Text = "Editar";
+            btn_modificar_histo.Enabled = true;
+        }
+
+        private void btn_modificar_histo_Click(object sender, EventArgs e)
+        {
+            if (btn_modificar_histo.Text.Equals("Editar"))
+            {
+                btn_modificar_histo.Text = "Guardar Cambios";
+                Habilitar_CajasHistorial();
+                btn_cancelar_histo.Enabled = true;
+            }
+            else
+            {
+                if (btn_modificar_histo.Text.Equals("Guardar Cambios"))
+                {
+                    Boolean band1 = false;
+                    String mensaje = "Por Favor Complete los campos obligatorios : \n";
+                    String descripcion = "";
+                    Decimal precio;
+                    int id_historial = Convert.ToInt32(lb_id_historial.Text);
+                    DateTime f_historial = Convert.ToDateTime(fecha_historial.Text);
+                    if (!String.IsNullOrEmpty(text_descripcion_histo.Text))
+                    {
+                        descripcion = text_descripcion_histo.Text;
+                    }
+                    else
+                    {
+                        mensaje = mensaje + "\n - Casilla de Descripcion";
+                        band1 = true;
+                    }
+                    if (!String.IsNullOrEmpty(text_precio_histo.Text))
+                    {
+                        precio = Convert.ToDecimal(this.text_precio_histo.Text);
+                    }
+                    else
+                    {
+                        precio = 0;
+                    }
+                    if (band1 == true)
+                    {
+                        MessageBox.Show(mensaje);
+                    }
+                    else
+                    {
+                        if (!String.IsNullOrEmpty(this.lb_serie_mascota.Text))
+                        {
+                            int serie = int.Parse(lb_serie_mascota.Text);
+                            int respuesta = new NHistorialClinico().N_Modificar_Historial_Clinico(f_historial, descripcion, precio,id_historial);
+                            if (respuesta == 0)
+                            {
+                                MessageBox.Show("Error Al Guardar Por favor intente nuevamente");
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Cambios Guardados Correctamente");
+                                Lista_HistorialClinicobyMascota(serie);
+                                limpieza_cajasHistorial();
+                                btn_registrar_histo.Enabled = false;
+                                btn_cancelar_histo.Enabled = false;
+                                btn_nuevo_histo.Enabled = true;
+                                Inhabilitar_CajasHistorial();
+                                this.lb_id_historial.Text = "";
+                                this.btn_modificar_histo.Text = "Editar";
+                                btn_modificar_histo.Enabled = false;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ocurrio Un Error - Intente Nuevamente");
+                        }
+                    }
+                }
+
+            }
+        }
+
+        private void btn_eliminar_histo_Click(object sender, EventArgs e)
+        {
+
         }
         
 
