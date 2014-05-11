@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FC4BBB63-5B09-4C58-B04C-23EA567A7305}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>App_Ecoanimalia_Piura</RootNamespace>
+    <AssemblyName>App Ecoanimalia Piura</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="itextsharp, Version=5.5.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Tutoriales\Nueva carpeta\itextsharp-all-5.5.0\itextsharp-dll-core\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Datos\DConexion.cs" />
+    <Compile Include="Datos\DFichaAdopcion.cs" />
+    <Compile Include="Datos\DFichaTemporal.cs" />
+    <Compile Include="Datos\DHistorialClinico.cs" />
+    <Compile Include="Datos\DImagenMascota.cs" />
+    <Compile Include="Datos\DLogin.cs" />
+    <Compile Include="Datos\DMascota.cs" />
+    <Compile Include="Datos\DPersona.cs" />
+    <Compile Include="Datos\DTipoMascota.cs" />
+    <Compile Include="Datos\DUsuario.cs" />
+    <Compile Include="Datos\DVacuna.cs" />
+    <Compile Include="Datos\DVisita.cs" />
+    <Compile Include="Graficos\F_CambiarContra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficos\F_CambiarContra.Designer.cs">
+      <DependentUpon>F_CambiarContra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graficos\F_FichaGeneral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficos\F_FichaGeneral.Designer.cs">
+      <DependentUpon>F_FichaGeneral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graficos\F_FichaTemporal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficos\F_FichaTemporal.Designer.cs">
+      <DependentUpon>F_FichaTemporal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graficos\F_ListarVoluntarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficos\F_ListarVoluntarios.Designer.cs">
+      <DependentUpon>F_ListarVoluntarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graficos\F_Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficos\F_Login.Designer.cs">
+      <DependentUpon>F_Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graficos\F_Perfil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficos\F_Perfil.Designer.cs">
+      <DependentUpon>F_Perfil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graficos\F_Primera.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficos\F_Primera.Designer.cs">
+      <DependentUpon>F_Primera.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graficos\F_Principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficos\F_Principal.Designer.cs">
+      <DependentUpon>F_Principal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graficos\F_UsuariosVoluntarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficos\F_UsuariosVoluntarios.Designer.cs">
+      <DependentUpon>F_UsuariosVoluntarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graficos\F_VerDatosFichaTemporal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficos\F_VerDatosFichaTemporal.Designer.cs">
+      <DependentUpon>F_VerDatosFichaTemporal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logica\DetalleAdopcion.cs" />
+    <Compile Include="Logica\FichaAdopcion.cs" />
+    <Compile Include="Logica\FichaTemporal.cs" />
+    <Compile Include="Logica\HistorialClinico.cs" />
+    <Compile Include="Logica\ImagenMascota.cs" />
+    <Compile Include="Logica\Mascota.cs" />
+    <Compile Include="Logica\Persona.cs" />
+    <Compile Include="Logica\TipoMascota.cs" />
+    <Compile Include="Logica\Usuario.cs" />
+    <Compile Include="Logica\Vacuna.cs" />
+    <Compile Include="Logica\Visita.cs" />
+    <Compile Include="Negocio\CCryptorEngine.cs" />
+    <Compile Include="Negocio\NFichaAdopcion.cs" />
+    <Compile Include="Negocio\NFichaTemporal.cs" />
+    <Compile Include="Negocio\NHistorialClinico.cs" />
+    <Compile Include="Negocio\NImagenMascota.cs" />
+    <Compile Include="Negocio\NLogin.cs" />
+    <Compile Include="Negocio\NMascota.cs" />
+    <Compile Include="Negocio\NPersona.cs" />
+    <Compile Include="Negocio\NTipoMascota.cs" />
+    <Compile Include="Negocio\NUsuario.cs" />
+    <Compile Include="Negocio\NVacuna.cs" />
+    <Compile Include="Negocio\NVisita.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Graficos\F_CambiarContra.resx">
+      <DependentUpon>F_CambiarContra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficos\F_FichaGeneral.resx">
+      <DependentUpon>F_FichaGeneral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficos\F_FichaTemporal.resx">
+      <DependentUpon>F_FichaTemporal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficos\F_ListarVoluntarios.resx">
+      <DependentUpon>F_ListarVoluntarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficos\F_Login.resx">
+      <DependentUpon>F_Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficos\F_Perfil.resx">
+      <DependentUpon>F_Perfil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficos\F_Primera.resx">
+      <DependentUpon>F_Primera.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficos\F_Principal.resx">
+      <DependentUpon>F_Principal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficos\F_UsuariosVoluntarios.resx">
+      <DependentUpon>F_UsuariosVoluntarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficos\F_VerDatosFichaTemporal.resx">
+      <DependentUpon>F_VerDatosFichaTemporal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
