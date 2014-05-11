@@ -15,7 +15,7 @@ namespace App_Ecoanimalia_Piura.Graficos
 {
     public partial class F_FichaGeneral : Form
     {
-        int maldito = 1;
+        
         static List<ImagenMascota> lista_imagenes = new List<ImagenMascota>();
         static int contador = 0;
         public static FichaTemporal fichatem;
@@ -962,6 +962,8 @@ namespace App_Ecoanimalia_Piura.Graficos
             Habilitar_CajasHistorial();
             btn_registrar_histo.Enabled = true;
             btn_cancelar_histo.Enabled = true;
+            btn_eliminar_histo.Enabled = false;
+            btn_modificar_histo.Enabled = false;
             limpieza_cajasHistorial();
         }
 
@@ -1100,9 +1102,19 @@ namespace App_Ecoanimalia_Piura.Graficos
             #endregion
             btn_registrar_ficha.Enabled = false;
             btn_cancelar_registro.Enabled = false;
-           
+            #region opciones historial clinico
+            limpieza_cajasHistorial();
+            Inhabilitar_CajasHistorial();
+            btn_nuevo_histo.Enabled = true;
+            btn_registrar_histo.Enabled = false;
+            btn_modificar_histo.Enabled = false;
+            btn_eliminar_histo.Enabled = false;
+            btn_cancelar_histo.Enabled = false;
 
-       }
+            #endregion
+
+
+        }
 
         private void btn_modificar_ficha_Click(object sender, EventArgs e)
         {
@@ -1141,6 +1153,7 @@ namespace App_Ecoanimalia_Piura.Graficos
             btn_nuevo_histo.Enabled = true;
             btn_modificar_histo.Text = "Editar";
             btn_modificar_histo.Enabled = true;
+            btn_eliminar_histo.Enabled = true;
         }
 
         private void btn_modificar_histo_Click(object sender, EventArgs e)
@@ -1219,7 +1232,19 @@ namespace App_Ecoanimalia_Piura.Graficos
 
         private void btn_eliminar_histo_Click(object sender, EventArgs e)
         {
-
+            if (MessageBox.Show("Seguro que dese Eliminar?", "Salir", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int id_historial = Convert.ToInt32(lb_id_historial.Text);
+                int respuesta = new NHistorialClinico().N_Eliminar_Historial_Clinico(id_historial);
+                if (respuesta == 0)
+                {
+                    MessageBox.Show("Error Al Eliminar Por favor intente nuevamente");
+                }
+                else
+                {
+                    MessageBox.Show("Eliminado Correctamente");
+                }
+            }
         }
         
 

@@ -69,14 +69,14 @@ namespace App_Ecoanimalia_Piura.Datos
         }
 
 
-        public int D_eliminar_historial(HistorialClinico clinico)
+        public int D_eliminar_historial(int id_historial)
         {
             String cadena = DConexion.cadena;
-            String sql = "DELETE FROM historialclinico where ID=@id";
+            String sql = "DELETE FROM historialclinico where ID=@ID";
             cone = new MySqlConnection(cadena);
             MySqlCommand com = new MySqlCommand(sql, cone);
             cone.Open();
-            com.Parameters.AddWithValue("@id", clinico.Id);
+            com.Parameters.AddWithValue("@ID", id_historial);
             int band;
             try
             {
