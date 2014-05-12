@@ -1140,10 +1140,15 @@ namespace App_Ecoanimalia_Piura.Graficos
             btn_nuevo_histo.Enabled = true;
             limpieza_cajasHistorial();
             Inhabilitar_CajasHistorial();
+            btn_modificar_histo.Text = "Editar";
+            btn_eliminar_histo.Enabled = false;
+            lb_id_historial.Text = "";
+            btn_modificar_histo.Enabled = false;
         }
 
         private void grilla_historial_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            Inhabilitar_CajasHistorial();
             lb_id_historial.Text = this.grilla_historial.CurrentRow.Cells[0].Value.ToString();
             fecha_historial.Text = this.grilla_historial.CurrentRow.Cells[1].Value.ToString();
             text_descripcion_histo.Text = this.grilla_historial.CurrentRow.Cells[2].Value.ToString();
@@ -1158,11 +1163,13 @@ namespace App_Ecoanimalia_Piura.Graficos
 
         private void btn_modificar_histo_Click(object sender, EventArgs e)
         {
+            btn_eliminar_histo.Enabled = false;
             if (btn_modificar_histo.Text.Equals("Editar"))
             {
                 btn_modificar_histo.Text = "Guardar Cambios";
                 Habilitar_CajasHistorial();
                 btn_cancelar_histo.Enabled = true;
+                
             }
             else
             {
@@ -1235,6 +1242,7 @@ namespace App_Ecoanimalia_Piura.Graficos
             if (MessageBox.Show("Seguro que dese Eliminar?", "Salir", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 int id_historial = Convert.ToInt32(lb_id_historial.Text);
+                int serie = int.Parse(lb_serie_mascota.Text);
                 int respuesta = new NHistorialClinico().N_Eliminar_Historial_Clinico(id_historial);
                 if (respuesta == 0)
                 {
@@ -1243,6 +1251,16 @@ namespace App_Ecoanimalia_Piura.Graficos
                 else
                 {
                     MessageBox.Show("Eliminado Correctamente");
+                    Lista_HistorialClinicobyMascota(serie);
+                    limpieza_cajasHistorial();
+                    btn_registrar_histo.Enabled = false;
+                    btn_cancelar_histo.Enabled = false;
+                    btn_nuevo_histo.Enabled = true;
+                    Inhabilitar_CajasHistorial();
+                    this.lb_id_historial.Text = "";
+                    this.btn_modificar_histo.Text = "Editar";
+                    btn_modificar_histo.Enabled = false;
+                    btn_eliminar_histo.Enabled = false;
                 }
             }
         }
