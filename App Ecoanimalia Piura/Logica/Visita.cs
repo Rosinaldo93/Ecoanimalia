@@ -34,29 +34,20 @@ namespace App_Ecoanimalia_Piura.Logica
             get { return observacion; }
             set { observacion = value; }
         }
+        DateTime fecha;
+
+        public DateTime Fecha
+        {
+            get { return fecha; }
+            set { fecha = value; }
+        }
+
+        
 
         public Visita() { }
 
-        public Visita(int i, Mascota m, int n, string o) {
+        
 
-            id = i;
-            mascota = m;
-            numero = n;
-            observacion = o;
-
-        }
-
-        public Visita(Mascota m, int n, string o)
-        {
-            mascota = m;
-            numero = n;
-            observacion = o;
-
-        }
-
-        public Visita(int i)
-        {
-            id = i;
-        }
+        
     }
 }

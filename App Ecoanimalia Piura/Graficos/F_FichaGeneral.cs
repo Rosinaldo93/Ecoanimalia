@@ -1353,6 +1353,40 @@ namespace App_Ecoanimalia_Piura.Graficos
         #endregion
 
 
+        public void habilitar_cajas_visita()
+        {
+            text_numero_visita.Enabled = true;
+            fecha_visita.Enabled = true;
+            text_observacion_visita.Enabled = true;
+        }
+        public void limpiar_cajas_visita()
+        {
+            this.lb_id_visita.Text = "";
+            text_numero_visita.Clear();
+            this.fecha_visita.Value = DateTime.Now;
+            text_observacion_visita.Clear();
+
+        }
+        public void inhabilitar_cajas_visita()
+        {
+            text_numero_visita.Enabled = false;
+            fecha_visita.Enabled = false;
+            text_observacion_visita.Enabled = false;
+        }
+        public void listar_visitar_mascota(int serie_mascota)
+        {
+            List<Visita> lista_visita = new NVisita().N_Listar_visitas(serie_mascota);
+            this.grilla_visita.Rows.Clear();
+            for (int i = 0; i < lista_visita.Count; i++)
+            {
+                int reglon = this.grilla_visita.Rows.Add();
+                this.grilla_visita.Rows[reglon].Cells["ID_VISITA"].Value = lista_visita[i].Id.ToString();
+                this.grilla_visita.Rows[reglon].Cells["NUMERO_VISITA"].Value = lista_visita[i].Numero;
+                this.grilla_visita.Rows[reglon].Cells["OBSERVACION_VISITA"].Value = lista_visita[i].Observacion;
+                this.grilla_visita.Rows[reglon].Cells["FECHA_VISI"].Value = lista_visita[i].Fecha.ToShortDateString();
+            }
+        }
+
         private void F_FichaGeneral_Load(object sender, EventArgs e)
         {
 
@@ -1381,17 +1415,21 @@ namespace App_Ecoanimalia_Piura.Graficos
             inicio_listar();
             combo_temporal.Enabled = false;
             Inhabilitar_CajasHistorial();
+            //vacunas
             btn_cancelar_vacuna.Enabled = false;
             btn_registrar_vacunas.Enabled = false;
             btn_Eliminar_vacunas.Enabled = false;
             btn_modificar_vacunas.Enabled = false;
             btn_nueva_vacuna.Enabled = true;
+            //visita
+
+
 
         }
 
         private void grilla_general_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            contador = 0;
             btn_modificar_ficha.Enabled = true;
             this.lb_serie_mascota.Text = this.grilla_general.CurrentRow.Cells[2].Value.ToString();
             this.mostra_serie_masco.Text = this.grilla_general.CurrentRow.Cells[0].Value.ToString();
@@ -1536,10 +1574,117 @@ namespace App_Ecoanimalia_Piura.Graficos
             #region vacunas
             Listar_Vacunas(idserieMascota);
             #endregion
+            #region visitas
+            listar_visitar_mascota(idserieMascota);
+            #endregion
+
 
 
         }
 
-  
+
+
+        private void btn_nuevo_visita_Click(object sender, EventArgs e)
+        {
+            habilitar_cajas_visita();
+            limpiar_cajas_visita();
+            btn_registrar_visita.Enabled = true;
+            btn_eliminar_visita.Enabled = false;
+            btn_modificar_visita.Enabled = false;
+            btn_cancelar_visita.Enabled = true;
+            btn_nuevo_visita.Enabled = true;
+        }
+
+        private void btn_registrar_visita_Click(object sender, EventArgs e)
+        {
+            Boolean band1 = false;
+            String mensaje = "Por Favor Complete los campos obligatorios : \n";
+            int Numero_visita = 0;
+            String observacion_visita = "";
+            DateTime fecha_visi = Convert.ToDateTime(fecha_visita.Text);
+            if (!String.IsNullOrEmpty(text_observacion_visita.Text))
+            {
+                observacion_visita = text_observacion_visita.Text;
+            }
+            if (!String.IsNullOrEmpty(text_numero_visita.Text))
+            {
+                Numero_visita = Convert.ToInt32(text_numero_visita.Text);
+            }
+            else
+            {
+                mensaje = mensaje + "\n - Casilla de N°Visita";
+                band1 = true;
+            }
+
+
+            if (band1 == true)
+            {
+                MessageBox.Show(mensaje);
+            }
+            else
+            {
+                if (!String.IsNullOrEmpty(this.lb_serie_mascota.Text))
+                {
+                    int serie_mascota = int.Parse(lb_serie_mascota.Text);
+                    int respuesta3 = new NVisita().N_registrar_visita(serie_mascota, Numero_visita, observacion_visita, fecha_visi);
+                    if (respuesta3 == 0)
+                    {
+                        MessageBox.Show("Error Al Registrar Por favor intente nuevamente");
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Registrado Correctamente");
+                        limpiar_cajas_visita();
+                        inhabilitar_cajas_visita();
+                        btn_registrar_visita.Enabled = false;
+                        btn_cancelar_visita.Enabled = false;
+                        btn_nueva_vacuna.Enabled = true;
+                        int serie_masco = Convert.ToInt32(this.lb_serie_mascota.Text);
+                        listar_visitar_mascota(serie_masco);
+                        
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ocurrio Un Error - Intente Nuevamente");
+                }
+            }
+        }
+
+        private void grilla_visita_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btn_cancelar_visita_Click(object sender, EventArgs e)
+        {
+            btn_registrar_visita.Enabled = false;
+            btn_cancelar_visita.Enabled = false;
+            btn_nuevo_visita.Enabled = true;
+            limpiar_cajas_visita();
+            inhabilitar_cajas_visita();
+            btn_modificar_visita.Text = "Editar";
+            btn_eliminar_visita.Enabled = false;
+            this.lb_id_visita.Text = "";
+            btn_modificar_visita.Enabled = false;
+       }
+
+        private void btn_modificar_visita_Click(object sender, EventArgs e)
+        {
+            btn_eliminar_visita.Enabled = false;
+            if (btn_modificar_visita.Text.Equals("Editar"))
+            {
+                btn_modificar_visita.Text = "Guardar Cambios";
+                habilitar_cajas_visita();
+                btn_cancelar_visita.Enabled = true;
+
+            }
+            else
+            {
+            }
+        }
+
+
     }
 }
