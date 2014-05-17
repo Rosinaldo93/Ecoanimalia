@@ -1083,6 +1083,8 @@ namespace App_Ecoanimalia_Piura.Graficos
         #endregion
         #endregion
 
+        #region vacunas
+        #region metodos vacunas
         public void inhabilitar_cajas_Vacuna()
         {
             this.text_numero_vacuna.Enabled = false;
@@ -1120,194 +1122,8 @@ namespace App_Ecoanimalia_Piura.Graficos
 
             }
         }
-        private void F_FichaGeneral_Load(object sender, EventArgs e)
-        {
-
-
-            llenar_combo_tipoMascota();
-            llenar_combo_temporales();
-            llenar_combo_tamaño();
-
-
-
-            //radio_recuperacion.Checked = true;
-            //radio_conoce_no.Checked = true;
-            //radio_macho.Checked = true;
-            //radio_temporal_no.Checked = true;
-            //radio_negativo.Checked = true;
-
-            //btn_modificar_ficha.Enabled = false;
-            //btn_eliminar_ficha.Enabled = false;
-            //btn_registrar_ficha.Enabled = false;
-            //btn_cancelar_registro.Enabled = false;
-            tab_Historial.Parent = null;
-            tab_vacunas.Parent = null;
-            tab_Visitas.Parent = null;
-            tab_fotos.Parent = null;
-            Ver_serie_mascota();
-            inicio_listar();
-            combo_temporal.Enabled = false;
-            Inhabilitar_CajasHistorial();
-            btn_cancelar_vacuna.Enabled = false;
-            btn_registrar_vacunas.Enabled = false;
-            btn_Eliminar_vacunas.Enabled = false;
-            btn_modificar_vacunas.Enabled = false;
-            btn_nueva_vacuna.Enabled = true;
-
-        }
-
-        private void grilla_general_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-            btn_modificar_ficha.Enabled = true;
-            this.lb_serie_mascota.Text = this.grilla_general.CurrentRow.Cells[2].Value.ToString();
-            this.mostra_serie_masco.Text = this.grilla_general.CurrentRow.Cells[0].Value.ToString();
-            this.lb_id_usuario.Text = this.grilla_general.CurrentRow.Cells[1].Value.ToString();
-            this.text_codigo.Text = this.grilla_general.CurrentRow.Cells[3].Value.ToString();
-            this.text_nombre_rescatista.Text = this.grilla_general.CurrentRow.Cells[4].Value.ToString();
-
-
-            String id_tempo = this.grilla_general.CurrentRow.Cells[5].Value.ToString();
-            if (!String.IsNullOrEmpty(id_tempo))
-            {
-                int id_verdadero = Convert.ToInt32(id_tempo);
-                for (int i = 0; i < combo_temporal.Items.Count; i++)
-                {
-                    FichaTemporal ficha = (FichaTemporal)combo_temporal.Items[i];
-                    if (ficha.Id == id_verdadero)
-                    {
-                        combo_temporal.SelectedIndex = i;
-                        radio_temporal_si.Checked = true;
-                        combo_temporal.Enabled = false;
-                        break;
-                    }
-                }
-
-            }
-            else
-            {
-                radio_temporal_no.Checked = true;
-            }
-
-
-            this.fecha_ingreso.Text = this.grilla_general.CurrentRow.Cells[6].Value.ToString();
-            int id_tipo = Convert.ToInt32(this.grilla_general.CurrentRow.Cells[7].Value.ToString());
-            for (int i = 0; i < combo_tipo.Items.Count; i++)
-            {
-                TipoMascota tipo = (TipoMascota)combo_tipo.Items[i];
-                if (tipo.Id == id_tipo)
-                {
-                    combo_tipo.SelectedIndex = i;
-                    break;
-                }
-            }
-            String tamano = this.grilla_general.CurrentRow.Cells[9].Value.ToString();
-            if (tamano.Equals("Pequeño"))
-            {
-                combo_tamaño.SelectedIndex = 0;
-            }
-            else
-            {
-                if (tamano.Equals("Mediano"))
-                {
-                    combo_tamaño.SelectedIndex = 1;
-                }
-                else
-                {
-                    if (tamano.Equals("Grande"))
-                    {
-                        combo_tamaño.SelectedIndex = 2;
-                    }
-                }
-            }
-
-            String estado = this.grilla_general.CurrentRow.Cells[10].Value.ToString();
-            if (estado.Equals("En Recuperacion"))
-            {
-                radio_recuperacion.Checked = true;
-            }
-            else
-            {
-                if (estado.Equals("Apto"))
-                {
-                    radio_apto.Checked = true;
-                }
-                else
-                {
-                    if (estado.Equals("Adoptado"))
-                    {
-                        radio_adoptado.Checked = true;
-                    }
-
-                }
-            }
-            this.text_nombre.Text = this.grilla_general.CurrentRow.Cells[11].Value.ToString();
-            this.text_raza.Text = this.grilla_general.CurrentRow.Cells[12].Value.ToString();
-            String sexo = this.grilla_general.CurrentRow.Cells[13].Value.ToString();
-            if (sexo.Equals("Macho"))
-            {
-                radio_macho.Checked = true;
-            }
-            else
-            {
-                if (sexo.Equals("Hembra"))
-                {
-                    radio_hembra.Checked = true;
-                }
-            }
-            this.text_color.Text = this.grilla_general.CurrentRow.Cells[14].Value.ToString();
-            this.text_edad.Text = this.grilla_general.CurrentRow.Cells[15].Value.ToString();
-            String esterilizado = this.grilla_general.CurrentRow.Cells[16].Value.ToString();
-            if (esterilizado.Equals("Si"))
-            {
-                radio_afirmativo.Checked = true;
-                int id_serie = Convert.ToInt32(lb_serie_mascota.Text);
-                String fech = new NMascota().N_Ver_FechaEsterilizacion(id_serie);
-                if (!String.IsNullOrEmpty(fech))
-                {
-                    radio_conoce_si.Checked = true;
-                    this.fecha_esterilizacion.Text = fech;
-                }
-                else
-                {
-                    radio_conoce_no.Checked = true;
-                }
-            }
-            else
-            {
-                if (esterilizado.Equals("No"))
-                {
-                    radio_negativo.Checked = true;
-                }
-            }
-            //historial clinico
-            int idserieMascota = Convert.ToInt32(this.lb_serie_mascota.Text);
-            activar_tabs();
-            Lista_HistorialClinicobyMascota(idserieMascota);
-            #region inicio_fotos
-            listar_imagenes(idserieMascota);
-            inicio();
-            cargar_inciobotones();
-            #endregion
-            btn_registrar_ficha.Enabled = false;
-            btn_cancelar_registro.Enabled = false;
-            #region opciones historial clinico
-            limpieza_cajasHistorial();
-            Inhabilitar_CajasHistorial();
-            btn_nuevo_histo.Enabled = true;
-            btn_registrar_histo.Enabled = false;
-            btn_modificar_histo.Enabled = false;
-            btn_eliminar_histo.Enabled = false;
-            btn_cancelar_histo.Enabled = false;
-
-            #endregion
-            #region vacunas
-            Listar_Vacunas(idserieMascota);
-            #endregion
-
-
-        }
-
+        #endregion
+        #region eventos vacunas
         private void btn_nueva_vacuna_Click(object sender, EventArgs e)
         {
             habilitar_cajas_vacuna();
@@ -1476,7 +1292,7 @@ namespace App_Ecoanimalia_Piura.Graficos
                         if (!String.IsNullOrEmpty(this.lb_serie_mascota.Text))
                         {
                             int id_vacunas = Convert.ToInt32(lb_id_vacuna.Text);
-                            int respuesta2 = new NVacuna().N_modificar_vacuna(id_vacunas,Numero_vacuna, fecha_vacu, observacion, precio_vacuna);
+                            int respuesta2 = new NVacuna().N_modificar_vacuna(id_vacunas, Numero_vacuna, fecha_vacu, observacion, precio_vacuna);
                             if (respuesta2 == 0)
                             {
                                 MessageBox.Show("Error Al Guardar Por favor intente nuevamente");
@@ -1492,20 +1308,9 @@ namespace App_Ecoanimalia_Piura.Graficos
                                 btn_cancelar_vacuna.Enabled = false;
                                 btn_nueva_vacuna.Enabled = true;
                                 btn_modificar_vacunas.Text = "Editar";
+                                btn_modificar_vacunas.Enabled = false;
                                 int serie = Convert.ToInt32(this.lb_serie_mascota.Text);
                                 Listar_Vacunas(serie);
-
-
-
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                this.btn_modificar_histo.Text = "Editar";
-                                btn_modificar_histo.Enabled = false;
                             }
                         }
                         else
@@ -1516,5 +1321,225 @@ namespace App_Ecoanimalia_Piura.Graficos
                 }
             }
         }
+
+        private void btn_Eliminar_vacunas_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Seguro que dese Eliminar?", "Salir", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int id_vacunas = Convert.ToInt32(lb_id_vacuna.Text);
+                int serie = int.Parse(lb_serie_mascota.Text);
+                int respuesta2 = new NVacuna().N_eliminar_vacuna(id_vacunas);
+                if (respuesta2 == 0)
+                {
+                    MessageBox.Show("Error Al Eliminar Por favor intente nuevamente");
+                }
+                else
+                {
+                    MessageBox.Show("Eliminado Correctamente");
+                    Listar_Vacunas(serie);
+                    limpiar_cajas_vacuna();
+                    btn_registrar_vacunas.Enabled = false;
+                    btn_cancelar_vacuna.Enabled = false;
+                    btn_nueva_vacuna.Enabled = true;
+                    inhabilitar_cajas_Vacuna();
+                    this.lb_id_vacuna.Text = "";
+                    btn_modificar_vacunas.Text = "Editar";
+                    btn_modificar_vacunas.Enabled = false;
+                    btn_Eliminar_vacunas.Enabled = false;
+                }
+            }
+        }
+        #endregion
+        #endregion
+
+
+        private void F_FichaGeneral_Load(object sender, EventArgs e)
+        {
+
+
+            llenar_combo_tipoMascota();
+            llenar_combo_temporales();
+            llenar_combo_tamaño();
+
+
+
+            //radio_recuperacion.Checked = true;
+            //radio_conoce_no.Checked = true;
+            //radio_macho.Checked = true;
+            //radio_temporal_no.Checked = true;
+            //radio_negativo.Checked = true;
+
+            //btn_modificar_ficha.Enabled = false;
+            //btn_eliminar_ficha.Enabled = false;
+            //btn_registrar_ficha.Enabled = false;
+            //btn_cancelar_registro.Enabled = false;
+            tab_Historial.Parent = null;
+            tab_vacunas.Parent = null;
+            tab_Visitas.Parent = null;
+            tab_fotos.Parent = null;
+            Ver_serie_mascota();
+            inicio_listar();
+            combo_temporal.Enabled = false;
+            Inhabilitar_CajasHistorial();
+            btn_cancelar_vacuna.Enabled = false;
+            btn_registrar_vacunas.Enabled = false;
+            btn_Eliminar_vacunas.Enabled = false;
+            btn_modificar_vacunas.Enabled = false;
+            btn_nueva_vacuna.Enabled = true;
+
+        }
+
+        private void grilla_general_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            btn_modificar_ficha.Enabled = true;
+            this.lb_serie_mascota.Text = this.grilla_general.CurrentRow.Cells[2].Value.ToString();
+            this.mostra_serie_masco.Text = this.grilla_general.CurrentRow.Cells[0].Value.ToString();
+            this.lb_id_usuario.Text = this.grilla_general.CurrentRow.Cells[1].Value.ToString();
+            this.text_codigo.Text = this.grilla_general.CurrentRow.Cells[3].Value.ToString();
+            this.text_nombre_rescatista.Text = this.grilla_general.CurrentRow.Cells[4].Value.ToString();
+            this.pictureBox1.Image = null;
+            String id_tempo = this.grilla_general.CurrentRow.Cells[5].Value.ToString();
+            if (!String.IsNullOrEmpty(id_tempo))
+            {
+                int id_verdadero = Convert.ToInt32(id_tempo);
+                for (int i = 0; i < combo_temporal.Items.Count; i++)
+                {
+                    FichaTemporal ficha = (FichaTemporal)combo_temporal.Items[i];
+                    if (ficha.Id == id_verdadero)
+                    {
+                        combo_temporal.SelectedIndex = i;
+                        radio_temporal_si.Checked = true;
+                        combo_temporal.Enabled = false;
+                        break;
+                    }
+                }
+
+            }
+            else
+            {
+                radio_temporal_no.Checked = true;
+            }
+
+
+            this.fecha_ingreso.Text = this.grilla_general.CurrentRow.Cells[6].Value.ToString();
+            int id_tipo = Convert.ToInt32(this.grilla_general.CurrentRow.Cells[7].Value.ToString());
+            for (int i = 0; i < combo_tipo.Items.Count; i++)
+            {
+                TipoMascota tipo = (TipoMascota)combo_tipo.Items[i];
+                if (tipo.Id == id_tipo)
+                {
+                    combo_tipo.SelectedIndex = i;
+                    break;
+                }
+            }
+            String tamano = this.grilla_general.CurrentRow.Cells[9].Value.ToString();
+            if (tamano.Equals("Pequeño"))
+            {
+                combo_tamaño.SelectedIndex = 0;
+            }
+            else
+            {
+                if (tamano.Equals("Mediano"))
+                {
+                    combo_tamaño.SelectedIndex = 1;
+                }
+                else
+                {
+                    if (tamano.Equals("Grande"))
+                    {
+                        combo_tamaño.SelectedIndex = 2;
+                    }
+                }
+            }
+
+            String estado = this.grilla_general.CurrentRow.Cells[10].Value.ToString();
+            if (estado.Equals("En Recuperacion"))
+            {
+                radio_recuperacion.Checked = true;
+            }
+            else
+            {
+                if (estado.Equals("Apto"))
+                {
+                    radio_apto.Checked = true;
+                }
+                else
+                {
+                    if (estado.Equals("Adoptado"))
+                    {
+                        radio_adoptado.Checked = true;
+                    }
+
+                }
+            }
+            this.text_nombre.Text = this.grilla_general.CurrentRow.Cells[11].Value.ToString();
+            this.text_raza.Text = this.grilla_general.CurrentRow.Cells[12].Value.ToString();
+            String sexo = this.grilla_general.CurrentRow.Cells[13].Value.ToString();
+            if (sexo.Equals("Macho"))
+            {
+                radio_macho.Checked = true;
+            }
+            else
+            {
+                if (sexo.Equals("Hembra"))
+                {
+                    radio_hembra.Checked = true;
+                }
+            }
+            this.text_color.Text = this.grilla_general.CurrentRow.Cells[14].Value.ToString();
+            this.text_edad.Text = this.grilla_general.CurrentRow.Cells[15].Value.ToString();
+            String esterilizado = this.grilla_general.CurrentRow.Cells[16].Value.ToString();
+            if (esterilizado.Equals("Si"))
+            {
+                radio_afirmativo.Checked = true;
+                int id_serie = Convert.ToInt32(lb_serie_mascota.Text);
+                String fech = new NMascota().N_Ver_FechaEsterilizacion(id_serie);
+                if (!String.IsNullOrEmpty(fech))
+                {
+                    radio_conoce_si.Checked = true;
+                    this.fecha_esterilizacion.Text = fech;
+                }
+                else
+                {
+                    radio_conoce_no.Checked = true;
+                }
+            }
+            else
+            {
+                if (esterilizado.Equals("No"))
+                {
+                    radio_negativo.Checked = true;
+                }
+            }
+            //historial clinico
+            int idserieMascota = Convert.ToInt32(this.lb_serie_mascota.Text);
+            activar_tabs();
+            Lista_HistorialClinicobyMascota(idserieMascota);
+            #region inicio_fotos
+            listar_imagenes(idserieMascota);
+            inicio();
+            cargar_inciobotones();
+            #endregion
+            btn_registrar_ficha.Enabled = false;
+            btn_cancelar_registro.Enabled = false;
+            #region opciones historial clinico
+            limpieza_cajasHistorial();
+            Inhabilitar_CajasHistorial();
+            btn_nuevo_histo.Enabled = true;
+            btn_registrar_histo.Enabled = false;
+            btn_modificar_histo.Enabled = false;
+            btn_eliminar_histo.Enabled = false;
+            btn_cancelar_histo.Enabled = false;
+
+            #endregion
+            #region vacunas
+            Listar_Vacunas(idserieMascota);
+            #endregion
+
+
+        }
+
+  
     }
 }

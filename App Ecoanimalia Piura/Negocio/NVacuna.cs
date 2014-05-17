@@ -41,12 +41,11 @@ namespace App_Ecoanimalia_Piura.Negocio
            return band;
        }
 
-        //public int N_eliminar_vacuna(int id)
-        //{
-        //    Vacuna vac = new Vacuna();
-        //    vac.Id = id;
-        //    int band = new DVacuna().D_eliminar_vacuna(vac);
-        //    return band;
-        //}
+       public int N_eliminar_vacuna(int id_vacuna)
+       {
+
+           int band = new DVacuna().D_eliminar_vacuna(id_vacuna);
+           return band;
+       }
     }
 }

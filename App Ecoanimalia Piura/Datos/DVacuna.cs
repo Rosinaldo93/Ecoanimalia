@@ -145,29 +145,29 @@ namespace App_Ecoanimalia_Piura.Datos
           }
 
 
-        //public int D_eliminar_vacuna(Vacuna vacuna)
-        //{
-        //    String cadena = DConexion.cadena;
-        //    String sql = "DELETE FROM vacuna where ID=@id";
-        //    cone = new MySqlConnection(cadena);
-        //    MySqlCommand com = new MySqlCommand(sql, cone);
-        //    cone.Open();
-        //    com.Parameters.AddWithValue("@id", vacuna.Id);
-        //    int band;
-        //    try
-        //    {
-        //        band = com.ExecuteNonQuery();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        band = 0;
+          public int D_eliminar_vacuna(int id_vacuna)
+          {
+              String cadena = DConexion.cadena;
+              String sql = "DELETE FROM vacuna where ID=@ID";
+              cone = new MySqlConnection(cadena);
+              MySqlCommand com = new MySqlCommand(sql, cone);
+              cone.Open();
+              com.Parameters.AddWithValue("@ID", id_vacuna);
+              int band;
+              try
+              {
+                  band = com.ExecuteNonQuery();
+              }
+              catch (Exception)
+              {
+                  band = 0;
 
-        //    }
-        //    cone.Close();
-        //    return band;
-        //}
+              }
+              cone.Close();
+              return band;
+          }
 
-        ////FALTA LISTAR
+        
 
 
        
