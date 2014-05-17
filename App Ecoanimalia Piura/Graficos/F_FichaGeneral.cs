@@ -15,7 +15,7 @@ namespace App_Ecoanimalia_Piura.Graficos
 {
     public partial class F_FichaGeneral : Form
     {
-        
+
         static List<ImagenMascota> lista_imagenes = new List<ImagenMascota>();
         static int contador = 0;
         public static FichaTemporal fichatem;
@@ -132,7 +132,7 @@ namespace App_Ecoanimalia_Piura.Graficos
 
 
                         int val1 = (contador + 1);
-                        int idmascota =Convert.ToInt32(this.lb_serie_mascota.Text);
+                        int idmascota = Convert.ToInt32(this.lb_serie_mascota.Text);
                         listar_imagenes(idmascota);
                         btn_siguiente.Enabled = true;
                         if (lista_imagenes.Count - val1 == 0)
@@ -391,6 +391,24 @@ namespace App_Ecoanimalia_Piura.Graficos
         }
         #endregion
         #region eventos mascota
+        private void btn_modificar_ficha_Click(object sender, EventArgs e)
+        {
+            if (btn_modificar_ficha.Text.Equals("Editar"))
+            {
+                btn_modificar_ficha.Text = "Guardar Cambios";
+                habilitar_cajas();
+                btn_cancelar_registro.Enabled = true;
+            }
+            else
+            {
+                if (btn_modificar_ficha.Text.Equals("Guardar Cambios"))
+                {
+
+                }
+            }
+        }
+
+
         private void radio_negativo_CheckedChanged(object sender, EventArgs e)
         {
             group_conoce.Enabled = false;
@@ -510,11 +528,11 @@ namespace App_Ecoanimalia_Piura.Graficos
                 btn_verDatos.Enabled = false;
                 combo_temporal.Enabled = false;
             }
-           
+
 
         }
 
-      
+
         private void btn_nuevo_ficha_Click(object sender, EventArgs e)
         {
             lb_id_usuario.Text = "";
@@ -821,7 +839,7 @@ namespace App_Ecoanimalia_Piura.Graficos
 
         }
         #endregion
-#endregion
+        #endregion
 
         #region historial clinico
         #region metodo vista historial clinico
@@ -919,14 +937,193 @@ namespace App_Ecoanimalia_Piura.Graficos
             }
 
         }
+        private void btn_nuevo_histo_Click(object sender, EventArgs e)
+        {
+            lb_id_historial.Text = "";
+            Habilitar_CajasHistorial();
+            btn_registrar_histo.Enabled = true;
+            btn_cancelar_histo.Enabled = true;
+            btn_eliminar_histo.Enabled = false;
+            btn_modificar_histo.Enabled = false;
+            limpieza_cajasHistorial();
+        }
+        private void btn_cancelar_histo_Click(object sender, EventArgs e)
+        {
+            btn_registrar_histo.Enabled = false;
+            btn_cancelar_histo.Enabled = false;
+            btn_nuevo_histo.Enabled = true;
+            limpieza_cajasHistorial();
+            Inhabilitar_CajasHistorial();
+            btn_modificar_histo.Text = "Editar";
+            btn_eliminar_histo.Enabled = false;
+            lb_id_historial.Text = "";
+            btn_modificar_histo.Enabled = false;
+        }
+        private void btn_modificar_histo_Click(object sender, EventArgs e)
+        {
+            btn_eliminar_histo.Enabled = false;
+            if (btn_modificar_histo.Text.Equals("Editar"))
+            {
+                btn_modificar_histo.Text = "Guardar Cambios";
+                Habilitar_CajasHistorial();
+                btn_cancelar_histo.Enabled = true;
+
+            }
+            else
+            {
+                if (btn_modificar_histo.Text.Equals("Guardar Cambios"))
+                {
+                    Boolean band1 = false;
+                    String mensaje = "Por Favor Complete los campos obligatorios : \n";
+                    String descripcion = "";
+                    Decimal precio;
+                    int id_historial = Convert.ToInt32(lb_id_historial.Text);
+                    DateTime f_historial = Convert.ToDateTime(fecha_historial.Text);
+                    if (!String.IsNullOrEmpty(text_descripcion_histo.Text))
+                    {
+                        descripcion = text_descripcion_histo.Text;
+                    }
+                    else
+                    {
+                        mensaje = mensaje + "\n - Casilla de Descripcion";
+                        band1 = true;
+                    }
+                    if (!String.IsNullOrEmpty(text_precio_histo.Text))
+                    {
+                        precio = Convert.ToDecimal(this.text_precio_histo.Text);
+                    }
+                    else
+                    {
+                        precio = 0;
+                    }
+                    if (band1 == true)
+                    {
+                        MessageBox.Show(mensaje);
+                    }
+                    else
+                    {
+                        if (!String.IsNullOrEmpty(this.lb_serie_mascota.Text))
+                        {
+                            int serie = int.Parse(lb_serie_mascota.Text);
+                            int respuesta = new NHistorialClinico().N_Modificar_Historial_Clinico(f_historial, descripcion, precio, id_historial);
+                            if (respuesta == 0)
+                            {
+                                MessageBox.Show("Error Al Guardar Por favor intente nuevamente");
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Cambios Guardados Correctamente");
+                                Lista_HistorialClinicobyMascota(serie);
+                                limpieza_cajasHistorial();
+                                btn_registrar_histo.Enabled = false;
+                                btn_cancelar_histo.Enabled = false;
+                                btn_nuevo_histo.Enabled = true;
+                                Inhabilitar_CajasHistorial();
+                                this.lb_id_historial.Text = "";
+                                this.btn_modificar_histo.Text = "Editar";
+                                btn_modificar_histo.Enabled = false;
+
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Ocurrio Un Error - Intente Nuevamente");
+                        }
+                    }
+                }
+
+            }
+        }
+
+        private void btn_eliminar_histo_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Seguro que dese Eliminar?", "Salir", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int id_historial = Convert.ToInt32(lb_id_historial.Text);
+                int serie = int.Parse(lb_serie_mascota.Text);
+                int respuesta = new NHistorialClinico().N_Eliminar_Historial_Clinico(id_historial);
+                if (respuesta == 0)
+                {
+                    MessageBox.Show("Error Al Eliminar Por favor intente nuevamente");
+                }
+                else
+                {
+                    MessageBox.Show("Eliminado Correctamente");
+                    Lista_HistorialClinicobyMascota(serie);
+                    limpieza_cajasHistorial();
+                    btn_registrar_histo.Enabled = false;
+                    btn_cancelar_histo.Enabled = false;
+                    btn_nuevo_histo.Enabled = true;
+                    Inhabilitar_CajasHistorial();
+                    this.lb_id_historial.Text = "";
+                    this.btn_modificar_histo.Text = "Editar";
+                    btn_modificar_histo.Enabled = false;
+                    btn_eliminar_histo.Enabled = false;
+                }
+            }
+        }
+
+
+        private void grilla_historial_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Inhabilitar_CajasHistorial();
+            lb_id_historial.Text = this.grilla_historial.CurrentRow.Cells[0].Value.ToString();
+            fecha_historial.Text = this.grilla_historial.CurrentRow.Cells[1].Value.ToString();
+            text_descripcion_histo.Text = this.grilla_historial.CurrentRow.Cells[2].Value.ToString();
+            text_precio_histo.Text = this.grilla_historial.CurrentRow.Cells[3].Value.ToString();
+            btn_registrar_histo.Enabled = false;
+            btn_cancelar_histo.Enabled = false;
+            btn_nuevo_histo.Enabled = true;
+            btn_modificar_histo.Text = "Editar";
+            btn_modificar_histo.Enabled = true;
+            btn_eliminar_histo.Enabled = true;
+        }
+
         #endregion
         #endregion
 
+        public void inhabilitar_cajas_Vacuna()
+        {
+            this.text_numero_vacuna.Enabled = false;
+            this.text_observacion_vacuna.Enabled = false;
+            this.text_precio_vacuna.Enabled = false;
+            this.fecha_vacuna.Enabled = false;
+        }
+        public void habilitar_cajas_vacuna()
+        {
+            this.text_numero_vacuna.Enabled = true;
+            this.text_observacion_vacuna.Enabled = true;
+            this.text_precio_vacuna.Enabled = true;
+            this.fecha_vacuna.Enabled = true;
+        }
+        public void limpiar_cajas_vacuna()
+        {
+            this.lb_id_vacuna.Text = "";
+            this.text_numero_vacuna.Clear();
+            this.text_observacion_vacuna.Clear();
+            this.text_precio_vacuna.Clear();
+            this.fecha_vacuna.Value = DateTime.Now;
+        }
+        public void Listar_Vacunas(int serie_mascota)
+        {
+            List<Vacuna> lista_vacuna = new NVacuna().N_Listar_Vacunas(serie_mascota);
+            this.grilla_vacuna.Rows.Clear();
+            for (int i = 0; i < lista_vacuna.Count; i++)
+            {
+                int reglon = this.grilla_vacuna.Rows.Add();
+                this.grilla_vacuna.Rows[reglon].Cells["ID_VACUNA"].Value = lista_vacuna[i].Id.ToString();
+                this.grilla_vacuna.Rows[reglon].Cells["NUMERO_VACUNA"].Value = lista_vacuna[i].Numero_vacuna;
+                this.grilla_vacuna.Rows[reglon].Cells["FECH_VACUNA"].Value = lista_vacuna[i].Fecha.ToShortDateString();
+                this.grilla_vacuna.Rows[reglon].Cells["OBSERVACION"].Value = lista_vacuna[i].Observacion;
+                this.grilla_vacuna.Rows[reglon].Cells["PRECIO_VACUNA"].Value = lista_vacuna[i].Precio_Vacuna;
 
+            }
+        }
         private void F_FichaGeneral_Load(object sender, EventArgs e)
         {
-            
-            
+
+
             llenar_combo_tipoMascota();
             llenar_combo_temporales();
             llenar_combo_tamaño();
@@ -938,7 +1135,7 @@ namespace App_Ecoanimalia_Piura.Graficos
             //radio_macho.Checked = true;
             //radio_temporal_no.Checked = true;
             //radio_negativo.Checked = true;
-            
+
             //btn_modificar_ficha.Enabled = false;
             //btn_eliminar_ficha.Enabled = false;
             //btn_registrar_ficha.Enabled = false;
@@ -951,33 +1148,25 @@ namespace App_Ecoanimalia_Piura.Graficos
             inicio_listar();
             combo_temporal.Enabled = false;
             Inhabilitar_CajasHistorial();
-        }
+            btn_cancelar_vacuna.Enabled = false;
+            btn_registrar_vacunas.Enabled = false;
+            btn_Eliminar_vacunas.Enabled = false;
+            btn_modificar_vacunas.Enabled = false;
+            btn_nueva_vacuna.Enabled = true;
 
-
-       
-
-        private void btn_nuevo_histo_Click(object sender, EventArgs e)
-        {
-            lb_id_historial.Text = "";
-            Habilitar_CajasHistorial();
-            btn_registrar_histo.Enabled = true;
-            btn_cancelar_histo.Enabled = true;
-            btn_eliminar_histo.Enabled = false;
-            btn_modificar_histo.Enabled = false;
-            limpieza_cajasHistorial();
         }
 
         private void grilla_general_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             btn_modificar_ficha.Enabled = true;
             this.lb_serie_mascota.Text = this.grilla_general.CurrentRow.Cells[2].Value.ToString();
             this.mostra_serie_masco.Text = this.grilla_general.CurrentRow.Cells[0].Value.ToString();
             this.lb_id_usuario.Text = this.grilla_general.CurrentRow.Cells[1].Value.ToString();
             this.text_codigo.Text = this.grilla_general.CurrentRow.Cells[3].Value.ToString();
             this.text_nombre_rescatista.Text = this.grilla_general.CurrentRow.Cells[4].Value.ToString();
-          
-            
+
+
             String id_tempo = this.grilla_general.CurrentRow.Cells[5].Value.ToString();
             if (!String.IsNullOrEmpty(id_tempo))
             {
@@ -993,14 +1182,14 @@ namespace App_Ecoanimalia_Piura.Graficos
                         break;
                     }
                 }
-                
+
             }
             else
             {
                 radio_temporal_no.Checked = true;
             }
-            
-            
+
+
             this.fecha_ingreso.Text = this.grilla_general.CurrentRow.Cells[6].Value.ToString();
             int id_tipo = Convert.ToInt32(this.grilla_general.CurrentRow.Cells[7].Value.ToString());
             for (int i = 0; i < combo_tipo.Items.Count; i++)
@@ -1092,7 +1281,7 @@ namespace App_Ecoanimalia_Piura.Graficos
                 }
             }
             //historial clinico
-            int idserieMascota =Convert.ToInt32(this.lb_serie_mascota.Text);
+            int idserieMascota = Convert.ToInt32(this.lb_serie_mascota.Text);
             activar_tabs();
             Lista_HistorialClinicobyMascota(idserieMascota);
             #region inicio_fotos
@@ -1112,93 +1301,173 @@ namespace App_Ecoanimalia_Piura.Graficos
             btn_cancelar_histo.Enabled = false;
 
             #endregion
+            #region vacunas
+            Listar_Vacunas(idserieMascota);
+            #endregion
 
 
         }
 
-        private void btn_modificar_ficha_Click(object sender, EventArgs e)
+        private void btn_nueva_vacuna_Click(object sender, EventArgs e)
         {
-            if (btn_modificar_ficha.Text.Equals("Editar"))
+            habilitar_cajas_vacuna();
+            limpiar_cajas_vacuna();
+            btn_registrar_vacunas.Enabled = true;
+            btn_Eliminar_vacunas.Enabled = false;
+            btn_modificar_vacunas.Enabled = false;
+            btn_cancelar_vacuna.Enabled = true;
+            btn_nueva_vacuna.Enabled = true;
+        }
+
+        private void btn_registrar_vacunas_Click(object sender, EventArgs e)
+        {
+            Boolean band1 = false, band2 = false;
+            String mensaje = "Por Favor Complete los campos obligatorios : \n";
+            int Numero_vacuna = 0;
+            String observacion = "";
+            Decimal precio_vacuna;
+            DateTime fecha_vacu = Convert.ToDateTime(fecha_vacuna.Text);
+            if (!String.IsNullOrEmpty(text_observacion_vacuna.Text))
             {
-                btn_modificar_ficha.Text = "Guardar Cambios";
-                habilitar_cajas();
-                btn_cancelar_registro.Enabled = true;
+                observacion = text_observacion_vacuna.Text;
             }
             else
             {
-                if (btn_modificar_ficha.Text.Equals("Guardar Cambios"))
-                {
+                mensaje = mensaje + "\n - Casilla de Descripcion";
+                band1 = true;
+            }
+            if (!String.IsNullOrEmpty(text_precio_vacuna.Text))
+            {
+                precio_vacuna = Convert.ToDecimal(this.text_precio_vacuna.Text);
+            }
+            else
+            {
+                precio_vacuna = 0;
+            }
+            if (!String.IsNullOrEmpty(text_numero_vacuna.Text))
+            {
+                Numero_vacuna = Convert.ToInt32(text_numero_vacuna.Text);
+            }
+            else
+            {
+                mensaje = mensaje + "\n - Casilla de N°Vacuna";
+                band2 = true;
+            }
 
+
+            if (band1 == true || band2 == true)
+            {
+                MessageBox.Show(mensaje);
+            }
+            else
+            {
+                if (!String.IsNullOrEmpty(this.lb_serie_mascota.Text))
+                {
+                    int serie_mascota = int.Parse(lb_serie_mascota.Text);
+                    int respuesta2 = new NVacuna().N_Registrar_vacuna(serie_mascota, Numero_vacuna, fecha_vacu, observacion, precio_vacuna);
+                    if (respuesta2 == 0)
+                    {
+                        MessageBox.Show("Error Al Registrar Por favor intente nuevamente");
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Registrado Correctamente");
+                        limpiar_cajas_vacuna();
+                        inhabilitar_cajas_Vacuna();
+                        btn_registrar_vacunas.Enabled = false;
+                        btn_cancelar_vacuna.Enabled = false;
+                        btn_nueva_vacuna.Enabled = true;
+                        int serie = Convert.ToInt32(this.lb_serie_mascota.Text);
+                        Listar_Vacunas(serie);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ocurrio Un Error - Intente Nuevamente");
                 }
             }
         }
 
-        private void btn_cancelar_histo_Click(object sender, EventArgs e)
+        private void grilla_vacuna_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            btn_registrar_histo.Enabled = false;
-            btn_cancelar_histo.Enabled = false;
-            btn_nuevo_histo.Enabled = true;
-            limpieza_cajasHistorial();
-            Inhabilitar_CajasHistorial();
-            btn_modificar_histo.Text = "Editar";
-            btn_eliminar_histo.Enabled = false;
-            lb_id_historial.Text = "";
-            btn_modificar_histo.Enabled = false;
+            inhabilitar_cajas_Vacuna();
+            limpiar_cajas_vacuna();
+            lb_id_vacuna.Text = this.grilla_vacuna.CurrentRow.Cells[0].Value.ToString();
+            text_numero_vacuna.Text = this.grilla_vacuna.CurrentRow.Cells[1].Value.ToString();
+            fecha_vacuna.Text = this.grilla_vacuna.CurrentRow.Cells[2].Value.ToString();
+            text_observacion_vacuna.Text = this.grilla_vacuna.CurrentRow.Cells[3].Value.ToString();
+            this.text_precio_vacuna.Text = this.grilla_vacuna.CurrentRow.Cells[4].Value.ToString();
+            btn_registrar_vacunas.Enabled = false;
+            btn_cancelar_vacuna.Enabled = false;
+            btn_nueva_vacuna.Enabled = true;
+            btn_modificar_vacunas.Text = "Editar";
+            btn_modificar_vacunas.Enabled = true;
+            btn_Eliminar_vacunas.Enabled = true;
         }
 
-        private void grilla_historial_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void btn_cancelar_vacuna_Click(object sender, EventArgs e)
         {
-            Inhabilitar_CajasHistorial();
-            lb_id_historial.Text = this.grilla_historial.CurrentRow.Cells[0].Value.ToString();
-            fecha_historial.Text = this.grilla_historial.CurrentRow.Cells[1].Value.ToString();
-            text_descripcion_histo.Text = this.grilla_historial.CurrentRow.Cells[2].Value.ToString();
-            text_precio_histo.Text = this.grilla_historial.CurrentRow.Cells[3].Value.ToString();
-            btn_registrar_histo.Enabled = false;
-            btn_cancelar_histo.Enabled = false;
-            btn_nuevo_histo.Enabled = true;
-            btn_modificar_histo.Text = "Editar";
-            btn_modificar_histo.Enabled = true;
-            btn_eliminar_histo.Enabled = true;
+            btn_registrar_vacunas.Enabled = false;
+            btn_cancelar_vacuna.Enabled = false;
+            btn_nueva_vacuna.Enabled = true;
+            limpiar_cajas_vacuna();
+            inhabilitar_cajas_Vacuna();
+            btn_modificar_vacunas.Text = "Editar";
+            btn_Eliminar_vacunas.Enabled = false;
+            this.lb_id_vacuna.Text = "";
+            btn_modificar_vacunas.Enabled = false;
         }
 
-        private void btn_modificar_histo_Click(object sender, EventArgs e)
+        private void btn_modificar_vacunas_Click(object sender, EventArgs e)
         {
-            btn_eliminar_histo.Enabled = false;
-            if (btn_modificar_histo.Text.Equals("Editar"))
+            btn_Eliminar_vacunas.Enabled = false;
+            if (btn_modificar_vacunas.Text.Equals("Editar"))
             {
-                btn_modificar_histo.Text = "Guardar Cambios";
-                Habilitar_CajasHistorial();
-                btn_cancelar_histo.Enabled = true;
-                
+                btn_modificar_vacunas.Text = "Guardar Cambios";
+                habilitar_cajas_vacuna();
+                btn_cancelar_vacuna.Enabled = true;
+
             }
             else
             {
-                if (btn_modificar_histo.Text.Equals("Guardar Cambios"))
+                if (btn_modificar_vacunas.Text.Equals("Guardar Cambios"))
                 {
-                    Boolean band1 = false;
+                    Boolean band1 = false, band2 = false;
                     String mensaje = "Por Favor Complete los campos obligatorios : \n";
-                    String descripcion = "";
-                    Decimal precio;
-                    int id_historial = Convert.ToInt32(lb_id_historial.Text);
-                    DateTime f_historial = Convert.ToDateTime(fecha_historial.Text);
-                    if (!String.IsNullOrEmpty(text_descripcion_histo.Text))
+                    int Numero_vacuna = 0;
+                    String observacion = "";
+                    Decimal precio_vacuna;
+                    DateTime fecha_vacu = Convert.ToDateTime(fecha_vacuna.Text);
+                    if (!String.IsNullOrEmpty(text_observacion_vacuna.Text))
                     {
-                        descripcion = text_descripcion_histo.Text;
+                        observacion = text_observacion_vacuna.Text;
                     }
                     else
                     {
                         mensaje = mensaje + "\n - Casilla de Descripcion";
                         band1 = true;
                     }
-                    if (!String.IsNullOrEmpty(text_precio_histo.Text))
+                    if (!String.IsNullOrEmpty(text_precio_vacuna.Text))
                     {
-                        precio = Convert.ToDecimal(this.text_precio_histo.Text);
+                        precio_vacuna = Convert.ToDecimal(this.text_precio_vacuna.Text);
                     }
                     else
                     {
-                        precio = 0;
+                        precio_vacuna = 0;
                     }
-                    if (band1 == true)
+                    if (!String.IsNullOrEmpty(text_numero_vacuna.Text))
+                    {
+                        Numero_vacuna = Convert.ToInt32(text_numero_vacuna.Text);
+                    }
+                    else
+                    {
+                        mensaje = mensaje + "\n - Casilla de N°Vacuna";
+                        band2 = true;
+                    }
+
+
+                    if (band1 == true || band2 == true)
                     {
                         MessageBox.Show(mensaje);
                     }
@@ -1206,9 +1475,9 @@ namespace App_Ecoanimalia_Piura.Graficos
                     {
                         if (!String.IsNullOrEmpty(this.lb_serie_mascota.Text))
                         {
-                            int serie = int.Parse(lb_serie_mascota.Text);
-                            int respuesta = new NHistorialClinico().N_Modificar_Historial_Clinico(f_historial, descripcion, precio,id_historial);
-                            if (respuesta == 0)
+                            int id_vacunas = Convert.ToInt32(lb_id_vacuna.Text);
+                            int respuesta2 = new NVacuna().N_modificar_vacuna(id_vacunas,Numero_vacuna, fecha_vacu, observacion, precio_vacuna);
+                            if (respuesta2 == 0)
                             {
                                 MessageBox.Show("Error Al Guardar Por favor intente nuevamente");
 
@@ -1216,13 +1485,25 @@ namespace App_Ecoanimalia_Piura.Graficos
                             else
                             {
                                 MessageBox.Show("Cambios Guardados Correctamente");
-                                Lista_HistorialClinicobyMascota(serie);
-                                limpieza_cajasHistorial();
-                                btn_registrar_histo.Enabled = false;
-                                btn_cancelar_histo.Enabled = false;
-                                btn_nuevo_histo.Enabled = true;
-                                Inhabilitar_CajasHistorial();
-                                this.lb_id_historial.Text = "";
+                                limpiar_cajas_vacuna();
+                                lb_id_vacuna.Text = "";
+                                inhabilitar_cajas_Vacuna();
+                                btn_registrar_vacunas.Enabled = false;
+                                btn_cancelar_vacuna.Enabled = false;
+                                btn_nueva_vacuna.Enabled = true;
+                                btn_modificar_vacunas.Text = "Editar";
+                                int serie = Convert.ToInt32(this.lb_serie_mascota.Text);
+                                Listar_Vacunas(serie);
+
+
+
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                                 this.btn_modificar_histo.Text = "Editar";
                                 btn_modificar_histo.Enabled = false;
                             }
@@ -1233,38 +1514,7 @@ namespace App_Ecoanimalia_Piura.Graficos
                         }
                     }
                 }
-
             }
         }
-
-        private void btn_eliminar_histo_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Seguro que dese Eliminar?", "Salir", MessageBoxButtons.YesNo) == DialogResult.Yes)
-            {
-                int id_historial = Convert.ToInt32(lb_id_historial.Text);
-                int serie = int.Parse(lb_serie_mascota.Text);
-                int respuesta = new NHistorialClinico().N_Eliminar_Historial_Clinico(id_historial);
-                if (respuesta == 0)
-                {
-                    MessageBox.Show("Error Al Eliminar Por favor intente nuevamente");
-                }
-                else
-                {
-                    MessageBox.Show("Eliminado Correctamente");
-                    Lista_HistorialClinicobyMascota(serie);
-                    limpieza_cajasHistorial();
-                    btn_registrar_histo.Enabled = false;
-                    btn_cancelar_histo.Enabled = false;
-                    btn_nuevo_histo.Enabled = true;
-                    Inhabilitar_CajasHistorial();
-                    this.lb_id_historial.Text = "";
-                    this.btn_modificar_histo.Text = "Editar";
-                    btn_modificar_histo.Enabled = false;
-                    btn_eliminar_histo.Enabled = false;
-                }
-            }
-        }
-        
-
     }
 }

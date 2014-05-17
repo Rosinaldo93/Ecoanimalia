@@ -109,6 +109,12 @@
             this.fecha_historial = new System.Windows.Forms.DateTimePicker();
             this.label16 = new System.Windows.Forms.Label();
             this.tab_vacunas = new System.Windows.Forms.TabPage();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.text_precio_vacuna = new System.Windows.Forms.TextBox();
+            this.label43 = new System.Windows.Forms.Label();
+            this.lb_id_vacuna = new System.Windows.Forms.Label();
+            this.btn_cancelar_vacuna = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
             this.grilla_vacuna = new System.Windows.Forms.DataGridView();
             this.btn_nueva_vacuna = new System.Windows.Forms.Button();
@@ -171,6 +177,11 @@
             this.ESTERILIZADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label14 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.ID_VACUNA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NUMERO_VACUNA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FECH_VACUNA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OBSERVACION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRECIO_VACUNA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tab_Mascota.SuspendLayout();
             this.tab_principal.SuspendLayout();
             this.group_temporal.SuspendLayout();
@@ -1054,6 +1065,12 @@
             // 
             // tab_vacunas
             // 
+            this.tab_vacunas.Controls.Add(this.label41);
+            this.tab_vacunas.Controls.Add(this.label42);
+            this.tab_vacunas.Controls.Add(this.text_precio_vacuna);
+            this.tab_vacunas.Controls.Add(this.label43);
+            this.tab_vacunas.Controls.Add(this.lb_id_vacuna);
+            this.tab_vacunas.Controls.Add(this.btn_cancelar_vacuna);
             this.tab_vacunas.Controls.Add(this.label26);
             this.tab_vacunas.Controls.Add(this.grilla_vacuna);
             this.tab_vacunas.Controls.Add(this.btn_nueva_vacuna);
@@ -1076,6 +1093,61 @@
             this.tab_vacunas.Text = "      Vacunas      ";
             this.tab_vacunas.UseVisualStyleBackColor = true;
             // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(211, 242);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(22, 13);
+            this.label41.TabIndex = 47;
+            this.label41.Text = "S./";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(341, 242);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(42, 13);
+            this.label42.TabIndex = 46;
+            this.label42.Text = "SOLES";
+            // 
+            // text_precio_vacuna
+            // 
+            this.text_precio_vacuna.Enabled = false;
+            this.text_precio_vacuna.Location = new System.Drawing.Point(240, 239);
+            this.text_precio_vacuna.Name = "text_precio_vacuna";
+            this.text_precio_vacuna.Size = new System.Drawing.Size(95, 20);
+            this.text_precio_vacuna.TabIndex = 45;
+            this.text_precio_vacuna.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(137, 242);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(43, 13);
+            this.label43.TabIndex = 44;
+            this.label43.Text = "Precio :";
+            // 
+            // lb_id_vacuna
+            // 
+            this.lb_id_vacuna.AutoSize = true;
+            this.lb_id_vacuna.Location = new System.Drawing.Point(139, 26);
+            this.lb_id_vacuna.Name = "lb_id_vacuna";
+            this.lb_id_vacuna.Size = new System.Drawing.Size(71, 13);
+            this.lb_id_vacuna.TabIndex = 15;
+            this.lb_id_vacuna.Text = "lb_id_vacuna";
+            // 
+            // btn_cancelar_vacuna
+            // 
+            this.btn_cancelar_vacuna.Location = new System.Drawing.Point(177, 369);
+            this.btn_cancelar_vacuna.Name = "btn_cancelar_vacuna";
+            this.btn_cancelar_vacuna.Size = new System.Drawing.Size(117, 39);
+            this.btn_cancelar_vacuna.TabIndex = 14;
+            this.btn_cancelar_vacuna.Text = "Cancelar";
+            this.btn_cancelar_vacuna.UseVisualStyleBackColor = true;
+            this.btn_cancelar_vacuna.Click += new System.EventHandler(this.btn_cancelar_vacuna_Click);
+            // 
             // label26
             // 
             this.label26.AutoSize = true;
@@ -1087,65 +1159,80 @@
             // 
             // grilla_vacuna
             // 
+            this.grilla_vacuna.AllowUserToAddRows = false;
+            this.grilla_vacuna.AllowUserToDeleteRows = false;
             this.grilla_vacuna.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grilla_vacuna.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID_VACUNA,
+            this.NUMERO_VACUNA,
+            this.FECH_VACUNA,
+            this.OBSERVACION,
+            this.PRECIO_VACUNA});
             this.grilla_vacuna.Location = new System.Drawing.Point(639, 156);
             this.grilla_vacuna.Name = "grilla_vacuna";
+            this.grilla_vacuna.ReadOnly = true;
             this.grilla_vacuna.Size = new System.Drawing.Size(597, 179);
             this.grilla_vacuna.TabIndex = 12;
+            this.grilla_vacuna.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grilla_vacuna_CellClick);
             // 
             // btn_nueva_vacuna
             // 
-            this.btn_nueva_vacuna.Location = new System.Drawing.Point(55, 308);
+            this.btn_nueva_vacuna.Location = new System.Drawing.Point(90, 308);
             this.btn_nueva_vacuna.Name = "btn_nueva_vacuna";
             this.btn_nueva_vacuna.Size = new System.Drawing.Size(117, 39);
             this.btn_nueva_vacuna.TabIndex = 11;
-            this.btn_nueva_vacuna.Text = "Nueva Vacuna";
+            this.btn_nueva_vacuna.Text = "Nuevo";
             this.btn_nueva_vacuna.UseVisualStyleBackColor = true;
+            this.btn_nueva_vacuna.Click += new System.EventHandler(this.btn_nueva_vacuna_Click);
             // 
             // btn_Eliminar_vacunas
             // 
-            this.btn_Eliminar_vacunas.Location = new System.Drawing.Point(426, 308);
+            this.btn_Eliminar_vacunas.Location = new System.Drawing.Point(313, 369);
             this.btn_Eliminar_vacunas.Name = "btn_Eliminar_vacunas";
             this.btn_Eliminar_vacunas.Size = new System.Drawing.Size(117, 39);
             this.btn_Eliminar_vacunas.TabIndex = 10;
-            this.btn_Eliminar_vacunas.Text = "Eliminar Vacuna";
+            this.btn_Eliminar_vacunas.Text = "Eliminar";
             this.btn_Eliminar_vacunas.UseVisualStyleBackColor = true;
             // 
             // btn_modificar_vacunas
             // 
-            this.btn_modificar_vacunas.Location = new System.Drawing.Point(300, 308);
+            this.btn_modificar_vacunas.Location = new System.Drawing.Point(410, 308);
             this.btn_modificar_vacunas.Name = "btn_modificar_vacunas";
             this.btn_modificar_vacunas.Size = new System.Drawing.Size(117, 39);
             this.btn_modificar_vacunas.TabIndex = 9;
-            this.btn_modificar_vacunas.Text = "Modificar Vacuna";
+            this.btn_modificar_vacunas.Text = "Editar";
             this.btn_modificar_vacunas.UseVisualStyleBackColor = true;
+            this.btn_modificar_vacunas.Click += new System.EventHandler(this.btn_modificar_vacunas_Click);
             // 
             // btn_registrar_vacunas
             // 
-            this.btn_registrar_vacunas.Location = new System.Drawing.Point(177, 308);
+            this.btn_registrar_vacunas.Location = new System.Drawing.Point(240, 308);
             this.btn_registrar_vacunas.Name = "btn_registrar_vacunas";
             this.btn_registrar_vacunas.Size = new System.Drawing.Size(117, 39);
             this.btn_registrar_vacunas.TabIndex = 8;
-            this.btn_registrar_vacunas.Text = "Registrar Vacuna";
+            this.btn_registrar_vacunas.Text = "Registrar";
             this.btn_registrar_vacunas.UseVisualStyleBackColor = true;
+            this.btn_registrar_vacunas.Click += new System.EventHandler(this.btn_registrar_vacunas_Click);
             // 
             // text_numero_vacuna
             // 
-            this.text_numero_vacuna.Location = new System.Drawing.Point(214, 91);
+            this.text_numero_vacuna.Enabled = false;
+            this.text_numero_vacuna.Location = new System.Drawing.Point(214, 69);
             this.text_numero_vacuna.Name = "text_numero_vacuna";
             this.text_numero_vacuna.Size = new System.Drawing.Size(105, 20);
             this.text_numero_vacuna.TabIndex = 7;
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(214, 90);
+            this.textBox10.Location = new System.Drawing.Point(214, 68);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(105, 20);
             this.textBox10.TabIndex = 7;
             // 
             // text_observacion_vacuna
             // 
-            this.text_observacion_vacuna.Location = new System.Drawing.Point(214, 209);
+            this.text_observacion_vacuna.Enabled = false;
+            this.text_observacion_vacuna.Location = new System.Drawing.Point(214, 132);
             this.text_observacion_vacuna.Multiline = true;
             this.text_observacion_vacuna.Name = "text_observacion_vacuna";
             this.text_observacion_vacuna.Size = new System.Drawing.Size(200, 81);
@@ -1154,7 +1241,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(137, 156);
+            this.label25.Location = new System.Drawing.Point(137, 107);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(43, 13);
             this.label25.TabIndex = 4;
@@ -1162,7 +1249,9 @@
             // 
             // fecha_vacuna
             // 
-            this.fecha_vacuna.Location = new System.Drawing.Point(214, 149);
+            this.fecha_vacuna.Enabled = false;
+            this.fecha_vacuna.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.fecha_vacuna.Location = new System.Drawing.Point(214, 101);
             this.fecha_vacuna.Name = "fecha_vacuna";
             this.fecha_vacuna.Size = new System.Drawing.Size(200, 20);
             this.fecha_vacuna.TabIndex = 3;
@@ -1170,7 +1259,7 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(134, 242);
+            this.label24.Location = new System.Drawing.Point(137, 156);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(73, 13);
             this.label24.TabIndex = 2;
@@ -1179,11 +1268,11 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(137, 90);
+            this.label23.Location = new System.Drawing.Point(137, 72);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(50, 13);
+            this.label23.Size = new System.Drawing.Size(65, 13);
             this.label23.TabIndex = 1;
-            this.label23.Text = "Numero :";
+            this.label23.Text = "N° Vacuna :";
             // 
             // label22
             // 
@@ -1628,6 +1717,37 @@
             this.openFileDialog1.Filter = "Archivos JPG|*.jpg|Archivos PNG|*.png|Archivos GIF°|*.gif|Todos los archivos|*.*";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
+            // ID_VACUNA
+            // 
+            this.ID_VACUNA.HeaderText = "ID_VACUNA";
+            this.ID_VACUNA.Name = "ID_VACUNA";
+            this.ID_VACUNA.ReadOnly = true;
+            this.ID_VACUNA.Visible = false;
+            // 
+            // NUMERO_VACUNA
+            // 
+            this.NUMERO_VACUNA.HeaderText = "N°VACUNA";
+            this.NUMERO_VACUNA.Name = "NUMERO_VACUNA";
+            this.NUMERO_VACUNA.ReadOnly = true;
+            // 
+            // FECH_VACUNA
+            // 
+            this.FECH_VACUNA.HeaderText = "FECHA";
+            this.FECH_VACUNA.Name = "FECH_VACUNA";
+            this.FECH_VACUNA.ReadOnly = true;
+            // 
+            // OBSERVACION
+            // 
+            this.OBSERVACION.HeaderText = "OBSERVACION";
+            this.OBSERVACION.Name = "OBSERVACION";
+            this.OBSERVACION.ReadOnly = true;
+            // 
+            // PRECIO_VACUNA
+            // 
+            this.PRECIO_VACUNA.HeaderText = "PRECIO";
+            this.PRECIO_VACUNA.Name = "PRECIO_VACUNA";
+            this.PRECIO_VACUNA.ReadOnly = true;
+            // 
             // F_FichaGeneral
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1818,5 +1938,16 @@
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Button btn_cancelar_histo;
         private System.Windows.Forms.Button btn_eliminar_histo;
+        private System.Windows.Forms.Button btn_cancelar_vacuna;
+        private System.Windows.Forms.Label lb_id_vacuna;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.TextBox text_precio_vacuna;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID_VACUNA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NUMERO_VACUNA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FECH_VACUNA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OBSERVACION;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PRECIO_VACUNA;
     }
 }

@@ -44,29 +44,15 @@ namespace App_Ecoanimalia_Piura.Logica
         }
 
         public Vacuna() { }
+        Decimal precio_Vacuna;
 
-        public Vacuna(int i, Mascota m, int nv, DateTime f, string o) {
-            id = i;
-            mascota = m;
-            numero_vacuna = nv;
-            fecha = f;
-            observacion = o;
-        }
-
-        public Vacuna(Mascota m, int nv, DateTime f, string o)
+        public Decimal Precio_Vacuna
         {
-            mascota = m;
-            numero_vacuna = nv;
-            fecha = f;
-            observacion = o;
+            get { return precio_Vacuna; }
+            set { precio_Vacuna = value; }
         }
 
-        public Vacuna(int i)
-        {
-            id = i;
-          
-        }
-
+       
         public override string ToString()
         {
             return base.ToString();
