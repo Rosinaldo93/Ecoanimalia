@@ -117,6 +117,11 @@
             this.btn_cancelar_vacuna = new System.Windows.Forms.Button();
             this.label26 = new System.Windows.Forms.Label();
             this.grilla_vacuna = new System.Windows.Forms.DataGridView();
+            this.ID_VACUNA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NUMERO_VACUNA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FECH_VACUNA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OBSERVACION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PRECIO_VACUNA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_nueva_vacuna = new System.Windows.Forms.Button();
             this.btn_Eliminar_vacunas = new System.Windows.Forms.Button();
             this.btn_modificar_vacunas = new System.Windows.Forms.Button();
@@ -130,7 +135,19 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.tab_Visitas = new System.Windows.Forms.TabPage();
+            this.label44 = new System.Windows.Forms.Label();
+            this.btn_cancelar_visita = new System.Windows.Forms.Button();
+            this.btn_nuevo_visita = new System.Windows.Forms.Button();
+            this.btn_eliminar_visita = new System.Windows.Forms.Button();
+            this.btn_modificar_visita = new System.Windows.Forms.Button();
+            this.btn_registrar_visita = new System.Windows.Forms.Button();
+            this.fecha_visita = new System.Windows.Forms.DateTimePicker();
+            this.label27 = new System.Windows.Forms.Label();
             this.grilla_visita = new System.Windows.Forms.DataGridView();
+            this.ID_VISITA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NUMERO_VISITA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OBSERVACION_VISITA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FECHA_VISI = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label30 = new System.Windows.Forms.Label();
             this.text_observacion_visita = new System.Windows.Forms.TextBox();
             this.text_numero_visita = new System.Windows.Forms.TextBox();
@@ -173,23 +190,6 @@
             this.ESTERILIZADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label14 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.ID_VACUNA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NUMERO_VACUNA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FECH_VACUNA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OBSERVACION = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PRECIO_VACUNA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label27 = new System.Windows.Forms.Label();
-            this.fecha_visita = new System.Windows.Forms.DateTimePicker();
-            this.btn_cancelar_visita = new System.Windows.Forms.Button();
-            this.btn_nuevo_visita = new System.Windows.Forms.Button();
-            this.btn_eliminar_visita = new System.Windows.Forms.Button();
-            this.btn_modificar_visita = new System.Windows.Forms.Button();
-            this.btn_registrar_visita = new System.Windows.Forms.Button();
-            this.label44 = new System.Windows.Forms.Label();
-            this.ID_VISITA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NUMERO_VISITA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OBSERVACION_VISITA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FECHA_VISI = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tab_Mascota.SuspendLayout();
             this.tab_principal.SuspendLayout();
             this.group_temporal.SuspendLayout();
@@ -1176,12 +1176,43 @@
             this.FECH_VACUNA,
             this.OBSERVACION,
             this.PRECIO_VACUNA});
-            this.grilla_vacuna.Location = new System.Drawing.Point(639, 156);
+            this.grilla_vacuna.Location = new System.Drawing.Point(731, 156);
             this.grilla_vacuna.Name = "grilla_vacuna";
             this.grilla_vacuna.ReadOnly = true;
-            this.grilla_vacuna.Size = new System.Drawing.Size(597, 179);
+            this.grilla_vacuna.Size = new System.Drawing.Size(453, 179);
             this.grilla_vacuna.TabIndex = 12;
             this.grilla_vacuna.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grilla_vacuna_CellClick);
+            // 
+            // ID_VACUNA
+            // 
+            this.ID_VACUNA.HeaderText = "ID_VACUNA";
+            this.ID_VACUNA.Name = "ID_VACUNA";
+            this.ID_VACUNA.ReadOnly = true;
+            this.ID_VACUNA.Visible = false;
+            // 
+            // NUMERO_VACUNA
+            // 
+            this.NUMERO_VACUNA.HeaderText = "N°VACUNA";
+            this.NUMERO_VACUNA.Name = "NUMERO_VACUNA";
+            this.NUMERO_VACUNA.ReadOnly = true;
+            // 
+            // FECH_VACUNA
+            // 
+            this.FECH_VACUNA.HeaderText = "FECHA";
+            this.FECH_VACUNA.Name = "FECH_VACUNA";
+            this.FECH_VACUNA.ReadOnly = true;
+            // 
+            // OBSERVACION
+            // 
+            this.OBSERVACION.HeaderText = "OBSERVACION";
+            this.OBSERVACION.Name = "OBSERVACION";
+            this.OBSERVACION.ReadOnly = true;
+            // 
+            // PRECIO_VACUNA
+            // 
+            this.PRECIO_VACUNA.HeaderText = "PRECIO";
+            this.PRECIO_VACUNA.Name = "PRECIO_VACUNA";
+            this.PRECIO_VACUNA.ReadOnly = true;
             // 
             // btn_nueva_vacuna
             // 
@@ -1316,6 +1347,87 @@
             this.tab_Visitas.Text = "      Visitas          ";
             this.tab_Visitas.UseVisualStyleBackColor = true;
             // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(537, 19);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(161, 13);
+            this.label44.TabIndex = 20;
+            this.label44.Text = "Gestion de Visitas de la Mascota";
+            // 
+            // btn_cancelar_visita
+            // 
+            this.btn_cancelar_visita.Enabled = false;
+            this.btn_cancelar_visita.Location = new System.Drawing.Point(170, 327);
+            this.btn_cancelar_visita.Name = "btn_cancelar_visita";
+            this.btn_cancelar_visita.Size = new System.Drawing.Size(117, 39);
+            this.btn_cancelar_visita.TabIndex = 19;
+            this.btn_cancelar_visita.Text = "Cancelar";
+            this.btn_cancelar_visita.UseVisualStyleBackColor = true;
+            this.btn_cancelar_visita.Click += new System.EventHandler(this.btn_cancelar_visita_Click);
+            // 
+            // btn_nuevo_visita
+            // 
+            this.btn_nuevo_visita.Location = new System.Drawing.Point(83, 266);
+            this.btn_nuevo_visita.Name = "btn_nuevo_visita";
+            this.btn_nuevo_visita.Size = new System.Drawing.Size(117, 39);
+            this.btn_nuevo_visita.TabIndex = 18;
+            this.btn_nuevo_visita.Text = "Nuevo";
+            this.btn_nuevo_visita.UseVisualStyleBackColor = true;
+            this.btn_nuevo_visita.Click += new System.EventHandler(this.btn_nuevo_visita_Click);
+            // 
+            // btn_eliminar_visita
+            // 
+            this.btn_eliminar_visita.Enabled = false;
+            this.btn_eliminar_visita.Location = new System.Drawing.Point(306, 327);
+            this.btn_eliminar_visita.Name = "btn_eliminar_visita";
+            this.btn_eliminar_visita.Size = new System.Drawing.Size(117, 39);
+            this.btn_eliminar_visita.TabIndex = 17;
+            this.btn_eliminar_visita.Text = "Eliminar";
+            this.btn_eliminar_visita.UseVisualStyleBackColor = true;
+            this.btn_eliminar_visita.Click += new System.EventHandler(this.btn_eliminar_visita_Click);
+            // 
+            // btn_modificar_visita
+            // 
+            this.btn_modificar_visita.Enabled = false;
+            this.btn_modificar_visita.Location = new System.Drawing.Point(403, 266);
+            this.btn_modificar_visita.Name = "btn_modificar_visita";
+            this.btn_modificar_visita.Size = new System.Drawing.Size(117, 39);
+            this.btn_modificar_visita.TabIndex = 16;
+            this.btn_modificar_visita.Text = "Editar";
+            this.btn_modificar_visita.UseVisualStyleBackColor = true;
+            this.btn_modificar_visita.Click += new System.EventHandler(this.btn_modificar_visita_Click);
+            // 
+            // btn_registrar_visita
+            // 
+            this.btn_registrar_visita.Enabled = false;
+            this.btn_registrar_visita.Location = new System.Drawing.Point(233, 266);
+            this.btn_registrar_visita.Name = "btn_registrar_visita";
+            this.btn_registrar_visita.Size = new System.Drawing.Size(117, 39);
+            this.btn_registrar_visita.TabIndex = 15;
+            this.btn_registrar_visita.Text = "Registrar";
+            this.btn_registrar_visita.UseVisualStyleBackColor = true;
+            this.btn_registrar_visita.Click += new System.EventHandler(this.btn_registrar_visita_Click);
+            // 
+            // fecha_visita
+            // 
+            this.fecha_visita.Enabled = false;
+            this.fecha_visita.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.fecha_visita.Location = new System.Drawing.Point(227, 106);
+            this.fecha_visita.Name = "fecha_visita";
+            this.fecha_visita.Size = new System.Drawing.Size(200, 20);
+            this.fecha_visita.TabIndex = 12;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(150, 112);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(46, 13);
+            this.label27.TabIndex = 11;
+            this.label27.Text = "Fecha : ";
+            // 
             // grilla_visita
             // 
             this.grilla_visita.AllowUserToAddRows = false;
@@ -1332,6 +1444,31 @@
             this.grilla_visita.Size = new System.Drawing.Size(347, 183);
             this.grilla_visita.TabIndex = 10;
             this.grilla_visita.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grilla_visita_CellClick);
+            // 
+            // ID_VISITA
+            // 
+            this.ID_VISITA.HeaderText = "ID_VISITA";
+            this.ID_VISITA.Name = "ID_VISITA";
+            this.ID_VISITA.ReadOnly = true;
+            this.ID_VISITA.Visible = false;
+            // 
+            // NUMERO_VISITA
+            // 
+            this.NUMERO_VISITA.HeaderText = "N°VISITA";
+            this.NUMERO_VISITA.Name = "NUMERO_VISITA";
+            this.NUMERO_VISITA.ReadOnly = true;
+            // 
+            // OBSERVACION_VISITA
+            // 
+            this.OBSERVACION_VISITA.HeaderText = "OBSERVACION";
+            this.OBSERVACION_VISITA.Name = "OBSERVACION_VISITA";
+            this.OBSERVACION_VISITA.ReadOnly = true;
+            // 
+            // FECHA_VISI
+            // 
+            this.FECHA_VISI.HeaderText = "FECHA";
+            this.FECHA_VISI.Name = "FECHA_VISI";
+            this.FECHA_VISI.ReadOnly = true;
             // 
             // label30
             // 
@@ -1704,142 +1841,6 @@
             // 
             this.openFileDialog1.Filter = "Archivos JPG|*.jpg|Archivos PNG|*.png|Archivos GIF°|*.gif|Todos los archivos|*.*";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
-            // 
-            // ID_VACUNA
-            // 
-            this.ID_VACUNA.HeaderText = "ID_VACUNA";
-            this.ID_VACUNA.Name = "ID_VACUNA";
-            this.ID_VACUNA.ReadOnly = true;
-            this.ID_VACUNA.Visible = false;
-            // 
-            // NUMERO_VACUNA
-            // 
-            this.NUMERO_VACUNA.HeaderText = "N°VACUNA";
-            this.NUMERO_VACUNA.Name = "NUMERO_VACUNA";
-            this.NUMERO_VACUNA.ReadOnly = true;
-            // 
-            // FECH_VACUNA
-            // 
-            this.FECH_VACUNA.HeaderText = "FECHA";
-            this.FECH_VACUNA.Name = "FECH_VACUNA";
-            this.FECH_VACUNA.ReadOnly = true;
-            // 
-            // OBSERVACION
-            // 
-            this.OBSERVACION.HeaderText = "OBSERVACION";
-            this.OBSERVACION.Name = "OBSERVACION";
-            this.OBSERVACION.ReadOnly = true;
-            // 
-            // PRECIO_VACUNA
-            // 
-            this.PRECIO_VACUNA.HeaderText = "PRECIO";
-            this.PRECIO_VACUNA.Name = "PRECIO_VACUNA";
-            this.PRECIO_VACUNA.ReadOnly = true;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(150, 112);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(46, 13);
-            this.label27.TabIndex = 11;
-            this.label27.Text = "Fecha : ";
-            // 
-            // fecha_visita
-            // 
-            this.fecha_visita.Enabled = false;
-            this.fecha_visita.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.fecha_visita.Location = new System.Drawing.Point(227, 106);
-            this.fecha_visita.Name = "fecha_visita";
-            this.fecha_visita.Size = new System.Drawing.Size(200, 20);
-            this.fecha_visita.TabIndex = 12;
-            // 
-            // btn_cancelar_visita
-            // 
-            this.btn_cancelar_visita.Enabled = false;
-            this.btn_cancelar_visita.Location = new System.Drawing.Point(170, 327);
-            this.btn_cancelar_visita.Name = "btn_cancelar_visita";
-            this.btn_cancelar_visita.Size = new System.Drawing.Size(117, 39);
-            this.btn_cancelar_visita.TabIndex = 19;
-            this.btn_cancelar_visita.Text = "Cancelar";
-            this.btn_cancelar_visita.UseVisualStyleBackColor = true;
-            this.btn_cancelar_visita.Click += new System.EventHandler(this.btn_cancelar_visita_Click);
-            // 
-            // btn_nuevo_visita
-            // 
-            this.btn_nuevo_visita.Location = new System.Drawing.Point(83, 266);
-            this.btn_nuevo_visita.Name = "btn_nuevo_visita";
-            this.btn_nuevo_visita.Size = new System.Drawing.Size(117, 39);
-            this.btn_nuevo_visita.TabIndex = 18;
-            this.btn_nuevo_visita.Text = "Nuevo";
-            this.btn_nuevo_visita.UseVisualStyleBackColor = true;
-            this.btn_nuevo_visita.Click += new System.EventHandler(this.btn_nuevo_visita_Click);
-            // 
-            // btn_eliminar_visita
-            // 
-            this.btn_eliminar_visita.Enabled = false;
-            this.btn_eliminar_visita.Location = new System.Drawing.Point(306, 327);
-            this.btn_eliminar_visita.Name = "btn_eliminar_visita";
-            this.btn_eliminar_visita.Size = new System.Drawing.Size(117, 39);
-            this.btn_eliminar_visita.TabIndex = 17;
-            this.btn_eliminar_visita.Text = "Eliminar";
-            this.btn_eliminar_visita.UseVisualStyleBackColor = true;
-            // 
-            // btn_modificar_visita
-            // 
-            this.btn_modificar_visita.Enabled = false;
-            this.btn_modificar_visita.Location = new System.Drawing.Point(403, 266);
-            this.btn_modificar_visita.Name = "btn_modificar_visita";
-            this.btn_modificar_visita.Size = new System.Drawing.Size(117, 39);
-            this.btn_modificar_visita.TabIndex = 16;
-            this.btn_modificar_visita.Text = "Editar";
-            this.btn_modificar_visita.UseVisualStyleBackColor = true;
-            this.btn_modificar_visita.Click += new System.EventHandler(this.btn_modificar_visita_Click);
-            // 
-            // btn_registrar_visita
-            // 
-            this.btn_registrar_visita.Enabled = false;
-            this.btn_registrar_visita.Location = new System.Drawing.Point(233, 266);
-            this.btn_registrar_visita.Name = "btn_registrar_visita";
-            this.btn_registrar_visita.Size = new System.Drawing.Size(117, 39);
-            this.btn_registrar_visita.TabIndex = 15;
-            this.btn_registrar_visita.Text = "Registrar";
-            this.btn_registrar_visita.UseVisualStyleBackColor = true;
-            this.btn_registrar_visita.Click += new System.EventHandler(this.btn_registrar_visita_Click);
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Location = new System.Drawing.Point(537, 19);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(161, 13);
-            this.label44.TabIndex = 20;
-            this.label44.Text = "Gestion de Visitas de la Mascota";
-            // 
-            // ID_VISITA
-            // 
-            this.ID_VISITA.HeaderText = "ID_VISITA";
-            this.ID_VISITA.Name = "ID_VISITA";
-            this.ID_VISITA.ReadOnly = true;
-            this.ID_VISITA.Visible = false;
-            // 
-            // NUMERO_VISITA
-            // 
-            this.NUMERO_VISITA.HeaderText = "N°VISITA";
-            this.NUMERO_VISITA.Name = "NUMERO_VISITA";
-            this.NUMERO_VISITA.ReadOnly = true;
-            // 
-            // OBSERVACION_VISITA
-            // 
-            this.OBSERVACION_VISITA.HeaderText = "OBSERVACION";
-            this.OBSERVACION_VISITA.Name = "OBSERVACION_VISITA";
-            this.OBSERVACION_VISITA.ReadOnly = true;
-            // 
-            // FECHA_VISI
-            // 
-            this.FECHA_VISI.HeaderText = "FECHA";
-            this.FECHA_VISI.Name = "FECHA_VISI";
-            this.FECHA_VISI.ReadOnly = true;
             // 
             // F_FichaGeneral
             // 

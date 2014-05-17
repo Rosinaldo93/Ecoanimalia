@@ -1642,7 +1642,7 @@ namespace App_Ecoanimalia_Piura.Graficos
                         btn_nueva_vacuna.Enabled = true;
                         int serie_masco = Convert.ToInt32(this.lb_serie_mascota.Text);
                         listar_visitar_mascota(serie_masco);
-                        
+
                     }
                 }
                 else
@@ -1654,7 +1654,19 @@ namespace App_Ecoanimalia_Piura.Graficos
 
         private void grilla_visita_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            inhabilitar_cajas_visita();
+            limpiar_cajas_visita();
+            lb_id_visita.Text = this.grilla_visita.CurrentRow.Cells[0].Value.ToString();
+            text_numero_visita.Text = this.grilla_visita.CurrentRow.Cells[1].Value.ToString();
+            text_observacion_visita.Text = this.grilla_visita.CurrentRow.Cells[2].Value.ToString();
+            fecha_visita.Text = this.grilla_visita.CurrentRow.Cells[3].Value.ToString();
+            btn_registrar_visita.Enabled = false;
+            btn_cancelar_visita.Enabled = false;
+            btn_nuevo_visita.Enabled = true;
+            btn_modificar_visita.Text = "Editar";
+            btn_modificar_visita.Enabled = true;
+            btn_eliminar_visita.Enabled = true;
+            
         }
 
         private void btn_cancelar_visita_Click(object sender, EventArgs e)
@@ -1668,7 +1680,7 @@ namespace App_Ecoanimalia_Piura.Graficos
             btn_eliminar_visita.Enabled = false;
             this.lb_id_visita.Text = "";
             btn_modificar_visita.Enabled = false;
-       }
+        }
 
         private void btn_modificar_visita_Click(object sender, EventArgs e)
         {
@@ -1682,6 +1694,91 @@ namespace App_Ecoanimalia_Piura.Graficos
             }
             else
             {
+                Boolean band1 = false;
+                String mensaje = "Por Favor Complete los campos obligatorios : \n";
+                int Numero_visita = 0;
+                String observacion_visita = "";
+                DateTime fecha_visi = Convert.ToDateTime(fecha_visita.Text);
+                if (!String.IsNullOrEmpty(text_observacion_visita.Text))
+                {
+                    observacion_visita = text_observacion_visita.Text;
+                }
+                if (!String.IsNullOrEmpty(text_numero_visita.Text))
+                {
+                    Numero_visita = Convert.ToInt32(text_numero_visita.Text);
+                }
+                else
+                {
+                    mensaje = mensaje + "\n - Casilla de N°Visita";
+                    band1 = true;
+                }
+
+
+                if (band1 == true)
+                {
+                    MessageBox.Show(mensaje);
+                }
+                else
+                {
+                    if (!String.IsNullOrEmpty(this.lb_serie_mascota.Text))
+                    {
+                        int serie_mascota = int.Parse(lb_serie_mascota.Text);
+                        int id_visita = int.Parse(lb_id_visita.Text);
+                        int respuesta3 = new NVisita().N_modificar_visita(id_visita, Numero_visita, observacion_visita, fecha_visi);
+                        if (respuesta3 == 0)
+                        {
+                            MessageBox.Show("Error Al Guardar Por favor intente nuevamente");
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Cambios Guardados Correctamente");
+                            limpiar_cajas_visita();
+                            lb_id_visita.Text = "";
+                            inhabilitar_cajas_visita();
+                            btn_registrar_visita.Enabled = false;
+                            btn_cancelar_visita.Enabled = false;
+                            btn_nuevo_visita.Enabled = true;
+                            btn_modificar_visita.Text = "Editar";
+                            btn_modificar_visita.Enabled = false;
+                            int serie = Convert.ToInt32(this.lb_serie_mascota.Text);
+                            listar_visitar_mascota(serie);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ocurrio Un Error - Intente Nuevamente");
+                    }
+                }
+            }
+        }
+
+        private void btn_eliminar_visita_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Seguro que dese Eliminar?", "Salir", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int id_visitas = Convert.ToInt32(lb_id_visita.Text);
+                int serie = int.Parse(lb_serie_mascota.Text);
+                int respuesta2 = new NVisita().N_eliminar_visita(id_visitas);
+                if (respuesta2 == 0)
+                {
+                    MessageBox.Show("Error Al Eliminar Por favor intente nuevamente");
+                }
+                else
+                {
+                    MessageBox.Show("Eliminado Correctamente");
+                    listar_visitar_mascota(serie);
+                    limpiar_cajas_visita();
+                    btn_registrar_visita.Enabled = false;
+                    btn_cancelar_visita.Enabled = false;
+                    btn_nuevo_visita.Enabled = true;
+                    inhabilitar_cajas_visita();
+                    this.lb_id_visita.Text = "";
+                    btn_modificar_visita.Text = "Editar";
+                    btn_modificar_visita.Enabled = false;
+                    btn_eliminar_visita.Enabled = false;
+                    
+                }
             }
         }
 

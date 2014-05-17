@@ -97,79 +97,78 @@ namespace App_Ecoanimalia_Piura.Datos
             return lista;
         }
 
-        //public int D_modificar_visita(Visita visita)
-        //{
-        //    String cadena = DConexion.cadena;
-        //    String sql = "UPDATE visita SET ID_MASCOTA=@mascota,NUMERO=@numero,OBSERVACION=@obs  where ID=@id";
-        //    cone = new MySqlConnection(cadena);
-        //    MySqlCommand com = new MySqlCommand(sql, cone);
-        //    cone.Open();
-        //    if (visita.Mascota == null)
-        //    {
-        //        com.Parameters.AddWithValue("@mascota", null);
-        //    }
-        //    else
-        //    {
-        //        com.Parameters.AddWithValue("@mascota", visita.Mascota.Id);
-        //    }
+        public int D_modificar_visita(Visita visita)
+        {
+            String cadena = DConexion.cadena;
+            String sql = "UPDATE visita SET NUMERO=@NUMERO,OBSERVACION=@OBSERVACION,FECHA=@FECHA WHERE ID = @ID";
+            cone = new MySqlConnection(cadena);
+            MySqlCommand com = new MySqlCommand(sql, cone);
+            cone.Open();
+            if (visita.Numero.Equals(""))
+            {
+                com.Parameters.AddWithValue("@NUMERO", null);
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@NUMERO", visita.Numero);
+            }
 
 
-        //    if (visita.Numero.Equals(""))
-        //    {
-        //        com.Parameters.AddWithValue("@numero", null);
-        //    }
-        //    else
-        //    {
-        //        com.Parameters.AddWithValue("@numero", visita.Numero);
-        //    }
+            if (visita.Observacion.Equals(""))
+            {
+                com.Parameters.AddWithValue("@OBSERVACION", null);
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@OBSERVACION", visita.Observacion);
+            }
+            if (visita.Fecha.Equals(""))
+            {
+                com.Parameters.AddWithValue("@FECHA", null);
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@FECHA", visita.Fecha);
+            }
+            com.Parameters.AddWithValue("@ID", visita.Id);
 
 
-        //    if (visita.Observacion.Equals(""))
-        //    {
-        //        com.Parameters.AddWithValue("@obs", null);
-        //    }
-        //    else
-        //    {
-        //        com.Parameters.AddWithValue("@obs", visita.Observacion);
-        //    }
+            int band;
+            try
+            {
+                band = com.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                band = 0;
 
-        //    com.Parameters.AddWithValue("@id", visita.Id);
-        //    int band;
-        //    try
-        //    {
-        //        band = com.ExecuteNonQuery();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        band = 0;
-
-        //    }
-        //    cone.Close();
-        //    return band;
-        //}
+            }
+            cone.Close();
+            return band;
+        }
 
 
-        //public int D_eliminar_visita(Visita visita)
-        //{
-        //    String cadena = DConexion.cadena;
-        //    String sql = "DELETE FROM visita where ID=@id";
-        //    cone = new MySqlConnection(cadena);
-        //    MySqlCommand com = new MySqlCommand(sql, cone);
-        //    cone.Open();
-        //    com.Parameters.AddWithValue("@id", visita.Id);
-        //    int band;
-        //    try
-        //    {
-        //        band = com.ExecuteNonQuery();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        band = 0;
+        public int D_eliminar_visita(int id_visita)
+        {
+            String cadena = DConexion.cadena;
+            String sql = "DELETE FROM visita where ID=@ID";
+            cone = new MySqlConnection(cadena);
+            MySqlCommand com = new MySqlCommand(sql, cone);
+            cone.Open();
+            com.Parameters.AddWithValue("@ID", id_visita);
+            int band;
+            try
+            {
+                band = com.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                band = 0;
 
-        //    }
-        //    cone.Close();
-        //    return band;
-        //}
+            }
+            cone.Close();
+            return band;
+        }
 
 
 
