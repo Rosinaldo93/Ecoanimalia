@@ -190,6 +190,8 @@
             this.ESTERILIZADO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label14 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.lb_etiqueta_nombre = new System.Windows.Forms.Label();
+            this.lb_etiqueta_mascota = new System.Windows.Forms.Label();
             this.Tab_Mascota.SuspendLayout();
             this.tab_principal.SuspendLayout();
             this.group_temporal.SuspendLayout();
@@ -1843,11 +1845,34 @@
             this.openFileDialog1.Filter = "Archivos JPG|*.jpg|Archivos PNG|*.png|Archivos GIF°|*.gif|Todos los archivos|*.*";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
+            // lb_etiqueta_nombre
+            // 
+            this.lb_etiqueta_nombre.AutoSize = true;
+            this.lb_etiqueta_nombre.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_etiqueta_nombre.Location = new System.Drawing.Point(15, 11);
+            this.lb_etiqueta_nombre.Name = "lb_etiqueta_nombre";
+            this.lb_etiqueta_nombre.Size = new System.Drawing.Size(153, 20);
+            this.lb_etiqueta_nombre.TabIndex = 4;
+            this.lb_etiqueta_nombre.Tag = "";
+            this.lb_etiqueta_nombre.Text = "Nombre de la Mascota :";
+            // 
+            // lb_etiqueta_mascota
+            // 
+            this.lb_etiqueta_mascota.AutoSize = true;
+            this.lb_etiqueta_mascota.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_etiqueta_mascota.Location = new System.Drawing.Point(174, 12);
+            this.lb_etiqueta_mascota.Name = "lb_etiqueta_mascota";
+            this.lb_etiqueta_mascota.Size = new System.Drawing.Size(53, 19);
+            this.lb_etiqueta_mascota.TabIndex = 5;
+            this.lb_etiqueta_mascota.Text = "label46";
+            // 
             // F_FichaGeneral
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1360, 697);
+            this.Controls.Add(this.lb_etiqueta_mascota);
+            this.Controls.Add(this.lb_etiqueta_nombre);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.grilla_general);
             this.Controls.Add(this.Tab_Mascota);
@@ -2052,5 +2077,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NUMERO_VISITA;
         private System.Windows.Forms.DataGridViewTextBoxColumn OBSERVACION_VISITA;
         private System.Windows.Forms.DataGridViewTextBoxColumn FECHA_VISI;
+        private System.Windows.Forms.Label lb_etiqueta_nombre;
+        private System.Windows.Forms.Label lb_etiqueta_mascota;
     }
 }

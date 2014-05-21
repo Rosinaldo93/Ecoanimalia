@@ -437,7 +437,7 @@ namespace App_Ecoanimalia_Piura.Datos
         public int D_modificar_mascota_SinFecha_Esterilizado(Mascota masc)
         {
             String cadena = DConexion.cadena;
-            String sql = "UPDATE mascota  SET  USUARIO=@USUARIO, ID_TEMPORAL=@ID_TEMPORAL, FECHA_INGRESO=@FECHA_INGRESO, ID_TIPO=@ID_TIPO, TAMANO=@TAMANO, ESTADO=@ESTADO, NOMBRE=@NOMBRE, RAZA=@RAZA, SEXO=@SEXO, COLOR=@COLOR, EDAD=@EDAD, ESTERILIZADO=@ESTERILIZADO WHERE SERIE=@SERIE";
+            String sql = "UPDATE mascota  SET  USUARIO=@USUARIO, ID_TEMPORAL=@ID_TEMPORAL, FECHA_INGRESO=@FECHA_INGRESO, ID_TIPO=@ID_TIPO, TAMANO=@TAMANO, ESTADO=@ESTADO, NOMBRE=@NOMBRE, RAZA=@RAZA, SEXO=@SEXO, COLOR=@COLOR, EDAD=@EDAD, ESTERILIZADO=@ESTERILIZADO,FECHA_ESTERILIZACION=@FECHA_ESTERILIZACION WHERE SERIE=@SERIE";
             cone = new MySqlConnection(cadena);
             MySqlCommand com = new MySqlCommand(sql, cone);
             cone.Open();
@@ -515,6 +515,8 @@ namespace App_Ecoanimalia_Piura.Datos
                 com.Parameters.AddWithValue("@EDAD", null);
             }
             com.Parameters.AddWithValue("@ESTERILIZADO", masc.Esterilizado);
+            com.Parameters.AddWithValue("@FECHA_ESTERILIZACION", null);
+
             com.Parameters.AddWithValue("@SERIE", masc.Serie);
 
             int band;
