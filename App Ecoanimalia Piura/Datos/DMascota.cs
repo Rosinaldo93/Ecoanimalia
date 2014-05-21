@@ -78,7 +78,7 @@ namespace App_Ecoanimalia_Piura.Datos
             int annio = masc.Fecha_ingreso.Year;
             String f_ingre = "" + annio + "-" + mes + "-" + day;
             com.Parameters.AddWithValue("@FECHA_INGRESO", f_ingre);
-            
+
             if (masc.Tipomascota == null)
             {
                 com.Parameters.AddWithValue("@ID_TIPO", null);
@@ -242,7 +242,7 @@ namespace App_Ecoanimalia_Piura.Datos
             catch (Exception ex)
             {
                 band = 0;
-             Console.Write("el error es : "+ex.Message);
+                Console.Write("el error es : " + ex.Message);
             }
             cone.Close();
             return band;
@@ -267,9 +267,9 @@ namespace App_Ecoanimalia_Piura.Datos
                 if (!dr.IsDBNull(2))
                 {
                     int id_temporal = Convert.ToInt32(dr[2].ToString());
-                    
+
                     mascota.Fic_tem = new DFichaTemporal().D_Buscar_FichaTemporal(id_temporal);
-                    
+
                 }
                 else
                 {
@@ -292,8 +292,8 @@ namespace App_Ecoanimalia_Piura.Datos
                     mascota.Fecha_esterilizacion = Convert.ToDateTime(dr[13].ToString());
 
                 }
-                
-                
+
+
 
                 lista.Add(mascota);
 
@@ -331,102 +331,205 @@ namespace App_Ecoanimalia_Piura.Datos
             return null;
         }
 
-        //public int D_modificar_mascota(Mascota masc)
-        //{
-        //    String cadena = DConexion.cadena;
-        //    String sql = "UPDATE mascota SET ID_TIPO=@id_tipo,TAMANO=@tamano,ESTADO=@estado,NOMBRE=@nombre,RAZA=@raza,SEXO=@sexo,COLOR=@color,EDAD=@edad,ESTERILIZADO=@esterilizado  where ID=@id";
-        //    cone = new MySqlConnection(cadena);
-        //    MySqlCommand com = new MySqlCommand(sql, cone);
-        //    cone.Open();
-        //    if (masc.Tipomascota == null)
-        //    {
-        //        com.Parameters.AddWithValue("@id_tipo", null);
-        //    }
-        //    else
-        //    {
-        //        com.Parameters.AddWithValue("@id_tipo", masc.Tipomascota.Id);
-        //    }
+        public int D_modificar_mascotaConFecha_Esterilizado(Mascota masc)
+        {
+            String cadena = DConexion.cadena;
+            String sql = "UPDATE mascota SET USUARIO=@USUARIO, ID_TEMPORAL=@ID_TEMPORAL, FECHA_INGRESO=@FECHA_INGRESO, ID_TIPO=@ID_TIPO, TAMANO=@TAMANO, ESTADO=@ESTADO, NOMBRE=@NOMBRE, RAZA=@RAZA, SEXO=@SEXO, COLOR=@COLOR, EDAD=@EDAD, ESTERILIZADO=@ESTERILIZADO,FECHA_ESTERILIZACION=@FECHA_ESTERILIZACION  WHERE SERIE=@SERIE ";
 
-        //    if (masc.Tamano.Equals(""))
-        //    {
-        //        com.Parameters.AddWithValue("@tamano", null);
-        //    }
-        //    else
-        //    {
-        //        com.Parameters.AddWithValue("@tamano", masc.Tamano);
-        //    }
+            cone = new MySqlConnection(cadena);
+            MySqlCommand com = new MySqlCommand(sql, cone);
+            cone.Open();
+            Console.Write("entro ");
 
-        //    com.Parameters.AddWithValue("@estado", masc.Estado);
+            if (masc.Ser_usu == null)
+            {
+                com.Parameters.AddWithValue("@USUARIO", null);
 
-        //    if (masc.Nombre.Equals(""))
-        //    {
-        //        com.Parameters.AddWithValue("@nombre", null);
-        //    }
-        //    else
-        //    {
-        //        com.Parameters.AddWithValue("@nombre", masc.Nombre);
-        //    }
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@USUARIO", masc.Ser_usu.Serie);
 
-        //    if (masc.Raza.Equals(""))
-        //    {
-        //        com.Parameters.AddWithValue("@raza", null);
-        //    }
-        //    else
-        //    {
-        //        com.Parameters.AddWithValue("@raza", masc.Raza);
-        //    }
+            }
+            if (masc.Fic_tem == null)
+            {
+                com.Parameters.AddWithValue("@ID_TEMPORAL", null);
 
-        //    if (masc.Sexo.Equals(""))
-        //    {
-        //        com.Parameters.AddWithValue("@sexo", null);
-        //    }
-        //    else
-        //    {
-        //        com.Parameters.AddWithValue("@sexo", masc.Sexo);
-        //    }
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@ID_TEMPORAL", masc.Fic_tem.Id);
 
-        //    if (masc.Color.Equals(""))
-        //    {
-        //        com.Parameters.AddWithValue("@color", null);
-        //    }
-        //    else
-        //    {
-        //        com.Parameters.AddWithValue("@color", masc.Color);
-        //    }
+            }
+            int day = masc.Fecha_ingreso.Day;
+            int mes = masc.Fecha_ingreso.Month;
+            int annio = masc.Fecha_ingreso.Year;
+            String f_ingre = "" + annio + "-" + mes + "-" + day;
+            com.Parameters.AddWithValue("@FECHA_INGRESO", f_ingre);
 
-        //    if (masc.Edad.Equals(""))
-        //    {
-        //        com.Parameters.AddWithValue("@edad", null);
-        //    }
-        //    else
-        //    {
-        //        com.Parameters.AddWithValue("@edad", masc.Edad);
-        //    }
+            if (masc.Tipomascota == null)
+            {
+                com.Parameters.AddWithValue("@ID_TIPO", null);
 
-        //    if (masc.Esterilizado.Equals(""))
-        //    {
-        //        com.Parameters.AddWithValue("@esterilizado", null);
-        //    }
-        //    else
-        //    {
-        //        com.Parameters.AddWithValue("@esterilizado", masc.Esterilizado);
-        //    }
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@ID_TIPO", masc.Tipomascota.Id);
 
-        //    com.Parameters.AddWithValue("@id", masc.Id);
-        //    int band;
-        //    try
-        //    {
-        //        band = com.ExecuteNonQuery();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        band = 0;
+            }
+            com.Parameters.AddWithValue("@TAMANO", masc.Tamano);
+            com.Parameters.AddWithValue("@ESTADO", masc.Estado);
+            if (!String.IsNullOrEmpty(masc.Nombre))
+            {
+                com.Parameters.AddWithValue("@NOMBRE", masc.Nombre);
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@NOMBRE", null);
+            }
+            if (!String.IsNullOrEmpty(masc.Raza))
+            {
+                com.Parameters.AddWithValue("@RAZA", masc.Raza);
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@RAZA", null);
+            }
+            com.Parameters.AddWithValue("@SEXO", masc.Sexo);
+            if (!String.IsNullOrEmpty(masc.Color))
+            {
+                com.Parameters.AddWithValue("@COLOR", masc.Color);
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@COLOR", null);
+            }
+            if (!String.IsNullOrEmpty(masc.Edad))
+            {
+                com.Parameters.AddWithValue("@EDAD", masc.Edad);
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@EDAD", null);
+            }
+            com.Parameters.AddWithValue("@ESTERILIZADO", masc.Esterilizado);
 
-        //    }
-        //    cone.Close();
-        //    return band;
-        //}
 
+            int dayf = masc.Fecha_esterilizacion.Day;
+            int mesf = masc.Fecha_esterilizacion.Month;
+            int anniof = masc.Fecha_esterilizacion.Year;
+            String date = "" + annio + "-" + mesf + "-" + dayf;
+            com.Parameters.AddWithValue("@FECHA_ESTERILIZACION", date);
+            com.Parameters.AddWithValue("@SERIE", masc.Serie);
+            int band;
+            try
+            {
+                band = com.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                band = 0;
+
+            }
+            cone.Close();
+            return band;
+        }
+        public int D_modificar_mascota_SinFecha_Esterilizado(Mascota masc)
+        {
+            String cadena = DConexion.cadena;
+            String sql = "UPDATE mascota  SET  USUARIO=@USUARIO, ID_TEMPORAL=@ID_TEMPORAL, FECHA_INGRESO=@FECHA_INGRESO, ID_TIPO=@ID_TIPO, TAMANO=@TAMANO, ESTADO=@ESTADO, NOMBRE=@NOMBRE, RAZA=@RAZA, SEXO=@SEXO, COLOR=@COLOR, EDAD=@EDAD, ESTERILIZADO=@ESTERILIZADO WHERE SERIE=@SERIE";
+            cone = new MySqlConnection(cadena);
+            MySqlCommand com = new MySqlCommand(sql, cone);
+            cone.Open();
+
+
+            if (masc.Ser_usu == null)
+            {
+                com.Parameters.AddWithValue("@USUARIO", null);
+
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@USUARIO", masc.Ser_usu.Serie);
+
+            }
+            if (masc.Fic_tem == null)
+            {
+                com.Parameters.AddWithValue("@ID_TEMPORAL", null);
+
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@ID_TEMPORAL", masc.Fic_tem.Id);
+
+            }
+            int day = masc.Fecha_ingreso.Day;
+            int mes = masc.Fecha_ingreso.Month;
+            int annio = masc.Fecha_ingreso.Year;
+            String f_ingre = "" + annio + "-" + mes + "-" + day;
+            com.Parameters.AddWithValue("@FECHA_INGRESO", f_ingre);
+
+            if (masc.Tipomascota == null)
+            {
+                com.Parameters.AddWithValue("@ID_TIPO", null);
+
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@ID_TIPO", masc.Tipomascota.Id);
+
+            }
+            com.Parameters.AddWithValue("@TAMANO", masc.Tamano);
+            com.Parameters.AddWithValue("@ESTADO", masc.Estado);
+            if (!String.IsNullOrEmpty(masc.Nombre))
+            {
+                com.Parameters.AddWithValue("@NOMBRE", masc.Nombre);
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@NOMBRE", null);
+            }
+            if (!String.IsNullOrEmpty(masc.Raza))
+            {
+                com.Parameters.AddWithValue("@RAZA", masc.Raza);
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@RAZA", null);
+            }
+            com.Parameters.AddWithValue("@SEXO", masc.Sexo);
+            if (!String.IsNullOrEmpty(masc.Color))
+            {
+                com.Parameters.AddWithValue("@COLOR", masc.Color);
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@COLOR", null);
+            }
+            if (!String.IsNullOrEmpty(masc.Edad))
+            {
+                com.Parameters.AddWithValue("@EDAD", masc.Edad);
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@EDAD", null);
+            }
+            com.Parameters.AddWithValue("@ESTERILIZADO", masc.Esterilizado);
+            com.Parameters.AddWithValue("@SERIE", masc.Serie);
+
+            int band;
+            try
+            {
+                band = com.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                band = 0;
+                Console.Write("el error es : " + ex.Message);
+            }
+            cone.Close();
+            return band;
+        }
 
         //public int D_eliminar_mascota(Mascota masc)
         //{

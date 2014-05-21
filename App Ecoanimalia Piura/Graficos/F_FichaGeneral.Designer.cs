@@ -512,6 +512,7 @@
             this.btn_eliminar_ficha.TabIndex = 41;
             this.btn_eliminar_ficha.Text = "Eliminar";
             this.btn_eliminar_ficha.UseVisualStyleBackColor = true;
+            this.btn_eliminar_ficha.Click += new System.EventHandler(this.btn_eliminar_ficha_Click);
             // 
             // btn_modificar_ficha
             // 

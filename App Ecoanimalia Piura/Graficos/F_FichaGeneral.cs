@@ -393,6 +393,7 @@ namespace App_Ecoanimalia_Piura.Graficos
         #region eventos mascota
         private void btn_modificar_ficha_Click(object sender, EventArgs e)
         {
+             btn_eliminar_ficha.Enabled = false;
             if (btn_modificar_ficha.Text.Equals("Editar"))
             {
                 btn_modificar_ficha.Text = "Guardar Cambios";
@@ -730,13 +731,17 @@ namespace App_Ecoanimalia_Piura.Graficos
                     else
                     {
                         MessageBox.Show("Registrado Correctamente");
+                        limpiar_cajas();
+                        invalidar_todo();
                         btn_registrar_ficha.Enabled = false;
+                        btn_cancelar_registro.Enabled = false;
+                        btn_nuevo_ficha.Enabled = true;
                         tab_Historial.Parent = Tab_Mascota;
                         tab_vacunas.Parent = Tab_Mascota;
                         tab_Visitas.Parent = Tab_Mascota;
                         tab_fotos.Parent = Tab_Mascota;
-                        btn_eliminar_ficha.Enabled = true;
-                        btn_modificar_ficha.Enabled = true;
+                        inicio_listar();
+                        
                     }
 
                 }
@@ -769,6 +774,8 @@ namespace App_Ecoanimalia_Piura.Graficos
 
         private void btn_cancelar_registro_Click(object sender, EventArgs e)
         {
+            lb_id_usuario.Text = "";
+            lb_serie_mascota.Text = "";
             invalidar_todo();
             radio_recuperacion.Checked = true;
             radio_conoce_no.Checked = true;
@@ -781,6 +788,7 @@ namespace App_Ecoanimalia_Piura.Graficos
             btn_eliminar_ficha.Enabled = false;
             btn_registrar_ficha.Enabled = false;
             btn_cancelar_registro.Enabled = false;
+            btn_nuevo_ficha.Enabled = true;
             tab_Historial.Parent = null;
             tab_vacunas.Parent = null;
             tab_Visitas.Parent = null;
@@ -788,6 +796,8 @@ namespace App_Ecoanimalia_Piura.Graficos
             limpiar_cajas();
             Ver_serie_mascota();
             btn_modificar_ficha.Text = "Editar";
+            
+            
         }
         public void llenar_combo_tipoMascota()
         {
@@ -1188,6 +1198,7 @@ namespace App_Ecoanimalia_Piura.Graficos
                     }
                     else
                     {
+
                         MessageBox.Show("Registrado Correctamente");
                         limpiar_cajas_vacuna();
                         inhabilitar_cajas_Vacuna();
@@ -1780,6 +1791,11 @@ namespace App_Ecoanimalia_Piura.Graficos
                     
                 }
             }
+        }
+
+        private void btn_eliminar_ficha_Click(object sender, EventArgs e)
+        {
+
         }
 
 
