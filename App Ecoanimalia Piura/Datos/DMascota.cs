@@ -533,30 +533,30 @@ namespace App_Ecoanimalia_Piura.Datos
             return band;
         }
 
-        //public int D_eliminar_mascota(Mascota masc)
-        //{
-        //    String cadena = DConexion.cadena;
-        //    String sql = "DELETE FROM mascota where ID=@id";
-        //    cone = new MySqlConnection(cadena);
-        //    MySqlCommand com = new MySqlCommand(sql, cone);
-        //    cone.Open();
-        //    com.Parameters.AddWithValue("@id", masc.Id);
-        //    int band;
-        //    try
-        //    {
-        //        band = com.ExecuteNonQuery();
-        //    }
-        //    catch (Exception)
-        //    {
-        //        band = 0;
+        public int D_eliminar_mascota(int id_serie)
+        {
+            String cadena = DConexion.cadena;
+            String sql = "DELETE FROM mascota where SERIE=@SERIE";
+            cone = new MySqlConnection(cadena);
+            MySqlCommand com = new MySqlCommand(sql, cone);
+            cone.Open();
+            com.Parameters.AddWithValue("@SERIE",id_serie);
+            int band;
+            try
+            {
+                band = com.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                band = 0;
 
-        //    }
-        //    cone.Close();
-        //    return band;
-        //}
+            }
+            cone.Close();
+            return band;
+        }
 
 
-        //FALTA EL MOSTRAR HAZLO TU
+        
 
     }
 }

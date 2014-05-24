@@ -56,5 +56,11 @@ namespace App_Ecoanimalia_Piura.Graficos
             F_FichaGeneral general = new F_FichaGeneral();
             general.Visible = true;
         }
+
+        private void btn_ficha_adopcion_Click(object sender, EventArgs e)
+        {
+            F_FichaAdopcion adopcion = new F_FichaAdopcion();
+            adopcion.Visible = true;
+        }
     }
 }

@@ -192,6 +192,7 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.lb_etiqueta_nombre = new System.Windows.Forms.Label();
             this.lb_etiqueta_mascota = new System.Windows.Forms.Label();
+            this.btn_salir = new System.Windows.Forms.Button();
             this.Tab_Mascota.SuspendLayout();
             this.tab_principal.SuspendLayout();
             this.group_temporal.SuspendLayout();
@@ -235,6 +236,7 @@
             // 
             // tab_principal
             // 
+            this.tab_principal.Controls.Add(this.btn_salir);
             this.tab_principal.Controls.Add(this.btn_cancelar_registro);
             this.tab_principal.Controls.Add(this.lb_id_usuario);
             this.tab_principal.Controls.Add(this.lb_serie_mascota);
@@ -290,7 +292,7 @@
             // btn_cancelar_registro
             // 
             this.btn_cancelar_registro.Enabled = false;
-            this.btn_cancelar_registro.Location = new System.Drawing.Point(586, 377);
+            this.btn_cancelar_registro.Location = new System.Drawing.Point(513, 377);
             this.btn_cancelar_registro.Name = "btn_cancelar_registro";
             this.btn_cancelar_registro.Size = new System.Drawing.Size(122, 41);
             this.btn_cancelar_registro.TabIndex = 58;
@@ -1866,6 +1868,16 @@
             this.lb_etiqueta_mascota.TabIndex = 5;
             this.lb_etiqueta_mascota.Text = "label46";
             // 
+            // btn_salir
+            // 
+            this.btn_salir.Location = new System.Drawing.Point(697, 377);
+            this.btn_salir.Name = "btn_salir";
+            this.btn_salir.Size = new System.Drawing.Size(121, 41);
+            this.btn_salir.TabIndex = 59;
+            this.btn_salir.Text = "Salir";
+            this.btn_salir.UseVisualStyleBackColor = true;
+            this.btn_salir.Click += new System.EventHandler(this.btn_salir_Click);
+            // 
             // F_FichaGeneral
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2079,5 +2091,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FECHA_VISI;
         private System.Windows.Forms.Label lb_etiqueta_nombre;
         private System.Windows.Forms.Label lb_etiqueta_mascota;
+        private System.Windows.Forms.Button btn_salir;
     }
 }

@@ -15,7 +15,7 @@ namespace App_Ecoanimalia_Piura.Datos
         public int D_registrar_persona(Persona persona)
         {
             String cadena = DConexion.cadena;
-            String sql = "INSERT INTO persona (NOMBRE,APELLIDOS,DIRECCION,SEXO,EDAD,EMAIL,FACEBOOK,TEL_MOV,TEL_CLARO,TEL_NEX,TEL_CASA,HORARIO_DISPONIBLE,RELACION_RESCATISTA) VALUES (@nombre,@apellidos,@direccion,@sexo,@edad,@email,@facebook,@tel_mov,@tel_claro,@tel_nex,@tel_casa,@hor_dis,@rel_res)";
+            String sql = "INSERT INTO persona (NOMBRE,APELLIDOS,DIRECCION,SEXO,EDAD,EMAIL,FACEBOOK,TEL_MOV,TEL_CLARO,TEL_NEX,TEL_CASA,HORARIO_DISPONIBLE) VALUES (@nombre,@apellidos,@direccion,@sexo,@edad,@email,@facebook,@tel_mov,@tel_claro,@tel_nex,@tel_casa,@hor_dis)";
             cone = new MySqlConnection(cadena);
             MySqlCommand com = new MySqlCommand(sql, cone);
             cone.Open();
@@ -102,10 +102,6 @@ namespace App_Ecoanimalia_Piura.Datos
             {
                 com.Parameters.AddWithValue("@hor_dis", persona.Hor_disp);
             }
-
-            com.Parameters.AddWithValue("@rel_res", persona.Rel_rsc);
-
-
             int band;
             try
             {

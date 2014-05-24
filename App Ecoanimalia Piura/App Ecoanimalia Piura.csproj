@@ -40,6 +40,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -70,6 +71,12 @@
     </Compile>
     <Compile Include="Graficos\F_CambiarContra.Designer.cs">
       <DependentUpon>F_CambiarContra.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graficos\F_FichaAdopcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficos\F_FichaAdopcion.Designer.cs">
+      <DependentUpon>F_FichaAdopcion.cs</DependentUpon>
     </Compile>
     <Compile Include="Graficos\F_FichaGeneral.cs">
       <SubType>Form</SubType>
@@ -152,6 +159,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Graficos\F_CambiarContra.resx">
       <DependentUpon>F_CambiarContra.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficos\F_FichaAdopcion.resx">
+      <DependentUpon>F_FichaAdopcion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Graficos\F_FichaGeneral.resx">
       <DependentUpon>F_FichaGeneral.cs</DependentUpon>

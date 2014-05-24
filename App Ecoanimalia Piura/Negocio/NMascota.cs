@@ -34,7 +34,16 @@ namespace App_Ecoanimalia_Piura.Negocio
             masc.Fecha_esterilizacion = FechaEsterilizado;
 
             int band = new DMascota().D_registrar_mascota_ConFecha_esterilizado(masc);
-            return band;
+            if (band == 0)
+            {
+                masc.Serie = masc.Serie + 1;
+                int band_aumentado = new DMascota().D_registrar_mascota_ConFecha_esterilizado(masc);
+                return band_aumentado;
+            }
+            else
+            {
+                return band;
+            }
         }
         public int N_Registrar_mascota_Sinfecha_esterilizado(int serie, Usuario rescatista, FichaTemporal fitemp, DateTime fIngreso, TipoMascota tipo, string tamano, string estado, string nombre, string raza, string sexo, string color, string edad, String esterilizado)
         {
@@ -55,7 +64,16 @@ namespace App_Ecoanimalia_Piura.Negocio
 
 
             int band = new DMascota().D_registrar_mascota_SinFecha_esterilizado(masc);
-            return band;
+            if (band == 0)
+            {
+                masc.Serie = masc.Serie + 1;
+                int band_aumentado = new DMascota().D_registrar_mascota_ConFecha_esterilizado(masc);
+                return band_aumentado;
+            }
+            else
+            {
+                return band;
+            }
         }
 
         public List<Mascota> N_Listar_Mascotas()
@@ -112,13 +130,12 @@ namespace App_Ecoanimalia_Piura.Negocio
             return band;
         }
 
-        //public int N_eliminar_mascota(string id)
-        //{
-        //    Mascota masc = new Mascota();
-        //    masc.Serie = serie;
-        //    int band = new DMascota().D_eliminar_mascota(masc);
-        //    return band;
-        //}
+        public int N_eliminar_mascota(int id_Serie)
+        {
+
+            int band = new DMascota().D_eliminar_mascota(id_Serie);
+            return band;
+        }
 
 
     }

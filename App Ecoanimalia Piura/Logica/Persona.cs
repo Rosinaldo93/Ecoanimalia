@@ -111,14 +111,7 @@ namespace App_Ecoanimalia_Piura.Logica
             get { return hor_disp; }
             set { hor_disp = value; }
         }
-
-        string rel_rsc;
-        public string Rel_rsc
-        {
-            get { return rel_rsc; }
-            set { rel_rsc = value; }
-        }
-        
+       
 
         public Persona() { }
 

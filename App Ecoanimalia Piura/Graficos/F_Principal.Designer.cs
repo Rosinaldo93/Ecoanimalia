@@ -34,6 +34,7 @@
             this.btn_perfil = new System.Windows.Forms.Button();
             this.btn_cerrar = new System.Windows.Forms.Button();
             this.btn_fichaTemporal = new System.Windows.Forms.Button();
+            this.btn_ficha_adopcion = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_Usuarios
@@ -95,11 +96,22 @@
             this.btn_fichaTemporal.UseVisualStyleBackColor = true;
             this.btn_fichaTemporal.Click += new System.EventHandler(this.btn_fichaTemporal_Click);
             // 
+            // btn_ficha_adopcion
+            // 
+            this.btn_ficha_adopcion.Location = new System.Drawing.Point(214, 137);
+            this.btn_ficha_adopcion.Name = "btn_ficha_adopcion";
+            this.btn_ficha_adopcion.Size = new System.Drawing.Size(206, 107);
+            this.btn_ficha_adopcion.TabIndex = 6;
+            this.btn_ficha_adopcion.Text = "FICHAS DE ADOPCION";
+            this.btn_ficha_adopcion.UseVisualStyleBackColor = true;
+            this.btn_ficha_adopcion.Click += new System.EventHandler(this.btn_ficha_adopcion_Click);
+            // 
             // F_Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1234, 692);
+            this.Controls.Add(this.btn_ficha_adopcion);
             this.Controls.Add(this.btn_fichaTemporal);
             this.Controls.Add(this.btn_cerrar);
             this.Controls.Add(this.btn_perfil);
@@ -122,5 +134,6 @@
         private System.Windows.Forms.Button btn_perfil;
         private System.Windows.Forms.Button btn_cerrar;
         private System.Windows.Forms.Button btn_fichaTemporal;
+        private System.Windows.Forms.Button btn_ficha_adopcion;
     }
 }

@@ -19,6 +19,9 @@ USE `ecoanimalia`;
 CREATE TABLE IF NOT EXISTS `detalleadopcion` (
   `SERIE` int(11) DEFAULT NULL,
   `ID_FICHA_ADOPCION` int(11) DEFAULT NULL,
+  `NOMBRE_ADOPTARSE` varchar(50) DEFAULT NULL,
+  `ESTADO` tinyint(4) NOT NULL,
+  `OBSERVACION` varchar(100) DEFAULT NULL,
   KEY `FK_DetalleADOPCION_mascota` (`SERIE`),
   KEY `FK_DetalleADOPCION_fichaadopcion` (`ID_FICHA_ADOPCION`),
   CONSTRAINT `FK_DetalleADOPCION_fichaadopcion` FOREIGN KEY (`ID_FICHA_ADOPCION`) REFERENCES `fichaadopcion` (`ID`),
@@ -35,7 +38,6 @@ CREATE TABLE IF NOT EXISTS `fichaadopcion` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `ID_PERSONA` int(11) NOT NULL,
   `ID_USUARIO` int(11) NOT NULL,
-  `ESTADO` tinyint(4) NOT NULL,
   `RELACION_RESPONSABLE` varchar(50) NOT NULL,
   `OBSERVACIONES` varchar(200) NOT NULL,
   `FECHA_ADOPCION` date NOT NULL,
@@ -87,13 +89,14 @@ CREATE TABLE IF NOT EXISTS `historialclinico` (
   `PRECIO` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   KEY `FK_HistorialClinico_mascota` (`SERIE`),
-  CONSTRAINT `FK_historialclinico_mascota` FOREIGN KEY (`SERIE`) REFERENCES `mascota` (`SERIE`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  CONSTRAINT `FK_historialclinico_mascota` FOREIGN KEY (`SERIE`) REFERENCES `mascota` (`SERIE`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla ecoanimalia.historialclinico: ~1 rows (aproximadamente)
+-- Volcando datos para la tabla ecoanimalia.historialclinico: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `historialclinico` DISABLE KEYS */;
 INSERT INTO `historialclinico` (`ID`, `SERIE`, `FECHA`, `DESCRIPCION`, `PRECIO`) VALUES
-	(3, 1, '2014-05-30', 'tratamiento de cancer', 0.00);
+	(3, 1, '2014-05-30', 'tratamiento de cancer', 0.00),
+	(4, 2, '2014-05-17', 'tratamiento de rabia', 20.00);
 /*!40000 ALTER TABLE `historialclinico` ENABLE KEYS */;
 
 
@@ -136,8 +139,8 @@ CREATE TABLE IF NOT EXISTS `mascota` (
   PRIMARY KEY (`SERIE`),
   KEY `FK_Mascota_tipomascota` (`ID_TIPO`),
   KEY `FK_mascota_estadomascota` (`ESTADO`),
-  KEY `FK_mascota_usuario` (`USUARIO`),
   KEY `FK_mascota_fichatemporal` (`ID_TEMPORAL`),
+  KEY `FK_mascota_usuario` (`USUARIO`),
   CONSTRAINT `FK_mascota_fichatemporal` FOREIGN KEY (`ID_TEMPORAL`) REFERENCES `fichatemporal` (`ID`),
   CONSTRAINT `FK_mascota_tipomascota` FOREIGN KEY (`ID_TIPO`) REFERENCES `tipomascota` (`ID`),
   CONSTRAINT `FK_mascota_usuario` FOREIGN KEY (`USUARIO`) REFERENCES `usuario` (`SERIE`)
@@ -146,8 +149,8 @@ CREATE TABLE IF NOT EXISTS `mascota` (
 -- Volcando datos para la tabla ecoanimalia.mascota: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `mascota` DISABLE KEYS */;
 INSERT INTO `mascota` (`SERIE`, `USUARIO`, `ID_TEMPORAL`, `FECHA_INGRESO`, `ID_TIPO`, `TAMANO`, `ESTADO`, `NOMBRE`, `RAZA`, `SEXO`, `COLOR`, `EDAD`, `ESTERILIZADO`, `FECHA_ESTERILIZACION`) VALUES
-	(1, 2, 7, '2014-04-07', 1, 'Mediano', 'Adoptado', 'sasha', 'siberiano', 'Hembra', 'plomo', '3 meses', 'No', NULL),
-	(2, 1, NULL, '2014-05-09', 1, 'Mediano', 'En Recuperacion', 'doogie', 'pudle', 'Macho', 'blanco', '1 año', 'No', NULL);
+	(1, 2, 7, '2014-04-07', 1, 'Mediano', 'Adoptado', 'sasha', 'siberiano', 'Hembra', 'plomo', '3 meses', 'Si', NULL),
+	(2, 1, 8, '2014-05-09', 1, 'Mediano', 'En Recuperacion', 'doogie', 'pudle', 'Macho', 'blanco', '2 año', 'Si', '2014-05-21');
 /*!40000 ALTER TABLE `mascota` ENABLE KEYS */;
 
 
@@ -168,16 +171,15 @@ CREATE TABLE IF NOT EXISTS `persona` (
   `TEL_NEX` varchar(11) DEFAULT NULL,
   `TEL_CASA` int(11) DEFAULT NULL,
   `HORARIO_DISPONIBLE` varchar(50) DEFAULT NULL,
-  `RELACION_RESCATISTA` varchar(11) DEFAULT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `DNI` (`DNI`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla ecoanimalia.persona: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `persona` DISABLE KEYS */;
-INSERT INTO `persona` (`ID`, `NOMBRE`, `APELLIDOS`, `DNI`, `DIRECCION`, `SEXO`, `EDAD`, `EMAIL`, `FACEBOOK`, `RPM`, `TEL_MOV`, `TEL_CLARO`, `TEL_NEX`, `TEL_CASA`, `HORARIO_DISPONIBLE`, `RELACION_RESCATISTA`) VALUES
-	(14, 'cesar', 'salazar', '543534', 'calle  angamos', 'Masculino', '21 años', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-	(15, 'carmen', 'rosas', '32432', 'calle talara 123', 'Femenino', '44 años', 'carmen@hotmail.com', NULL, NULL, 4242, NULL, NULL, 53335, '2 pm', NULL);
+INSERT INTO `persona` (`ID`, `NOMBRE`, `APELLIDOS`, `DNI`, `DIRECCION`, `SEXO`, `EDAD`, `EMAIL`, `FACEBOOK`, `RPM`, `TEL_MOV`, `TEL_CLARO`, `TEL_NEX`, `TEL_CASA`, `HORARIO_DISPONIBLE`) VALUES
+	(14, 'cesar', 'salazar', '543534', 'calle  angamos', 'Masculino', '21 años', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+	(15, 'carmen', 'rosas', '32432', 'calle talara 123', 'Femenino', '44 años', 'carmen@hotmail.com', NULL, NULL, 4242, NULL, NULL, 53335, '2 pm');
 /*!40000 ALTER TABLE `persona` ENABLE KEYS */;
 
 
@@ -244,7 +246,7 @@ CREATE TABLE IF NOT EXISTS `vacuna` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `SERIE_NUMERO_VACUNA` (`SERIE`,`NUMERO_VACUNA`),
   KEY `FK_vacuna_mascota` (`SERIE`),
-  CONSTRAINT `FK_vacuna_mascota` FOREIGN KEY (`SERIE`) REFERENCES `mascota` (`SERIE`)
+  CONSTRAINT `FK_vacuna_mascota` FOREIGN KEY (`SERIE`) REFERENCES `mascota` (`SERIE`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- Volcando datos para la tabla ecoanimalia.vacuna: ~5 rows (aproximadamente)
@@ -268,11 +270,15 @@ CREATE TABLE IF NOT EXISTS `visita` (
   PRIMARY KEY (`ID`),
   UNIQUE KEY `SERIE_NUMERO` (`SERIE`,`NUMERO`),
   KEY `FK_visita_mascota` (`SERIE`),
-  CONSTRAINT `FK_visita_mascota` FOREIGN KEY (`SERIE`) REFERENCES `mascota` (`SERIE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  CONSTRAINT `FK_visita_mascota` FOREIGN KEY (`SERIE`) REFERENCES `mascota` (`SERIE`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
--- Volcando datos para la tabla ecoanimalia.visita: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla ecoanimalia.visita: ~3 rows (aproximadamente)
 /*!40000 ALTER TABLE `visita` DISABLE KEYS */;
+INSERT INTO `visita` (`ID`, `SERIE`, `NUMERO`, `OBSERVACION`, `FECHA`) VALUES
+	(1, 2, 1, 'baño de mascota', '2014-05-17'),
+	(4, 2, 2, 'el perro se encontro en muy buenas condiciones', '2014-05-17'),
+	(5, 1, 1, 'se realizo la visita al campodfsdfs', '2014-05-30');
 /*!40000 ALTER TABLE `visita` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;

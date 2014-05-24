@@ -583,7 +583,10 @@ namespace App_Ecoanimalia_Piura.Graficos
                                 tab_fotos.Parent = Tab_Mascota;
                                 group_conoce.Enabled = false;
                                 group_esterilizado.Enabled = false;
+                                
                                 inicio_listar();
+                                combo_temporal.Enabled = false;
+                                group_temporal.Enabled = false;
 
                             }
 
@@ -611,7 +614,10 @@ namespace App_Ecoanimalia_Piura.Graficos
                                 tab_fotos.Parent = Tab_Mascota;
                                 group_conoce.Enabled = false;
                                 group_esterilizado.Enabled = false;
+                               
                                 inicio_listar();
+                                combo_temporal.Enabled = false;
+                                group_temporal.Enabled = false;
                             }
                         }
                     }
@@ -722,11 +728,14 @@ namespace App_Ecoanimalia_Piura.Graficos
                 if (u == null)
                 {
                     MessageBox.Show("No se Encontro el Rescatista");
+                    text_nombre_rescatista.Text = "";
+
                 }
                 else
                 {
                     text_nombre_rescatista.Text = u.Nombres + " " + u.Apellidos;
                     lb_id_usuario.Text = "" + u.Serie;
+                    MessageBox.Show("Busqueda Satisfatoria");
                 }
             }
             else
@@ -780,6 +789,9 @@ namespace App_Ecoanimalia_Piura.Graficos
 
         private void btn_nuevo_ficha_Click(object sender, EventArgs e)
         {
+            lb_etiqueta_nombre.Visible = false;
+            lb_etiqueta_mascota.Visible = false;
+            lb_etiqueta_mascota.Text = "";
             lb_id_usuario.Text = "";
             lb_serie_mascota.Text = "";
             habilitar_cajas();
@@ -799,9 +811,6 @@ namespace App_Ecoanimalia_Piura.Graficos
                 radio_conoce_no.Checked = true;
                 fecha_esterilizacion.Enabled = false;
             }
-
-
-
         }
         public void limpiar_cajas()
         {
@@ -826,7 +835,6 @@ namespace App_Ecoanimalia_Piura.Graficos
 
         private void btn_registrar_ficha_Click(object sender, EventArgs e)
         {
-
             Boolean band1 = false, band2 = false, band3 = false, band4 = false, band5 = false;
             String mensaje = "Por Favor Complete los campos obligatorios : \n";
             String esterilizado = "";
@@ -991,8 +999,10 @@ namespace App_Ecoanimalia_Piura.Graficos
                         tab_vacunas.Parent = Tab_Mascota;
                         tab_Visitas.Parent = Tab_Mascota;
                         tab_fotos.Parent = Tab_Mascota;
+                        
                         inicio_listar();
-
+                        combo_temporal.Enabled = false;
+                        group_temporal.Enabled = false;
                     }
 
                 }
@@ -1016,7 +1026,10 @@ namespace App_Ecoanimalia_Piura.Graficos
                         tab_vacunas.Parent = Tab_Mascota;
                         tab_Visitas.Parent = Tab_Mascota;
                         tab_fotos.Parent = Tab_Mascota;
+                        
                         inicio_listar();
+                        combo_temporal.Enabled = false;
+                        group_temporal.Enabled = false;
                     }
                 }
             }
@@ -1050,7 +1063,11 @@ namespace App_Ecoanimalia_Piura.Graficos
             limpiar_cajas();
             Ver_serie_mascota();
             btn_modificar_ficha.Text = "Editar";
-
+            radio_temporal_no.Checked = true;
+            combo_temporal.Enabled = false;
+            
+            group_temporal.Enabled = false;
+            
 
         }
         public void llenar_combo_tipoMascota()
@@ -1653,7 +1670,8 @@ namespace App_Ecoanimalia_Piura.Graficos
         private void F_FichaGeneral_Load(object sender, EventArgs e)
         {
 
-            
+            lb_etiqueta_nombre.Visible = false;
+            lb_etiqueta_mascota.Visible = false;
             llenar_combo_tipoMascota();
             llenar_combo_temporales();
             llenar_combo_tamaño();
@@ -1703,6 +1721,7 @@ namespace App_Ecoanimalia_Piura.Graficos
             this.text_codigo.Text = this.grilla_general.CurrentRow.Cells[3].Value.ToString();
             this.text_nombre_rescatista.Text = this.grilla_general.CurrentRow.Cells[4].Value.ToString();
             this.pictureBox1.Image = null;
+            
             String id_tempo = this.grilla_general.CurrentRow.Cells[5].Value.ToString();
             if (!String.IsNullOrEmpty(id_tempo))
             {
@@ -1779,6 +1798,9 @@ namespace App_Ecoanimalia_Piura.Graficos
             }
             this.text_nombre.Text = this.grilla_general.CurrentRow.Cells[11].Value.ToString();
             this.text_raza.Text = this.grilla_general.CurrentRow.Cells[12].Value.ToString();
+            lb_etiqueta_nombre.Visible = true;
+            lb_etiqueta_mascota.Visible = true;
+            lb_etiqueta_mascota.Text = "" + text_nombre.Text;
             String sexo = this.grilla_general.CurrentRow.Cells[13].Value.ToString();
             if (sexo.Equals("Macho"))
             {
@@ -1843,7 +1865,8 @@ namespace App_Ecoanimalia_Piura.Graficos
             #region visitas
             listar_visitar_mascota(idserieMascota);
             #endregion
-
+            btn_verDatos.Enabled = true;
+            btn_eliminar_ficha.Enabled = true;
 
 
         }
@@ -2050,7 +2073,51 @@ namespace App_Ecoanimalia_Piura.Graficos
 
         private void btn_eliminar_ficha_Click(object sender, EventArgs e)
         {
+            if (MessageBox.Show("Seguro que dese Eliminar?", "Salir", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                int serie = int.Parse(lb_serie_mascota.Text);
+                int respuesta2 = new NMascota().N_eliminar_mascota(serie);
+                if (respuesta2 == 0)
+                {
+                    MessageBox.Show("Error Al Eliminar Por favor intente nuevamente");
+                }
+                else
+                {
+                    MessageBox.Show("Eliminado Correctamente");
+                    
+                    lb_etiqueta_nombre.Visible = false;
+                    lb_etiqueta_mascota.Visible = false;
+                    lb_etiqueta_mascota.Text = "";
+                    lb_id_usuario.Text = "";
+                    lb_serie_mascota.Text = "";
+                    tab_Historial.Parent = null;
+                    tab_vacunas.Parent = null;
+                    tab_Visitas.Parent = null;
+                    tab_fotos.Parent = null;
+                    Ver_serie_mascota();
+                    limpiar_cajas();
+                    invalidar_todo();
+                    btn_registrar_ficha.Enabled = true;
+                    btn_cancelar_registro.Enabled = true;
+                    btn_eliminar_ficha.Enabled = false;
+                    btn_modificar_ficha.Enabled = false;
+                    if (radio_negativo.Checked == true)
+                    {
+                        group_conoce.Enabled = false;
+                        radio_conoce_no.Checked = true;
+                        fecha_esterilizacion.Enabled = false;
+                    }
+                    btn_modificar_visita.Text = "Editar";
+                    inicio_listar();
 
+
+                }
+            }
+        }
+
+        private void btn_salir_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
 
 
