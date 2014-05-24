@@ -90,6 +90,12 @@
     <Compile Include="Graficos\F_FichaTemporal.Designer.cs">
       <DependentUpon>F_FichaTemporal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Graficos\F_ListarFichasAdopcion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficos\F_ListarFichasAdopcion.Designer.cs">
+      <DependentUpon>F_ListarFichasAdopcion.cs</DependentUpon>
+    </Compile>
     <Compile Include="Graficos\F_ListarVoluntarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Graficos\F_FichaTemporal.resx">
       <DependentUpon>F_FichaTemporal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficos\F_ListarFichasAdopcion.resx">
+      <DependentUpon>F_ListarFichasAdopcion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Graficos\F_ListarVoluntarios.resx">
       <DependentUpon>F_ListarVoluntarios.cs</DependentUpon>

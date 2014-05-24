@@ -38,6 +38,7 @@
             // grilla_listado
             // 
             this.grilla_listado.AllowUserToAddRows = false;
+            this.grilla_listado.AllowUserToDeleteRows = false;
             this.grilla_listado.AllowUserToResizeRows = false;
             this.grilla_listado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grilla_listado.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
