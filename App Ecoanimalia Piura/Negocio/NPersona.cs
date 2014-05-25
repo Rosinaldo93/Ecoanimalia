@@ -9,26 +9,28 @@ namespace App_Ecoanimalia_Piura.Negocio
 {
     public class NPersona
     {
-        //public int N_registrar_persona(String nombre, String apellidos, String direccion, string sexo, string edad, string email, string facebook, int movi, int claro, string nextel, int casa, string horario, string rescatista)
-        //{
-        //    Persona persona = new Persona();
-        //    persona.Nombre = nombre;
-        //    persona.Apellidos = apellidos;
-        //    persona.Direccion = direccion;
-        //    persona.Sexo = sexo;
-        //    persona.Edad = edad;
-        //    persona.Email = email;
-        //    persona.Facebook = facebook;
-        //    persona.Tel_mov = movi;
-        //    persona.Tel_claro = claro;
-        //    persona.Tel_nex = nextel;
-        //    persona.Tel_casa = casa;
-        //    persona.Hor_disp = horario;
-            
-        //    int band = new DPersona().D_registrar_persona(persona);
-        //    return band;
+        public int N_registrar_persona(String nombre, String apellidos,String dni, String direccion, string sexo, string edad, string email, string facebook,String rpm ,int movi, int claro, string nextel, int casa, string horario)
+        {
+            Persona persona = new Persona();
+            persona.Nombre = nombre;
+            persona.Apellidos = apellidos;
+            persona.Direccion = direccion;
+            persona.Dni = dni;
+            persona.Sexo = sexo;
+            persona.Edad = edad;
+            persona.Email = email;
+            persona.Facebook = facebook;
+            persona.Rpm = rpm;
+            persona.Tel_mov = movi;
+            persona.Tel_claro = claro;
+            persona.Tel_nex = nextel;
+            persona.Tel_casa = casa;
+            persona.Hor_disp = horario;
 
-        //}
+            int band = new DPersona().D_registrar_persona(persona);
+            return band;
+
+        }
 
         //public int N_modificar_persona(int id, String nombre, String apellidos, String direccion, string sexo, string edad, string email, string facebook, int movi, int claro, string nextel, int casa, string horario, string rescatista)
         //{

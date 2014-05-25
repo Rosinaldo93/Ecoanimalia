@@ -72,6 +72,12 @@
     <Compile Include="Graficos\F_BuscarAdoptante.Designer.cs">
       <DependentUpon>F_BuscarAdoptante.cs</DependentUpon>
     </Compile>
+    <Compile Include="Graficos\F_BuscarMascota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficos\F_BuscarMascota.Designer.cs">
+      <DependentUpon>F_BuscarMascota.cs</DependentUpon>
+    </Compile>
     <Compile Include="Graficos\F_CambiarContra.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,6 +138,12 @@
     <Compile Include="Graficos\F_Principal.Designer.cs">
       <DependentUpon>F_Principal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Graficos\F_RegistrarPersona.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficos\F_RegistrarPersona.Designer.cs">
+      <DependentUpon>F_RegistrarPersona.cs</DependentUpon>
+    </Compile>
     <Compile Include="Graficos\F_UsuariosVoluntarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +184,9 @@
     <EmbeddedResource Include="Graficos\F_BuscarAdoptante.resx">
       <DependentUpon>F_BuscarAdoptante.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Graficos\F_BuscarMascota.resx">
+      <DependentUpon>F_BuscarMascota.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Graficos\F_CambiarContra.resx">
       <DependentUpon>F_CambiarContra.cs</DependentUpon>
     </EmbeddedResource>
@@ -201,6 +216,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Graficos\F_Principal.resx">
       <DependentUpon>F_Principal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficos\F_RegistrarPersona.resx">
+      <DependentUpon>F_RegistrarPersona.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Graficos\F_UsuariosVoluntarios.resx">
       <DependentUpon>F_UsuariosVoluntarios.cs</DependentUpon>

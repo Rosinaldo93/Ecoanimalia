@@ -46,8 +46,7 @@ namespace App_Ecoanimalia_Piura.Graficos
         }
         public void ver_adoptante(int id)
         {
-            lb_id_adoptante.Text = ""+id;
-            for (int i = 0; i < combo_persona.Items.Count; i++)
+           for (int i = 0; i < combo_persona.Items.Count; i++)
             {
                 Persona per = (Persona)combo_persona.Items[i];
 
@@ -58,6 +57,10 @@ namespace App_Ecoanimalia_Piura.Graficos
                 }
             }
 
+        }
+        public void actualizar_lista_adoptante()
+        {
+            llenar_combo_personas();
         }
 
         private void btn_buscar_persona_Click(object sender, EventArgs e)
@@ -205,6 +208,17 @@ namespace App_Ecoanimalia_Piura.Graficos
                 f.Dispose();
             }
 
+
+        }
+
+        private void btn_nueva_persona_Click(object sender, EventArgs e)
+        {
+            F_RegistrarPersona r = new F_RegistrarPersona(this);
+            r.ShowDialog();
+        }
+
+        private void btn_buscar_mascota_Click(object sender, EventArgs e)
+        {
 
         }
     }

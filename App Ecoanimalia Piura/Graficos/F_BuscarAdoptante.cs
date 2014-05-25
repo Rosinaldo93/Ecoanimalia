@@ -144,7 +144,7 @@ namespace App_Ecoanimalia_Piura.Graficos
 
         private void btn_ayuda_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ayuda \n 1.- Seleccione el Adoptante en la Tabla\n 2.-Haga Click en aceptar para finalizar");
+            MessageBox.Show("Ayuda \n 1.- Seleccione un Adoptante de la Lista\n 2.-Haga Click en aceptar para finalizar");
         }
 
         private void text_buscar_KeyUp(object sender, KeyEventArgs e)

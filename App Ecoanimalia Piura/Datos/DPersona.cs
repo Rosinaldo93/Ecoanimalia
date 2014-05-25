@@ -15,92 +15,117 @@ namespace App_Ecoanimalia_Piura.Datos
         public int D_registrar_persona(Persona persona)
         {
             String cadena = DConexion.cadena;
-            String sql = "INSERT INTO persona (NOMBRE,APELLIDOS,DIRECCION,SEXO,EDAD,EMAIL,FACEBOOK,TEL_MOV,TEL_CLARO,TEL_NEX,TEL_CASA,HORARIO_DISPONIBLE) VALUES (@nombre,@apellidos,@direccion,@sexo,@edad,@email,@facebook,@tel_mov,@tel_claro,@tel_nex,@tel_casa,@hor_dis)";
+            String sql1 = "INSERT INTO persona(NOMBRE, APELLIDOS, DNI, DIRECCION, SEXO, EDAD, EMAIL, FACEBOOK, RPM, TEL_MOV, TEL_CLARO, TEL_NEX, TEL_CASA, HORARIO_DISPONIBLE) " +
+                          "VALUES (@NOMBRE, @APELLIDOS, @DNI, @DIRECCION, @SEXO, @EDAD, @EMAIL, @FACEBOOK, @RPM, @TEL_MOV, @TEL_CLARO, @TEL_NEX, @TEL_CASA, @HORARIO_DISPONIBLE)";
             cone = new MySqlConnection(cadena);
-            MySqlCommand com = new MySqlCommand(sql, cone);
             cone.Open();
+            MySqlCommand com = new MySqlCommand(sql1, cone);
+            
+            //try
+            //{
 
-            if (persona.Nombre.Equals(""))
+            com.Parameters.AddWithValue("@NOMBRE", persona.Nombre);
+            com.Parameters.AddWithValue("@APELLIDOS", persona.Apellidos);
+            com.Parameters.AddWithValue("@DNI", persona.Dni);
+
+            if (!String.IsNullOrEmpty(persona.Direccion))
             {
-                com.Parameters.AddWithValue("@nombre", null);
+                com.Parameters.AddWithValue("@DIRECCION", persona.Direccion);
             }
             else
             {
-                com.Parameters.AddWithValue("@persona", persona.Nombre);
+                com.Parameters.AddWithValue("@DIRECCION", null);
+
             }
-
-
-            if (persona.Apellidos.Equals(""))
+            if (!String.IsNullOrEmpty(persona.Sexo))
             {
-                com.Parameters.AddWithValue("@apellidos", null);
+                com.Parameters.AddWithValue("@SEXO", persona.Sexo);
             }
             else
             {
-                com.Parameters.AddWithValue("@apellidos", persona.Apellidos);
+                com.Parameters.AddWithValue("@SEXO", null);
             }
 
-            if (persona.Direccion.Equals(""))
+            if (!String.IsNullOrEmpty(persona.Edad))
             {
-                com.Parameters.AddWithValue("@direccion", null);
+                com.Parameters.AddWithValue("@EDAD", persona.Edad);
             }
             else
             {
-                com.Parameters.AddWithValue("@direccion", persona.Direccion);
+                com.Parameters.AddWithValue("@EDAD", null);
             }
-
-
-            if (persona.Sexo.Equals(""))
+            if (!String.IsNullOrEmpty(persona.Email))
             {
-                com.Parameters.AddWithValue("@sexo", null);
+                com.Parameters.AddWithValue("@EMAIL", persona.Email);
             }
             else
             {
-                com.Parameters.AddWithValue("@sexo", persona.Sexo);
+                com.Parameters.AddWithValue("@EMAIL", null);
+
             }
-            // com.Parameters.AddWithValue("@sexo", persona.Sexo);
-
-
-            if (persona.Edad.Equals(""))
+            if (!String.IsNullOrEmpty(persona.Facebook))
             {
-                com.Parameters.AddWithValue("@edad", null);
+                com.Parameters.AddWithValue("@FACEBOOK", persona.Facebook);
             }
             else
             {
-                com.Parameters.AddWithValue("@edad", persona.Edad);
+                com.Parameters.AddWithValue("@FACEBOOK", null);
             }
-
-
-            if (persona.Email.Equals(""))
+            if (!String.IsNullOrEmpty(persona.Rpm))
             {
-                com.Parameters.AddWithValue("@email", null);
-            }
-            else
-            {
-                com.Parameters.AddWithValue("@email", persona.Email);
-            }
+                com.Parameters.AddWithValue("@RPM", persona.Rpm);
 
-            if (persona.Facebook.Equals(""))
-            {
-                com.Parameters.AddWithValue("@facebook", null);
             }
             else
             {
-                com.Parameters.AddWithValue("@facebook", persona.Facebook);
+                com.Parameters.AddWithValue("@RPM", null);
+
             }
-
-
-            com.Parameters.AddWithValue("@tel_mov", persona.Tel_mov);
-            com.Parameters.AddWithValue("@tel_claro", persona.Tel_claro);
-            com.Parameters.AddWithValue("@tel_nex", persona.Tel_nex);
-            com.Parameters.AddWithValue("@tel_casa", persona.Tel_casa);
-
-            if (persona.Hor_disp.Equals(""))
+            if ((persona.Tel_mov == 0) || (persona.Tel_mov == null))
             {
-                com.Parameters.AddWithValue("@hor_dis", null);
+                com.Parameters.AddWithValue("@TEL_MOV", null);
             }
             else
             {
-                com.Parameters.AddWithValue("@hor_dis", persona.Hor_disp);
+                com.Parameters.AddWithValue("@TEL_MOV", persona.Tel_mov);
+            }
+            if ((persona.Tel_claro == 0) || (persona.Tel_claro == null))
+            {
+                com.Parameters.AddWithValue("@TEL_CLARO", null);
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@TEL_CLARO", persona.Tel_claro);
+            }
+            if (!String.IsNullOrEmpty(persona.Tel_nex))
+            {
+                com.Parameters.AddWithValue("@TEL_NEX", persona.Tel_nex);
+
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@TEL_NEX", null);
+            }
+
+            if ((persona.Tel_casa == 0) || (persona.Tel_casa == null))
+            {
+                com.Parameters.AddWithValue("@TEL_CASA", null);
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@TEL_CASA", persona.Tel_casa);
+            }
+
+            if (!String.IsNullOrEmpty(persona.Hor_disp))
+            {
+                com.Parameters.AddWithValue("@HORARIO_DISPONIBLE", persona.Hor_disp);
+
+            }
+            else
+            {
+                com.Parameters.AddWithValue("@HORARIO_DISPONIBLE", null);
+
+
             }
             int band;
             try

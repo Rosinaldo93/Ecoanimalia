@@ -68,7 +68,6 @@
             this.btn_nuevo_mascota = new System.Windows.Forms.Button();
             this.btn_cancelar_ficha = new System.Windows.Forms.Button();
             this.btn_eliminar_ficha = new System.Windows.Forms.Button();
-            this.lb_id_adoptante = new System.Windows.Forms.Label();
             this.grupo_estado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -108,6 +107,7 @@
             this.btn_nueva_persona.TabIndex = 3;
             this.btn_nueva_persona.Text = "Registrar Nueva Adoptante";
             this.btn_nueva_persona.UseVisualStyleBackColor = true;
+            this.btn_nueva_persona.Click += new System.EventHandler(this.btn_nueva_persona_Click);
             // 
             // btn_buscar_persona
             // 
@@ -242,6 +242,7 @@
             this.btn_buscar_mascota.TabIndex = 19;
             this.btn_buscar_mascota.Text = "Buscar Mascota";
             this.btn_buscar_mascota.UseVisualStyleBackColor = true;
+            this.btn_buscar_mascota.Click += new System.EventHandler(this.btn_buscar_mascota_Click);
             // 
             // textBox1
             // 
@@ -433,21 +434,11 @@
             this.btn_eliminar_ficha.Text = "Eliminar Ficha Adopcion";
             this.btn_eliminar_ficha.UseVisualStyleBackColor = true;
             // 
-            // lb_id_adoptante
-            // 
-            this.lb_id_adoptante.AutoSize = true;
-            this.lb_id_adoptante.Location = new System.Drawing.Point(189, 22);
-            this.lb_id_adoptante.Name = "lb_id_adoptante";
-            this.lb_id_adoptante.Size = new System.Drawing.Size(83, 13);
-            this.lb_id_adoptante.TabIndex = 39;
-            this.lb_id_adoptante.Text = "lb_id_adoptante";
-            // 
             // F_FichaAdopcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1133, 698);
-            this.Controls.Add(this.lb_id_adoptante);
             this.Controls.Add(this.btn_eliminar_ficha);
             this.Controls.Add(this.btn_cancelar_ficha);
             this.Controls.Add(this.btn_nuevo_mascota);
@@ -541,6 +532,5 @@
         private System.Windows.Forms.Button btn_nuevo_mascota;
         private System.Windows.Forms.Button btn_cancelar_ficha;
         private System.Windows.Forms.Button btn_eliminar_ficha;
-        private System.Windows.Forms.Label lb_id_adoptante;
     }
 }
