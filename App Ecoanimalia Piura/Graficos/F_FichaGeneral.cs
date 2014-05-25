@@ -570,9 +570,9 @@ namespace App_Ecoanimalia_Piura.Graficos
                             {
 
                                 MessageBox.Show("Cambios Guardados Correctamente");
-                                
+
                                 invalidar_todo();
-                                
+
                                 btn_registrar_ficha.Enabled = false;
                                 btn_cancelar_registro.Enabled = false;
                                 btn_nuevo_ficha.Enabled = true;
@@ -583,7 +583,7 @@ namespace App_Ecoanimalia_Piura.Graficos
                                 tab_fotos.Parent = Tab_Mascota;
                                 group_conoce.Enabled = false;
                                 group_esterilizado.Enabled = false;
-                                
+
                                 inicio_listar();
                                 combo_temporal.Enabled = false;
                                 group_temporal.Enabled = false;
@@ -614,7 +614,7 @@ namespace App_Ecoanimalia_Piura.Graficos
                                 tab_fotos.Parent = Tab_Mascota;
                                 group_conoce.Enabled = false;
                                 group_esterilizado.Enabled = false;
-                               
+
                                 inicio_listar();
                                 combo_temporal.Enabled = false;
                                 group_temporal.Enabled = false;
@@ -652,7 +652,7 @@ namespace App_Ecoanimalia_Piura.Graficos
             }
             else
             {
-                
+
                 group_conoce.Enabled = true;
             }
         }
@@ -685,7 +685,7 @@ namespace App_Ecoanimalia_Piura.Graficos
                 if (radio_negativo.Checked == true)
                 {
                     radio_conoce_no.Checked = true;
-                    
+
                 }
                 if (radio_conoce_si.Checked == true)
                 {
@@ -999,7 +999,7 @@ namespace App_Ecoanimalia_Piura.Graficos
                         tab_vacunas.Parent = Tab_Mascota;
                         tab_Visitas.Parent = Tab_Mascota;
                         tab_fotos.Parent = Tab_Mascota;
-                        
+
                         inicio_listar();
                         combo_temporal.Enabled = false;
                         group_temporal.Enabled = false;
@@ -1026,7 +1026,7 @@ namespace App_Ecoanimalia_Piura.Graficos
                         tab_vacunas.Parent = Tab_Mascota;
                         tab_Visitas.Parent = Tab_Mascota;
                         tab_fotos.Parent = Tab_Mascota;
-                        
+
                         inicio_listar();
                         combo_temporal.Enabled = false;
                         group_temporal.Enabled = false;
@@ -1065,9 +1065,9 @@ namespace App_Ecoanimalia_Piura.Graficos
             btn_modificar_ficha.Text = "Editar";
             radio_temporal_no.Checked = true;
             combo_temporal.Enabled = false;
-            
+
             group_temporal.Enabled = false;
-            
+
 
         }
         public void llenar_combo_tipoMascota()
@@ -1675,19 +1675,6 @@ namespace App_Ecoanimalia_Piura.Graficos
             llenar_combo_tipoMascota();
             llenar_combo_temporales();
             llenar_combo_tamaño();
-
-
-
-            //radio_recuperacion.Checked = true;
-            //radio_conoce_no.Checked = true;
-            //radio_macho.Checked = true;
-            //radio_temporal_no.Checked = true;
-            //radio_negativo.Checked = true;
-
-            //btn_modificar_ficha.Enabled = false;
-            //btn_eliminar_ficha.Enabled = false;
-            //btn_registrar_ficha.Enabled = false;
-            //btn_cancelar_registro.Enabled = false;
             tab_Historial.Parent = null;
             tab_vacunas.Parent = null;
             tab_Visitas.Parent = null;
@@ -1721,7 +1708,7 @@ namespace App_Ecoanimalia_Piura.Graficos
             this.text_codigo.Text = this.grilla_general.CurrentRow.Cells[3].Value.ToString();
             this.text_nombre_rescatista.Text = this.grilla_general.CurrentRow.Cells[4].Value.ToString();
             this.pictureBox1.Image = null;
-            
+
             String id_tempo = this.grilla_general.CurrentRow.Cells[5].Value.ToString();
             if (!String.IsNullOrEmpty(id_tempo))
             {
@@ -2084,7 +2071,7 @@ namespace App_Ecoanimalia_Piura.Graficos
                 else
                 {
                     MessageBox.Show("Eliminado Correctamente");
-                    
+
                     lb_etiqueta_nombre.Visible = false;
                     lb_etiqueta_mascota.Visible = false;
                     lb_etiqueta_mascota.Text = "";

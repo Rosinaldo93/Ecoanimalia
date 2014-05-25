@@ -18,21 +18,21 @@ namespace App_Ecoanimalia_Piura.Graficos
         }
         public void llenar_combo_personas()
         {
-            combo_persona.Items.Clear();
+            combo_persona.DataSource = null;
             combo_persona.DataSource = new NPersona().N_listar_persona();
             combo_persona.SelectedIndex = 0;
 
         }
         public void llenar_combo_voluntarios()
         {
-            combo_voluntarios.Items.Clear();
+            combo_voluntarios.DataSource = null;
             combo_voluntarios.DataSource = new NUsuario().N_listar_usuarios();
             combo_voluntarios.SelectedIndex = 0;
 
         }
         public void llenar_combo_mascota()
         {
-            combo_mascota.Items.Clear();
+            combo_mascota.DataSource = null;
             combo_mascota.DataSource = new NMascota().N_Listar_Mascotas();
             combo_mascota.SelectedIndex = 0;
 
@@ -58,6 +58,22 @@ namespace App_Ecoanimalia_Piura.Graficos
             }
 
         }
+        public void ver_mascota(int serie)
+        {
+            for (int i = 0; i < combo_mascota.Items.Count; i++)
+            {
+                Mascota masc = (Mascota)combo_mascota.Items[i];
+
+                if (masc.Serie == serie)
+                {
+                    combo_mascota.SelectedIndex = i;
+                    break;
+                }
+            }
+
+        }
+
+
         public void actualizar_lista_adoptante()
         {
             llenar_combo_personas();
@@ -219,7 +235,8 @@ namespace App_Ecoanimalia_Piura.Graficos
 
         private void btn_buscar_mascota_Click(object sender, EventArgs e)
         {
-
+            F_BuscarMascota ma = new F_BuscarMascota(this);
+            ma.ShowDialog();
         }
     }
 }

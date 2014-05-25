@@ -80,13 +80,13 @@
             this.radio_femenino.Name = "radio_femenino";
             this.radio_femenino.Size = new System.Drawing.Size(71, 17);
             this.radio_femenino.TabIndex = 1;
-            this.radio_femenino.TabStop = true;
             this.radio_femenino.Text = "Femenino";
             this.radio_femenino.UseVisualStyleBackColor = true;
             // 
             // radio_masculino
             // 
             this.radio_masculino.AutoSize = true;
+            this.radio_masculino.Checked = true;
             this.radio_masculino.Location = new System.Drawing.Point(6, 12);
             this.radio_masculino.Name = "radio_masculino";
             this.radio_masculino.Size = new System.Drawing.Size(73, 17);
