@@ -9,7 +9,7 @@ namespace App_Ecoanimalia_Piura.Negocio
 {
     public class NPersona
     {
-        //public int N_registrar_persona(String nombre, String apellidos, String direccion, string sexo,string edad,string email,string facebook,int movi,int claro,string nextel, int casa,string horario,string rescatista)
+        //public int N_registrar_persona(String nombre, String apellidos, String direccion, string sexo, string edad, string email, string facebook, int movi, int claro, string nextel, int casa, string horario, string rescatista)
         //{
         //    Persona persona = new Persona();
         //    persona.Nombre = nombre;
@@ -24,7 +24,7 @@ namespace App_Ecoanimalia_Piura.Negocio
         //    persona.Tel_nex = nextel;
         //    persona.Tel_casa = casa;
         //    persona.Hor_disp = horario;
-        //    persona.Rel_rsc = rescatista;
+            
         //    int band = new DPersona().D_registrar_persona(persona);
         //    return band;
 
@@ -61,12 +61,12 @@ namespace App_Ecoanimalia_Piura.Negocio
 
 
         //}
-       
-        //public List<Persona> listar_persona()
-        //{
-        //    List<Persona> lista = new DPersona().D_listar_persona();
-        //    return lista;
-        //}
+
+        public List<Persona> N_listar_persona()
+        {
+            List<Persona> lista = new DPersona().D_listar_persona();
+            return lista;
+        }
 
 
 

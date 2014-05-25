@@ -115,11 +115,11 @@ namespace App_Ecoanimalia_Piura.Logica
 
         public Persona() { }
 
-       
-        
+
+
         public override string ToString()
         {
-            return dni;
+            return "DNI: " + dni + " - " +nombre + " " + apellidos;
         }
     }
 }

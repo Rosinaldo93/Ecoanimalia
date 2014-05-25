@@ -500,7 +500,7 @@
             this.combo_encar.FormattingEnabled = true;
             this.combo_encar.Location = new System.Drawing.Point(146, 159);
             this.combo_encar.Name = "combo_encar";
-            this.combo_encar.Size = new System.Drawing.Size(181, 21);
+            this.combo_encar.Size = new System.Drawing.Size(221, 21);
             this.combo_encar.TabIndex = 173;
             this.combo_encar.TextChanged += new System.EventHandler(this.combo_encar_TextChanged);
             // 

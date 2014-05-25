@@ -122,7 +122,7 @@ namespace App_Ecoanimalia_Piura.Logica
 
         public override string ToString()
         {
-            return base.ToString();
+            return "" + tipomascota.Descripcion + " - " + nombre + " - " + raza;
         }
 
 

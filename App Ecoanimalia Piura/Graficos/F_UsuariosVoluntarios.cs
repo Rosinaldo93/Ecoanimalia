@@ -458,7 +458,7 @@ namespace App_Ecoanimalia_Piura.Graficos
                 for (int i = 0; i < combo_encar.Items.Count; i++)
                 {
                     Usuario usu = (Usuario)combo_encar.Items[i];
-                    String conta = "DNI: " + usu.Dni + " - " + usu.Nombres + " " + usu.Apellidos;
+                    String conta = "COD " + usu.Codigo + " - DNI: " + usu.Dni + " - " + usu.Nombres + " " + usu.Apellidos;
                     if (conta.Equals(encarga))
                     {
                         combo_encar.SelectedIndex = i;

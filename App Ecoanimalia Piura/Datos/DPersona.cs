@@ -281,162 +281,169 @@ namespace App_Ecoanimalia_Piura.Datos
         }
 
 
-        //public List<Persona> D_listar_persona()
-        //{
-        //    String cadena = DConexion.cadena;
-        //    List<Persona> lista = new List<Persona>();
-        //    string sql = "select * from persona";
-        //    cone = new MySqlConnection(cadena);
-        //    MySqlCommand com = new MySqlCommand(sql, cone);
-        //    cone.Open();
+        public List<Persona> D_listar_persona(){
+            String cadena = DConexion.cadena;
+            List<Persona> lista = new List<Persona>();
+            string sql = "select * from persona";
+            cone = new MySqlConnection(cadena);
+            MySqlCommand com = new MySqlCommand(sql, cone);
+            cone.Open();
 
-        //    MySqlDataReader dr = com.ExecuteReader();
-        //    while (dr.Read())
-        //    {
-        //       Persona persona = new Persona();
-        //        persona.Id = Convert.ToInt32(dr[0]);
-
-
-        //        if (!dr.IsDBNull(1))
-        //        {
-
-        //            persona.Nombre = dr[1].ToString();
-        //        }
-        //        else
-        //        {
-        //            persona.Nombre = "";
-        //        }
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                Persona persona = new Persona();
+                persona.Id = Convert.ToInt32(dr[0]);
 
 
-        //        if (!dr.IsDBNull(2))
-        //        {
+                if (!dr.IsDBNull(1))
+                {
 
-        //            persona.Apellidos = dr[2].ToString();
-        //        }
-        //        else
-        //        {
-        //            persona.Apellidos = "";
-        //        }
-
-
-
-        //        if (!dr.IsDBNull(3))
-        //        {
-
-        //            persona.Direccion = dr[3].ToString();
-        //        }
-        //        else
-        //        {
-        //            persona.Direccion = "";
-        //        }
+                    persona.Nombre = dr[1].ToString();
+                }
+                else
+                {
+                    persona.Nombre = "";
+                }
 
 
-        //        if (!dr.IsDBNull(4))
-        //        {
-        //            persona.Sexo = Convert.ToInt32(dr[4]);
-        //        }
-        //        else
-        //        {
-        //            persona.Sexo= 0;
-        //        }
+                if (!dr.IsDBNull(2))
+                {
 
-        //        if (!dr.IsDBNull(5))
-        //        {
-        //            persona.Edad = dr[5].ToString();
-        //        }
-        //        else
-        //        {
-        //            persona.Edad = "";
-        //        }
+                    persona.Apellidos = dr[2].ToString();
+                }
+                else
+                {
+                    persona.Apellidos = "";
+                }
+                if (!dr.IsDBNull(3))
+                {
 
-
-        //        if (!dr.IsDBNull(6))
-        //        {
-        //            persona.Email = dr[6].ToString();
-        //        }
-        //        else
-        //        {
-        //            persona.Email = "";
-        //        }
+                    persona.Dni = dr[3].ToString();
+                }
+                else
+                {
+                    persona.Dni = "";
+                }
 
 
-        //        if (!String.IsNullOrEmpty(dr[7].ToString()))
-        //        {
-        //            persona.Facebook = dr[7].ToString();
-        //        }
-        //        else
-        //        {
 
-        //            persona.Facebook = "";
-        //        }
+                if (!dr.IsDBNull(4))
+                {
 
-
-        //        if (!String.IsNullOrEmpty(dr[8].ToString()))
-        //        {
-        //            persona.Tel_mov = Convert.ToInt32(dr[8]);
-        //        }
-        //        else
-        //        {
-
-        //            persona.Tel_mov = 0;
-        //        }
-
-        //        if (!String.IsNullOrEmpty(dr[9].ToString()))
-        //        {
-        //            persona.Tel_claro= Convert.ToInt32(dr[9]);
-        //        }
-        //        else
-        //        {
-
-        //            persona.Tel_claro = 0;
-        //        }
-
-        //        if (!String.IsNullOrEmpty(dr[10].ToString()))
-        //        {
-        //            persona.Tel_nex = dr[10].ToString();
-        //        }
-        //        else
-        //        {
-
-        //            persona.Tel_nex = "";
-        //        }
-
-        //        if (!String.IsNullOrEmpty(dr[11].ToString()))
-        //        {
-        //            persona.Tel_casa = Convert.ToInt32(dr[11]);
-        //        }
-        //        else
-        //        {
-
-        //            persona.Tel_casa = 0;
-        //        }
-
-        //        if (!dr.IsDBNull(12))
-        //        {
-
-        //            persona.Hor_disp = dr[12].ToString();
-        //        }
-        //        else
-        //        {
-        //            persona.Hor_disp = "";
-        //        }
-
-        //        if (!String.IsNullOrEmpty(dr[13].ToString()))
-        //        {
-        //            persona.Rel_rsc = dr[13].ToString();
-        //        }
-        //        else
-        //        {
-
-        //            persona.Rel_rsc= "";
-        //        }
+                    persona.Direccion = dr[4].ToString();
+                }
+                else
+                {
+                    persona.Direccion = "";
+                }
 
 
-        //        lista.Add(persona);
-        //    }
-        //    cone.Close();
-        //    return lista;
-        //}
+                if (!dr.IsDBNull(5))
+                {
+                    persona.Sexo = dr[5].ToString();
+                }
+                else
+                {
+                    persona.Sexo = "";
+                }
+
+                if (!dr.IsDBNull(6))
+                {
+                    persona.Edad = dr[6].ToString();
+                }
+                else
+                {
+                    persona.Edad = "";
+                }
+
+
+                if (!dr.IsDBNull(7))
+                {
+                    persona.Email = dr[7].ToString();
+                }
+                else
+                {
+                    persona.Email = "";
+                }
+
+
+                if (!String.IsNullOrEmpty(dr[8].ToString()))
+                {
+                    persona.Facebook = dr[8].ToString();
+                }
+                else
+                {
+
+                    persona.Facebook = "";
+                }
+                if (!String.IsNullOrEmpty(dr[9].ToString()))
+                {
+                    persona.Rpm = dr[9].ToString();
+                }
+                else
+                {
+
+                    persona.Rpm = "";
+                }
+
+
+                if (!String.IsNullOrEmpty(dr[10].ToString()))
+                {
+                    persona.Tel_mov = Convert.ToInt32(dr[10]);
+                }
+                else
+                {
+
+                    persona.Tel_mov = 0;
+                }
+
+                if (!String.IsNullOrEmpty(dr[11].ToString()))
+                {
+                    persona.Tel_claro = Convert.ToInt32(dr[11]);
+                }
+                else
+                {
+
+                    persona.Tel_claro = 0;
+                }
+
+                if (!String.IsNullOrEmpty(dr[12].ToString()))
+                {
+                    persona.Tel_nex = dr[12].ToString();
+                }
+                else
+                {
+
+                    persona.Tel_nex = "";
+                }
+
+                if (!String.IsNullOrEmpty(dr[13].ToString()))
+                {
+                    persona.Tel_casa = Convert.ToInt32(dr[13]);
+                }
+                else
+                {
+
+                    persona.Tel_casa = 0;
+                }
+
+                if (!dr.IsDBNull(14))
+                {
+
+                    persona.Hor_disp = dr[14].ToString();
+                }
+                else
+                {
+                    persona.Hor_disp = "";
+                }
+                lista.Add(persona);
+            }
+            cone.Close();
+            return lista;
+
+        
+        }
 
 
         public int D_eliminar_persona(Persona persona)

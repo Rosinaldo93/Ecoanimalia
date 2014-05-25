@@ -161,7 +161,7 @@ namespace App_Ecoanimalia_Piura.Logica
 
         public override string ToString()
         {
-            return "DNI: "+dni+" - "+nombres+" "+apellidos;
+            return "COD "+codigo+" - DNI: "+dni+" - "+nombres+" "+apellidos;
         }
 
     }
