@@ -10,12 +10,11 @@ namespace App_Ecoanimalia_Piura.Negocio
     public class NFichaAdopcion
     {
 
-        public int N_asignar_adopcion(Persona persona, Usuario usuario, int estado, string relacion,string observacion,DateTime fecha)
+        public int N_asignar_adopcion(Persona persona, Usuario usuario, string relacion,string observacion,DateTime fecha)
         {
             FichaAdopcion adopcion = new FichaAdopcion();
             adopcion.Persona = persona;
             adopcion.Usuario = usuario;
-            adopcion.Estado = estado;
             adopcion.Rel_res = relacion;
             adopcion.Observaciones = observacion;
             adopcion.Fec_adp = fecha;
@@ -26,14 +25,14 @@ namespace App_Ecoanimalia_Piura.Negocio
             return band;
         }
 
-        public int N_modificar_adopcion(int id, Persona persona, Usuario usuario, int estado, string relacion, string observacion, DateTime fecha)
+        public int N_modificar_adopcion(int id, Persona persona, Usuario usuario,string relacion, string observacion, DateTime fecha)
         {
 
             FichaAdopcion adopcion = new FichaAdopcion();
             adopcion.Id = id;
             adopcion.Persona = persona;
             adopcion.Usuario = usuario;
-            adopcion.Estado = estado;
+            
             adopcion.Rel_res = relacion;
             adopcion.Observaciones = observacion;
             adopcion.Fec_adp = fecha;
@@ -50,5 +49,10 @@ namespace App_Ecoanimalia_Piura.Negocio
             return band;
         }
 
+        public int N_max_FichaAdopcion()
+        {
+            int band = new DFichaAdopcion().D_max_FichaAdopcion();
+            return band;
+        }
     }
 }

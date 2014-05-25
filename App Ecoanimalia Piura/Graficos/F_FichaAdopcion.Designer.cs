@@ -40,21 +40,20 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.fech_adopcion = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.text_observacion_ficha = new System.Windows.Forms.TextBox();
             this.combo_mascota = new System.Windows.Forms.ComboBox();
             this.btn_buscar_mascota = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.text_nombre_adoptarse = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.grupo_estado = new System.Windows.Forms.GroupBox();
             this.radio_inactivo = new System.Windows.Forms.RadioButton();
             this.radio_activo = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.text_observacion_mascota = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.btn_agregar_mascota = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -68,6 +67,7 @@
             this.btn_nuevo_mascota = new System.Windows.Forms.Button();
             this.btn_cancelar_ficha = new System.Windows.Forms.Button();
             this.btn_eliminar_ficha = new System.Windows.Forms.Button();
+            this.text_relacion = new System.Windows.Forms.TextBox();
             this.grupo_estado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -93,6 +93,7 @@
             // combo_persona
             // 
             this.combo_persona.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combo_persona.Enabled = false;
             this.combo_persona.FormattingEnabled = true;
             this.combo_persona.Location = new System.Drawing.Point(168, 87);
             this.combo_persona.Name = "combo_persona";
@@ -101,6 +102,7 @@
             // 
             // btn_nueva_persona
             // 
+            this.btn_nueva_persona.Enabled = false;
             this.btn_nueva_persona.Location = new System.Drawing.Point(404, 78);
             this.btn_nueva_persona.Name = "btn_nueva_persona";
             this.btn_nueva_persona.Size = new System.Drawing.Size(112, 36);
@@ -111,6 +113,7 @@
             // 
             // btn_buscar_persona
             // 
+            this.btn_buscar_persona.Enabled = false;
             this.btn_buscar_persona.Location = new System.Drawing.Point(531, 78);
             this.btn_buscar_persona.Name = "btn_buscar_persona";
             this.btn_buscar_persona.Size = new System.Drawing.Size(89, 36);
@@ -131,6 +134,7 @@
             // combo_voluntarios
             // 
             this.combo_voluntarios.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combo_voluntarios.Enabled = false;
             this.combo_voluntarios.FormattingEnabled = true;
             this.combo_voluntarios.Location = new System.Drawing.Point(168, 167);
             this.combo_voluntarios.Name = "combo_voluntarios";
@@ -139,6 +143,7 @@
             // 
             // btn_buscar_voluntario
             // 
+            this.btn_buscar_voluntario.Enabled = false;
             this.btn_buscar_voluntario.Location = new System.Drawing.Point(465, 153);
             this.btn_buscar_voluntario.Name = "btn_buscar_voluntario";
             this.btn_buscar_voluntario.Size = new System.Drawing.Size(112, 46);
@@ -152,9 +157,9 @@
             this.lb_id_ficha.AutoSize = true;
             this.lb_id_ficha.Location = new System.Drawing.Point(65, 22);
             this.lb_id_ficha.Name = "lb_id_ficha";
-            this.lb_id_ficha.Size = new System.Drawing.Size(35, 13);
+            this.lb_id_ficha.Size = new System.Drawing.Size(58, 13);
             this.lb_id_ficha.TabIndex = 8;
-            this.lb_id_ficha.Text = "label4";
+            this.lb_id_ficha.Text = "lb_id_ficha";
             // 
             // label4
             // 
@@ -183,13 +188,14 @@
             this.label6.TabIndex = 13;
             this.label6.Text = "FECHA DE ADOPCION :";
             // 
-            // dateTimePicker1
+            // fech_adopcion
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(885, 217);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 14;
+            this.fech_adopcion.Enabled = false;
+            this.fech_adopcion.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.fech_adopcion.Location = new System.Drawing.Point(885, 217);
+            this.fech_adopcion.Name = "fech_adopcion";
+            this.fech_adopcion.Size = new System.Drawing.Size(200, 20);
+            this.fech_adopcion.TabIndex = 14;
             // 
             // label7
             // 
@@ -210,24 +216,19 @@
             this.label8.TabIndex = 16;
             this.label8.Text = "MASCOTA :";
             // 
-            // maskedTextBox1
+            // text_observacion_ficha
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(885, 78);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(228, 20);
-            this.maskedTextBox1.TabIndex = 17;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(883, 120);
-            this.textBox2.Multiline = true;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(230, 68);
-            this.textBox2.TabIndex = 12;
+            this.text_observacion_ficha.Enabled = false;
+            this.text_observacion_ficha.Location = new System.Drawing.Point(883, 120);
+            this.text_observacion_ficha.Multiline = true;
+            this.text_observacion_ficha.Name = "text_observacion_ficha";
+            this.text_observacion_ficha.Size = new System.Drawing.Size(230, 68);
+            this.text_observacion_ficha.TabIndex = 12;
             // 
             // combo_mascota
             // 
             this.combo_mascota.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combo_mascota.Enabled = false;
             this.combo_mascota.FormattingEnabled = true;
             this.combo_mascota.Location = new System.Drawing.Point(168, 300);
             this.combo_mascota.Name = "combo_mascota";
@@ -236,6 +237,7 @@
             // 
             // btn_buscar_mascota
             // 
+            this.btn_buscar_mascota.Enabled = false;
             this.btn_buscar_mascota.Location = new System.Drawing.Point(404, 292);
             this.btn_buscar_mascota.Name = "btn_buscar_mascota";
             this.btn_buscar_mascota.Size = new System.Drawing.Size(104, 35);
@@ -244,12 +246,13 @@
             this.btn_buscar_mascota.UseVisualStyleBackColor = true;
             this.btn_buscar_mascota.Click += new System.EventHandler(this.btn_buscar_mascota_Click);
             // 
-            // textBox1
+            // text_nombre_adoptarse
             // 
-            this.textBox1.Location = new System.Drawing.Point(168, 351);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(230, 20);
-            this.textBox1.TabIndex = 20;
+            this.text_nombre_adoptarse.Enabled = false;
+            this.text_nombre_adoptarse.Location = new System.Drawing.Point(168, 351);
+            this.text_nombre_adoptarse.Name = "text_nombre_adoptarse";
+            this.text_nombre_adoptarse.Size = new System.Drawing.Size(230, 20);
+            this.text_nombre_adoptarse.TabIndex = 20;
             // 
             // label9
             // 
@@ -273,6 +276,7 @@
             // 
             this.grupo_estado.Controls.Add(this.radio_inactivo);
             this.grupo_estado.Controls.Add(this.radio_activo);
+            this.grupo_estado.Enabled = false;
             this.grupo_estado.Location = new System.Drawing.Point(883, 277);
             this.grupo_estado.Name = "grupo_estado";
             this.grupo_estado.Size = new System.Drawing.Size(166, 39);
@@ -310,13 +314,14 @@
             this.label11.TabIndex = 24;
             this.label11.Text = "OBSERVACION :";
             // 
-            // textBox3
+            // text_observacion_mascota
             // 
-            this.textBox3.Location = new System.Drawing.Point(883, 335);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(202, 55);
-            this.textBox3.TabIndex = 25;
+            this.text_observacion_mascota.Enabled = false;
+            this.text_observacion_mascota.Location = new System.Drawing.Point(883, 335);
+            this.text_observacion_mascota.Multiline = true;
+            this.text_observacion_mascota.Name = "text_observacion_mascota";
+            this.text_observacion_mascota.Size = new System.Drawing.Size(202, 55);
+            this.text_observacion_mascota.TabIndex = 25;
             // 
             // label12
             // 
@@ -352,6 +357,7 @@
             this.btn_buscar_ficha.TabIndex = 29;
             this.btn_buscar_ficha.Text = "Buscar Ficha";
             this.btn_buscar_ficha.UseVisualStyleBackColor = true;
+            this.btn_buscar_ficha.Click += new System.EventHandler(this.btn_buscar_ficha_Click);
             // 
             // btn_modificar_mascota
             // 
@@ -388,6 +394,7 @@
             this.btn_registrar_ficha.TabIndex = 33;
             this.btn_registrar_ficha.Text = "Registrar Ficha Adopcion";
             this.btn_registrar_ficha.UseVisualStyleBackColor = true;
+            this.btn_registrar_ficha.Click += new System.EventHandler(this.btn_registrar_ficha_Click);
             // 
             // btn_editar_ficha
             // 
@@ -406,6 +413,7 @@
             this.btn_nueva_ficha.TabIndex = 35;
             this.btn_nueva_ficha.Text = "Nueva Ficha Adopcion";
             this.btn_nueva_ficha.UseVisualStyleBackColor = true;
+            this.btn_nueva_ficha.Click += new System.EventHandler(this.btn_nueva_ficha_Click);
             // 
             // btn_nuevo_mascota
             // 
@@ -434,11 +442,20 @@
             this.btn_eliminar_ficha.Text = "Eliminar Ficha Adopcion";
             this.btn_eliminar_ficha.UseVisualStyleBackColor = true;
             // 
+            // text_relacion
+            // 
+            this.text_relacion.Enabled = false;
+            this.text_relacion.Location = new System.Drawing.Point(883, 84);
+            this.text_relacion.Name = "text_relacion";
+            this.text_relacion.Size = new System.Drawing.Size(202, 20);
+            this.text_relacion.TabIndex = 39;
+            // 
             // F_FichaAdopcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1133, 698);
+            this.Controls.Add(this.text_relacion);
             this.Controls.Add(this.btn_eliminar_ficha);
             this.Controls.Add(this.btn_cancelar_ficha);
             this.Controls.Add(this.btn_nuevo_mascota);
@@ -452,20 +469,19 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btn_agregar_mascota);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.text_observacion_mascota);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.grupo_estado);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.text_nombre_adoptarse);
             this.Controls.Add(this.btn_buscar_mascota);
             this.Controls.Add(this.combo_mascota);
-            this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.fech_adopcion);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.text_observacion_ficha);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lb_id_ficha);
@@ -504,21 +520,20 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker fech_adopcion;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox text_observacion_ficha;
         private System.Windows.Forms.ComboBox combo_mascota;
         private System.Windows.Forms.Button btn_buscar_mascota;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox text_nombre_adoptarse;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox grupo_estado;
         private System.Windows.Forms.RadioButton radio_activo;
         private System.Windows.Forms.RadioButton radio_inactivo;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox text_observacion_mascota;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btn_agregar_mascota;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -532,5 +547,6 @@
         private System.Windows.Forms.Button btn_nuevo_mascota;
         private System.Windows.Forms.Button btn_cancelar_ficha;
         private System.Windows.Forms.Button btn_eliminar_ficha;
+        private System.Windows.Forms.TextBox text_relacion;
     }
 }

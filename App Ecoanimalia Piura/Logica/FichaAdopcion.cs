@@ -28,19 +28,8 @@ namespace App_Ecoanimalia_Piura.Logica
             set { usuario = value; }
         }
 
-        int estado;
-        public int Estado
-        {
-            get { return estado; }
-            set { estado = value; }
-        }
-
-        string rel_res;
-        public string Rel_res
-        {
-            get { return rel_res; }
-            set { rel_res = value; }
-        }
+        
+        
 
         string observaciones;
         public string Observaciones
@@ -55,35 +44,17 @@ namespace App_Ecoanimalia_Piura.Logica
             get { return fec_adp; }
             set { fec_adp = value; }
         }
+        String rel_res;
+
+        public String Rel_res
+        {
+            get { return rel_res; }
+            set { rel_res = value; }
+        }
 
         public FichaAdopcion() { }
 
-        public FichaAdopcion(int i, Persona p, Usuario u, int e, string rr, string o,DateTime fa) {
-
-            id = i;
-            persona = p;
-            usuario = u;
-            estado = e;
-            rel_res = rr;
-            observaciones = o;
-            fec_adp = fa;
-        }
-
-        public FichaAdopcion(Persona p, Usuario u, int e, string rr, string o, DateTime fa)
-        {
-            persona = p;
-            usuario = u;
-            estado = e;
-            rel_res = rr;
-            observaciones = o;
-            fec_adp = fa;
-        }
-
-        public FichaAdopcion(int i)
-        {
-            id = i;
-           
-        }
+        
 
         public override string ToString()
         {

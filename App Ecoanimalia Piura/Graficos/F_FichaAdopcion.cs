@@ -238,5 +238,114 @@ namespace App_Ecoanimalia_Piura.Graficos
             F_BuscarMascota ma = new F_BuscarMascota(this);
             ma.ShowDialog();
         }
+
+        private void btn_registrar_ficha_Click(object sender, EventArgs e)
+        {
+            String relacion = "";
+            String observa_ficha = "";
+            Usuario voluntario = (Usuario)combo_voluntarios.SelectedItem;
+            Persona persona = (Persona)combo_persona.SelectedItem;
+            if (!String.IsNullOrEmpty(text_relacion.Text))
+            {
+                relacion = text_relacion.Text;
+            }
+            if (!String.IsNullOrEmpty(text_observacion_ficha.Text))
+            {
+                observa_ficha = text_observacion_ficha.Text;
+            }
+            
+            DateTime fecha_adopcion = Convert.ToDateTime(fech_adopcion.Text);
+            int respuesta = new NFichaAdopcion().N_asignar_adopcion(persona, voluntario, relacion, observa_ficha, fecha_adopcion);
+            if (respuesta == 0)
+            {
+                MessageBox.Show("Error Al Registrar Por favor intente nuevamente");
+
+            }
+            else
+            {
+                MessageBox.Show("Registrado Correctamente");
+                int id_ficha_adopcion = new NFichaAdopcion().N_max_FichaAdopcion();
+                lb_id_ficha.Text = "" + id_ficha_adopcion;
+                inhabilitar_cajas_ficha();
+                habilitar_cajas_mascota();
+                btn_nuevo_mascota.Enabled = true;
+            }
+
+        }
+        public void habilitar_cajas_ficha()
+        {
+            combo_persona.Enabled = true;
+            combo_voluntarios.Enabled = true;
+            text_relacion.Enabled = true;
+            text_observacion_ficha.Enabled = true;
+            fech_adopcion.Enabled = true;
+            btn_nueva_persona.Enabled = true;
+            btn_buscar_persona.Enabled = true;
+            btn_buscar_voluntario.Enabled = true;
+        }
+        public void inhabilitar_cajas_ficha()
+        {
+            combo_persona.Enabled = false;
+            combo_voluntarios.Enabled = false;
+            text_relacion.Enabled = false;
+            text_observacion_ficha.Enabled = false;
+            fech_adopcion.Enabled = false;
+            btn_nueva_persona.Enabled = false;
+            btn_buscar_persona.Enabled = false;
+            btn_buscar_voluntario.Enabled = false;
+        }
+        public void limpiar_cajas_ficha()
+        {
+            combo_persona.SelectedIndex = 0;
+            combo_voluntarios.SelectedIndex = 0;
+            text_relacion.Text = "";
+            text_observacion_ficha.Text = "";
+            fech_adopcion.Value = DateTime.Now;
+        }
+        public void limpiar_cajas_mascota()
+        {
+            combo_mascota.SelectedIndex = 0;
+            text_observacion_mascota.Text = "";
+            text_nombre_adoptarse.Text = "";
+            radio_inactivo.Checked = true;
+            text_observacion_mascota.Text = "";
+        }
+        public void inhabilitar_cajas_mascota()
+        {
+            combo_mascota.Enabled = false;
+            text_observacion_mascota.Enabled = false;
+            text_nombre_adoptarse.Enabled = false;
+            radio_inactivo.Enabled = false;
+            text_observacion_mascota.Enabled = false;
+            btn_buscar_mascota.Enabled = false;
+        }
+        public void habilitar_cajas_mascota()
+        {
+            combo_mascota.Enabled = true;
+            text_observacion_mascota.Enabled = true;
+            text_nombre_adoptarse.Enabled = true;
+            radio_inactivo.Enabled = true;
+            text_observacion_mascota.Enabled = true;
+            btn_buscar_mascota.Enabled = true;
+        }
+        public void inhabilitar_cajas_mascota_botones()
+        {
+            btn_nuevo_mascota.Enabled = false;
+            btn_agregar_mascota.Enabled = false;
+            btn_modificar_mascota.Enabled = false;
+            btn_eliminar_mascota.Enabled = false;
+            btn_cancelar_mascota.Enabled = false;
+        }
+        private void btn_buscar_ficha_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_nueva_ficha_Click(object sender, EventArgs e)
+        {
+            limpiar_cajas_ficha();
+            habilitar_cajas_ficha();
+
+        }
     }
 }
