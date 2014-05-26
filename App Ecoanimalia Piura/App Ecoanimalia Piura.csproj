@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Datos\DConexion.cs" />
+    <Compile Include="Datos\DDetalleAdopcion.cs" />
     <Compile Include="Datos\DFichaAdopcion.cs" />
     <Compile Include="Datos\DFichaTemporal.cs" />
     <Compile Include="Datos\DHistorialClinico.cs" />
@@ -168,6 +169,7 @@
     <Compile Include="Logica\Vacuna.cs" />
     <Compile Include="Logica\Visita.cs" />
     <Compile Include="Negocio\CCryptorEngine.cs" />
+    <Compile Include="Negocio\NDetalleAdopcion.cs" />
     <Compile Include="Negocio\NFichaAdopcion.cs" />
     <Compile Include="Negocio\NFichaTemporal.cs" />
     <Compile Include="Negocio\NHistorialClinico.cs" />

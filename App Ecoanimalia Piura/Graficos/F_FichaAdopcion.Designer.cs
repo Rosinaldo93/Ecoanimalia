@@ -56,7 +56,7 @@
             this.text_observacion_mascota = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.btn_agregar_mascota = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.grilla_detalle = new System.Windows.Forms.DataGridView();
             this.btn_buscar_ficha = new System.Windows.Forms.Button();
             this.btn_modificar_mascota = new System.Windows.Forms.Button();
             this.btn_eliminar_mascota = new System.Windows.Forms.Button();
@@ -69,7 +69,7 @@
             this.btn_eliminar_ficha = new System.Windows.Forms.Button();
             this.text_relacion = new System.Windows.Forms.TextBox();
             this.grupo_estado.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grilla_detalle)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -334,20 +334,24 @@
             // 
             // btn_agregar_mascota
             // 
-            this.btn_agregar_mascota.Location = new System.Drawing.Point(179, 412);
+            this.btn_agregar_mascota.Location = new System.Drawing.Point(151, 412);
             this.btn_agregar_mascota.Name = "btn_agregar_mascota";
             this.btn_agregar_mascota.Size = new System.Drawing.Size(107, 37);
             this.btn_agregar_mascota.TabIndex = 27;
             this.btn_agregar_mascota.Text = "Agregar Mascota";
             this.btn_agregar_mascota.UseVisualStyleBackColor = true;
+            this.btn_agregar_mascota.Click += new System.EventHandler(this.btn_agregar_mascota_Click);
             // 
-            // dataGridView1
+            // grilla_detalle
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(65, 518);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(523, 150);
-            this.dataGridView1.TabIndex = 28;
+            this.grilla_detalle.AllowUserToAddRows = false;
+            this.grilla_detalle.AllowUserToDeleteRows = false;
+            this.grilla_detalle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grilla_detalle.Location = new System.Drawing.Point(65, 518);
+            this.grilla_detalle.Name = "grilla_detalle";
+            this.grilla_detalle.ReadOnly = true;
+            this.grilla_detalle.Size = new System.Drawing.Size(523, 150);
+            this.grilla_detalle.TabIndex = 28;
             // 
             // btn_buscar_ficha
             // 
@@ -361,7 +365,7 @@
             // 
             // btn_modificar_mascota
             // 
-            this.btn_modificar_mascota.Location = new System.Drawing.Point(304, 412);
+            this.btn_modificar_mascota.Location = new System.Drawing.Point(276, 412);
             this.btn_modificar_mascota.Name = "btn_modificar_mascota";
             this.btn_modificar_mascota.Size = new System.Drawing.Size(94, 37);
             this.btn_modificar_mascota.TabIndex = 30;
@@ -370,7 +374,7 @@
             // 
             // btn_eliminar_mascota
             // 
-            this.btn_eliminar_mascota.Location = new System.Drawing.Point(421, 412);
+            this.btn_eliminar_mascota.Location = new System.Drawing.Point(392, 412);
             this.btn_eliminar_mascota.Name = "btn_eliminar_mascota";
             this.btn_eliminar_mascota.Size = new System.Drawing.Size(95, 37);
             this.btn_eliminar_mascota.TabIndex = 31;
@@ -379,7 +383,7 @@
             // 
             // btn_cancelar_mascota
             // 
-            this.btn_cancelar_mascota.Location = new System.Drawing.Point(531, 412);
+            this.btn_cancelar_mascota.Location = new System.Drawing.Point(510, 412);
             this.btn_cancelar_mascota.Name = "btn_cancelar_mascota";
             this.btn_cancelar_mascota.Size = new System.Drawing.Size(100, 37);
             this.btn_cancelar_mascota.TabIndex = 32;
@@ -417,12 +421,13 @@
             // 
             // btn_nuevo_mascota
             // 
-            this.btn_nuevo_mascota.Location = new System.Drawing.Point(55, 412);
+            this.btn_nuevo_mascota.Location = new System.Drawing.Point(23, 412);
             this.btn_nuevo_mascota.Name = "btn_nuevo_mascota";
             this.btn_nuevo_mascota.Size = new System.Drawing.Size(107, 37);
             this.btn_nuevo_mascota.TabIndex = 36;
             this.btn_nuevo_mascota.Text = "Nuevo";
             this.btn_nuevo_mascota.UseVisualStyleBackColor = true;
+            this.btn_nuevo_mascota.Click += new System.EventHandler(this.btn_nuevo_mascota_Click);
             // 
             // btn_cancelar_ficha
             // 
@@ -466,7 +471,7 @@
             this.Controls.Add(this.btn_eliminar_mascota);
             this.Controls.Add(this.btn_modificar_mascota);
             this.Controls.Add(this.btn_buscar_ficha);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.grilla_detalle);
             this.Controls.Add(this.btn_agregar_mascota);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.text_observacion_mascota);
@@ -495,12 +500,12 @@
             this.Controls.Add(this.label1);
             this.Name = "F_FichaAdopcion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "F_FichaAdopcion";
+            this.Text = "l";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.F_FichaAdopcion_Load);
             this.grupo_estado.ResumeLayout(false);
             this.grupo_estado.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grilla_detalle)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -536,7 +541,7 @@
         private System.Windows.Forms.TextBox text_observacion_mascota;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btn_agregar_mascota;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView grilla_detalle;
         private System.Windows.Forms.Button btn_buscar_ficha;
         private System.Windows.Forms.Button btn_modificar_mascota;
         private System.Windows.Forms.Button btn_eliminar_mascota;

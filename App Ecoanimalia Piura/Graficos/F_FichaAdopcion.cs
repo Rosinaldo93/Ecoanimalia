@@ -241,6 +241,7 @@ namespace App_Ecoanimalia_Piura.Graficos
 
         private void btn_registrar_ficha_Click(object sender, EventArgs e)
         {
+            
             String relacion = "";
             String observa_ficha = "";
             Usuario voluntario = (Usuario)combo_voluntarios.SelectedItem;
@@ -267,8 +268,9 @@ namespace App_Ecoanimalia_Piura.Graficos
                 int id_ficha_adopcion = new NFichaAdopcion().N_max_FichaAdopcion();
                 lb_id_ficha.Text = "" + id_ficha_adopcion;
                 inhabilitar_cajas_ficha();
+                btn_agregar_mascota.Enabled = true;
                 habilitar_cajas_mascota();
-                btn_nuevo_mascota.Enabled = true;
+                limpiar_cajas_mascota();
             }
 
         }
@@ -318,6 +320,7 @@ namespace App_Ecoanimalia_Piura.Graficos
             radio_inactivo.Enabled = false;
             text_observacion_mascota.Enabled = false;
             btn_buscar_mascota.Enabled = false;
+            grupo_estado.Enabled = true;
         }
         public void habilitar_cajas_mascota()
         {
@@ -327,6 +330,7 @@ namespace App_Ecoanimalia_Piura.Graficos
             radio_inactivo.Enabled = true;
             text_observacion_mascota.Enabled = true;
             btn_buscar_mascota.Enabled = true;
+            grupo_estado.Enabled = true;
         }
         public void inhabilitar_cajas_mascota_botones()
         {
@@ -336,6 +340,42 @@ namespace App_Ecoanimalia_Piura.Graficos
             btn_eliminar_mascota.Enabled = false;
             btn_cancelar_mascota.Enabled = false;
         }
+        public void listar_detalle_adopcion()
+        {
+            List<DetalleAdopcion> lista = new NMascota().N_Listar_Mascotas();
+            this.grilla_mascota.Rows.Clear();
+            for (int i = 0; i < lista.Count; i++)
+            {
+                int reglon = this.grilla_mascota.Rows.Add();
+                this.grilla_mascota.Rows[reglon].Cells["SERIE"].Value = lista[i].Serie;
+                this.grilla_mascota.Rows[reglon].Cells["ID_RESCATISTA"].Value = lista[i].Ser_usu.Serie;
+                this.grilla_mascota.Rows[reglon].Cells["SERIE_FORMATO"].Value = "00-00" + lista[i].Serie;
+                this.grilla_mascota.Rows[reglon].Cells["COD_RESCATISTA"].Value = lista[i].Ser_usu.Codigo;
+                this.grilla_mascota.Rows[reglon].Cells["RESCATISTA"].Value = lista[i].Ser_usu.Nombres + " " + lista[i].Ser_usu.Apellidos;
+                if ((!String.IsNullOrEmpty(lista[i].Fic_tem.Id.ToString())) || (lista[i].Fic_tem.Id != 0))
+                {
+                    this.grilla_mascota.Rows[reglon].Cells["TEMPORAL"].Value = lista[i].Fic_tem.Id;
+
+                }
+                else
+                {
+                    this.grilla_mascota.Rows[reglon].Cells["TEMPORAL"].Value = "";
+
+                }
+                this.grilla_mascota.Rows[reglon].Cells["FECHA_INGRE"].Value = lista[i].Fecha_ingreso.ToShortDateString();
+                this.grilla_mascota.Rows[reglon].Cells["ID_TIPO"].Value = lista[i].Tipomascota.Id;
+                this.grilla_mascota.Rows[reglon].Cells["TIPO"].Value = lista[i].Tipomascota.Descripcion;
+                this.grilla_mascota.Rows[reglon].Cells["TAMANO"].Value = lista[i].Tamano;
+                this.grilla_mascota.Rows[reglon].Cells["ESTADO"].Value = lista[i].Estado;
+                this.grilla_mascota.Rows[reglon].Cells["NOMBRE"].Value = lista[i].Nombre;
+                this.grilla_mascota.Rows[reglon].Cells["RAZA"].Value = lista[i].Raza;
+                this.grilla_mascota.Rows[reglon].Cells["SEXO"].Value = lista[i].Sexo;
+                this.grilla_mascota.Rows[reglon].Cells["COLOR"].Value = lista[i].Color;
+                this.grilla_mascota.Rows[reglon].Cells["EDAD"].Value = lista[i].Edad;
+                this.grilla_mascota.Rows[reglon].Cells["ESTERILIZADO"].Value = lista[i].Esterilizado;
+
+            }
+        }
         private void btn_buscar_ficha_Click(object sender, EventArgs e)
         {
 
@@ -343,8 +383,72 @@ namespace App_Ecoanimalia_Piura.Graficos
 
         private void btn_nueva_ficha_Click(object sender, EventArgs e)
         {
+            lb_id_ficha.Text = "";
             limpiar_cajas_ficha();
             habilitar_cajas_ficha();
+
+        }
+
+        private void btn_nuevo_mascota_Click(object sender, EventArgs e)
+        {
+            habilitar_cajas_mascota();
+            limpiar_cajas_mascota();
+            btn_agregar_mascota.Enabled = true;
+            btn_cancelar_ficha.Enabled = true;
+        }
+
+        private void btn_agregar_mascota_Click(object sender, EventArgs e)
+        {
+            Boolean band1 = false;
+            String mensaje = "Por Favor Complete los campos obligatorios : \n";
+            int id_ficha_adopcion = Convert.ToInt32(lb_id_ficha.Text);
+            Mascota mascota = (Mascota)combo_mascota.SelectedItem;
+            String nombre_adoptarse = "";
+            String observa = "";
+            if (!String.IsNullOrEmpty(text_nombre_adoptarse.Text))
+            {
+                nombre_adoptarse = text_nombre_adoptarse.Text;
+            }
+            else
+            {
+                mensaje = mensaje + "\n - Casilla de Nombre al Adoptarse ";
+                band1 = true;
+            }
+            if (!String.IsNullOrEmpty(text_observacion_mascota.Text))
+            {
+                observa = text_observacion_mascota.Text;
+            }
+            int estado = 0;
+            if (radio_activo.Checked == true)
+            {
+                estado = 1;
+            }
+            else
+            {
+                if (radio_inactivo.Checked == true)
+                {
+                    estado = 0;
+                }
+            }
+
+            if (band1 == true)
+            {
+                MessageBox.Show(mensaje);
+            }
+            else
+            {
+                int band = new NDetalleAdopcion().N_registrar_detalleAdopcion(mascota, id_ficha_adopcion, nombre_adoptarse, estado, observa);
+                if (band == 0)
+                {
+                    MessageBox.Show("ocurrio un error intentelo Nuevamente");
+                }
+                else
+                {
+                    MessageBox.Show("Registrado Correctamente");
+                    btn_nuevo_mascota.Enabled = true;
+
+                }
+            }
 
         }
     }

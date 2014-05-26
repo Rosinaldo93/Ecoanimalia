@@ -101,7 +101,7 @@ namespace App_Ecoanimalia_Piura.Datos
             return band;
 
         }
-
+        
 
         public int D_eliminar_fichaA(FichaAdopcion adopcion)
         {
@@ -124,6 +124,6 @@ namespace App_Ecoanimalia_Piura.Datos
             cone.Close();
             return band;
         }
-
+        
     }
 }

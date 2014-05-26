@@ -7,6 +7,13 @@ namespace App_Ecoanimalia_Piura.Logica
 {
     public class DetalleAdopcion
     {
+        int id;
+
+        public int Id
+        {
+            get { return id; }
+            set { id = value; }
+        }
 
         Mascota mascota;
         public Mascota Mascota
@@ -21,13 +28,31 @@ namespace App_Ecoanimalia_Piura.Logica
             get { return fichaadopcion; }
             set { fichaadopcion = value; }
         }
+        String nombre_adoptarse;
 
+        public String Nombre_adoptarse
+        {
+            get { return nombre_adoptarse; }
+            set { nombre_adoptarse = value; }
+        }
+        int estado;
+
+        public int Estado
+        {
+            get { return estado; }
+            set { estado = value; }
+        }
+        String observacion;
+
+        public String Observacion
+        {
+            get { return observacion; }
+            set { observacion = value; }
+        }
         public DetalleAdopcion() { }
 
-        public DetalleAdopcion(Mascota m, FichaAdopcion fa) {
-            mascota = m;
-            fichaadopcion = fa;
-        }
+        
+
 
         public override string ToString()
         {

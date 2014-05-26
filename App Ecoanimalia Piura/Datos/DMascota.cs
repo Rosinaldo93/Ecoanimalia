@@ -555,7 +555,58 @@ namespace App_Ecoanimalia_Piura.Datos
             return band;
         }
 
+        public Mascota D_Buscar_MascotaxSerie(int serie)
+        {
+            String cadena = DConexion.cadena;
+            string sql = "select * from  mascota WHERE SERIE = @SERIE";
+            cone = new MySqlConnection(cadena);
+            MySqlCommand com = new MySqlCommand(sql, cone);
+            com.Parameters.AddWithValue("@SERIE", serie);
+            cone.Open();
+            MySqlDataReader dr = com.ExecuteReader();
+            while (dr.Read())
+            {
+                Mascota mascota = new Mascota();
+                mascota.Serie = Convert.ToInt32(dr[0].ToString());
+                int usuario = Convert.ToInt32(dr[1].ToString());
+                Usuario u = new DUsuario().D_ver_Usuarioxserie(usuario);
+                mascota.Ser_usu = u;
 
+                if (!dr.IsDBNull(2))
+                {
+                    int id_temporal = Convert.ToInt32(dr[2].ToString());
+
+                    mascota.Fic_tem = new DFichaTemporal().D_Buscar_FichaTemporal(id_temporal);
+
+                }
+                else
+                {
+                    mascota.Fic_tem = new FichaTemporal();
+                }
+                mascota.Fecha_ingreso = Convert.ToDateTime(dr[3].ToString());
+                int id_tipo = Convert.ToInt32(dr[4].ToString());
+                TipoMascota tipo = new DTipoMascota().D_buscar_TipoMascota(id_tipo);
+                mascota.Tipomascota = tipo;
+                mascota.Tamano = dr[5].ToString();
+                mascota.Estado = dr[6].ToString();
+                mascota.Nombre = dr[7].ToString();
+                mascota.Raza = dr[8].ToString();
+                mascota.Sexo = dr[9].ToString();
+                mascota.Color = dr[10].ToString();
+                mascota.Edad = dr[11].ToString();
+                mascota.Esterilizado = dr[12].ToString();
+                if (!dr.IsDBNull(13))
+                {
+                    mascota.Fecha_esterilizacion = Convert.ToDateTime(dr[13].ToString());
+
+                }
+
+                cone.Close();
+                return mascota;
+            }
+            cone.Close();
+            return null;
+        }
         
 
     }
