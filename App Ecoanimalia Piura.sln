@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App Ecoanimalia Piura", "App Ecoanimalia Piura\App Ecoanimalia Piura.csproj", "{FC4BBB63-5B09-4C58-B04C-23EA567A7305}"
 EndProject
 Global
