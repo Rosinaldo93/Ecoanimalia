@@ -44,7 +44,7 @@ namespace App_Ecoanimalia_Piura.Graficos
                 this.grilla_adoptantes.Rows[reglon].Cells["Email"].Value = lista[i].Email.ToString();
                 this.grilla_adoptantes.Rows[reglon].Cells["Facebook"].Value = lista[i].Facebook.ToString();
                 this.grilla_adoptantes.Rows[reglon].Cells["Rpm"].Value = lista[i].Rpm.ToString();
-                if ((lista[i].Tel_mov == null) || (lista[i].Tel_mov == 0))
+                if ((lista[i].Tel_mov == 0))
                 {
                     this.grilla_adoptantes.Rows[reglon].Cells["Movistar"].Value = "";
 

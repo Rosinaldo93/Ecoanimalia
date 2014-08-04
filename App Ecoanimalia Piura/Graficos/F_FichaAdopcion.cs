@@ -58,6 +58,12 @@ namespace App_Ecoanimalia_Piura.Graficos
             }
 
         }
+        public void ver_DatosFichaAdopcion(int id)
+        {
+            Console.Write("id es  : "+id);
+            
+
+        }
         public void ver_mascota(int serie)
         {
             for (int i = 0; i < combo_mascota.Items.Count; i++)
@@ -340,41 +346,12 @@ namespace App_Ecoanimalia_Piura.Graficos
             btn_eliminar_mascota.Enabled = false;
             btn_cancelar_mascota.Enabled = false;
         }
+
         public void listar_detalle_adopcion()
         {
-            List<DetalleAdopcion> lista = new NMascota().N_Listar_Mascotas();
-            this.grilla_mascota.Rows.Clear();
-            for (int i = 0; i < lista.Count; i++)
-            {
-                int reglon = this.grilla_mascota.Rows.Add();
-                this.grilla_mascota.Rows[reglon].Cells["SERIE"].Value = lista[i].Serie;
-                this.grilla_mascota.Rows[reglon].Cells["ID_RESCATISTA"].Value = lista[i].Ser_usu.Serie;
-                this.grilla_mascota.Rows[reglon].Cells["SERIE_FORMATO"].Value = "00-00" + lista[i].Serie;
-                this.grilla_mascota.Rows[reglon].Cells["COD_RESCATISTA"].Value = lista[i].Ser_usu.Codigo;
-                this.grilla_mascota.Rows[reglon].Cells["RESCATISTA"].Value = lista[i].Ser_usu.Nombres + " " + lista[i].Ser_usu.Apellidos;
-                if ((!String.IsNullOrEmpty(lista[i].Fic_tem.Id.ToString())) || (lista[i].Fic_tem.Id != 0))
-                {
-                    this.grilla_mascota.Rows[reglon].Cells["TEMPORAL"].Value = lista[i].Fic_tem.Id;
+           
 
-                }
-                else
-                {
-                    this.grilla_mascota.Rows[reglon].Cells["TEMPORAL"].Value = "";
-
-                }
-                this.grilla_mascota.Rows[reglon].Cells["FECHA_INGRE"].Value = lista[i].Fecha_ingreso.ToShortDateString();
-                this.grilla_mascota.Rows[reglon].Cells["ID_TIPO"].Value = lista[i].Tipomascota.Id;
-                this.grilla_mascota.Rows[reglon].Cells["TIPO"].Value = lista[i].Tipomascota.Descripcion;
-                this.grilla_mascota.Rows[reglon].Cells["TAMANO"].Value = lista[i].Tamano;
-                this.grilla_mascota.Rows[reglon].Cells["ESTADO"].Value = lista[i].Estado;
-                this.grilla_mascota.Rows[reglon].Cells["NOMBRE"].Value = lista[i].Nombre;
-                this.grilla_mascota.Rows[reglon].Cells["RAZA"].Value = lista[i].Raza;
-                this.grilla_mascota.Rows[reglon].Cells["SEXO"].Value = lista[i].Sexo;
-                this.grilla_mascota.Rows[reglon].Cells["COLOR"].Value = lista[i].Color;
-                this.grilla_mascota.Rows[reglon].Cells["EDAD"].Value = lista[i].Edad;
-                this.grilla_mascota.Rows[reglon].Cells["ESTERILIZADO"].Value = lista[i].Esterilizado;
-
-            }
+            
         }
         private void btn_buscar_ficha_Click(object sender, EventArgs e)
         {
@@ -450,6 +427,12 @@ namespace App_Ecoanimalia_Piura.Graficos
                 }
             }
 
+        }
+
+        private void btn_listar_ficha_Click(object sender, EventArgs e)
+        {
+            F_ListarFichasAdopcion ma = new F_ListarFichasAdopcion(this);
+            ma.ShowDialog();
         }
     }
 }

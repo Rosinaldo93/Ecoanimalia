@@ -68,6 +68,7 @@
             this.btn_cancelar_ficha = new System.Windows.Forms.Button();
             this.btn_eliminar_ficha = new System.Windows.Forms.Button();
             this.text_relacion = new System.Windows.Forms.TextBox();
+            this.btn_listar_ficha = new System.Windows.Forms.Button();
             this.grupo_estado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grilla_detalle)).BeginInit();
             this.SuspendLayout();
@@ -355,7 +356,7 @@
             // 
             // btn_buscar_ficha
             // 
-            this.btn_buscar_ficha.Location = new System.Drawing.Point(757, 460);
+            this.btn_buscar_ficha.Location = new System.Drawing.Point(688, 460);
             this.btn_buscar_ficha.Name = "btn_buscar_ficha";
             this.btn_buscar_ficha.Size = new System.Drawing.Size(110, 42);
             this.btn_buscar_ficha.TabIndex = 29;
@@ -392,7 +393,7 @@
             // 
             // btn_registrar_ficha
             // 
-            this.btn_registrar_ficha.Location = new System.Drawing.Point(930, 460);
+            this.btn_registrar_ficha.Location = new System.Drawing.Point(861, 460);
             this.btn_registrar_ficha.Name = "btn_registrar_ficha";
             this.btn_registrar_ficha.Size = new System.Drawing.Size(110, 42);
             this.btn_registrar_ficha.TabIndex = 33;
@@ -402,7 +403,7 @@
             // 
             // btn_editar_ficha
             // 
-            this.btn_editar_ficha.Location = new System.Drawing.Point(930, 544);
+            this.btn_editar_ficha.Location = new System.Drawing.Point(861, 544);
             this.btn_editar_ficha.Name = "btn_editar_ficha";
             this.btn_editar_ficha.Size = new System.Drawing.Size(110, 45);
             this.btn_editar_ficha.TabIndex = 34;
@@ -411,7 +412,7 @@
             // 
             // btn_nueva_ficha
             // 
-            this.btn_nueva_ficha.Location = new System.Drawing.Point(757, 544);
+            this.btn_nueva_ficha.Location = new System.Drawing.Point(688, 544);
             this.btn_nueva_ficha.Name = "btn_nueva_ficha";
             this.btn_nueva_ficha.Size = new System.Drawing.Size(110, 45);
             this.btn_nueva_ficha.TabIndex = 35;
@@ -431,7 +432,7 @@
             // 
             // btn_cancelar_ficha
             // 
-            this.btn_cancelar_ficha.Location = new System.Drawing.Point(757, 614);
+            this.btn_cancelar_ficha.Location = new System.Drawing.Point(688, 614);
             this.btn_cancelar_ficha.Name = "btn_cancelar_ficha";
             this.btn_cancelar_ficha.Size = new System.Drawing.Size(110, 46);
             this.btn_cancelar_ficha.TabIndex = 37;
@@ -440,7 +441,7 @@
             // 
             // btn_eliminar_ficha
             // 
-            this.btn_eliminar_ficha.Location = new System.Drawing.Point(930, 614);
+            this.btn_eliminar_ficha.Location = new System.Drawing.Point(861, 614);
             this.btn_eliminar_ficha.Name = "btn_eliminar_ficha";
             this.btn_eliminar_ficha.Size = new System.Drawing.Size(110, 46);
             this.btn_eliminar_ficha.TabIndex = 38;
@@ -455,11 +456,22 @@
             this.text_relacion.Size = new System.Drawing.Size(202, 20);
             this.text_relacion.TabIndex = 39;
             // 
+            // btn_listar_ficha
+            // 
+            this.btn_listar_ficha.Location = new System.Drawing.Point(1001, 544);
+            this.btn_listar_ficha.Name = "btn_listar_ficha";
+            this.btn_listar_ficha.Size = new System.Drawing.Size(100, 45);
+            this.btn_listar_ficha.TabIndex = 40;
+            this.btn_listar_ficha.Text = "Lista de Fichas";
+            this.btn_listar_ficha.UseVisualStyleBackColor = true;
+            this.btn_listar_ficha.Click += new System.EventHandler(this.btn_listar_ficha_Click);
+            // 
             // F_FichaAdopcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1133, 698);
+            this.Controls.Add(this.btn_listar_ficha);
             this.Controls.Add(this.text_relacion);
             this.Controls.Add(this.btn_eliminar_ficha);
             this.Controls.Add(this.btn_cancelar_ficha);
@@ -553,5 +565,6 @@
         private System.Windows.Forms.Button btn_cancelar_ficha;
         private System.Windows.Forms.Button btn_eliminar_ficha;
         private System.Windows.Forms.TextBox text_relacion;
+        private System.Windows.Forms.Button btn_listar_ficha;
     }
 }

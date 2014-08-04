@@ -18,7 +18,7 @@ namespace App_Ecoanimalia_Piura.Graficos
         }
         public String validar_numero(int numero)
         {
-            if (numero == null || numero == 0)
+            if (numero == 0)
             {
                 return "";
             }
