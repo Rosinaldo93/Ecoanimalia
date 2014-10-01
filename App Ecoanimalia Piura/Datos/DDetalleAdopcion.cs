@@ -17,7 +17,7 @@ namespace App_Ecoanimalia_Piura.Datos
             cone = new MySqlConnection(cadena);
             MySqlCommand com = new MySqlCommand(sql, cone);
             cone.Open();
-
+            Console.WriteLine("enviando " + detalle.Mascota.Serie + " - " + detalle.Fichaadopcion.Id + " - " + detalle.Nombre_adoptarse + " - " + detalle.Estado + " - " + detalle.Observacion);
             com.Parameters.AddWithValue("@SERIE", detalle.Mascota.Serie);
             com.Parameters.AddWithValue("@ID_FICHA_ADOPCION", detalle.Fichaadopcion.Id);
             com.Parameters.AddWithValue("@NOMBRE_ADOPTARSE", detalle.Nombre_adoptarse);
@@ -30,11 +30,13 @@ namespace App_Ecoanimalia_Piura.Datos
             {
                 band = com.ExecuteNonQuery();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine(" " + ex.Message);
                 band = 0;
 
             }
+            Console.WriteLine(" entro ");
             cone.Close();
             return band;
         }

@@ -57,8 +57,8 @@ namespace App_Ecoanimalia_Piura.Graficos
             try
             {
                 int id = Convert.ToInt32(this.grilla_fichaAdopcion.CurrentRow.Cells[0].Value.ToString());
-                
                 ficha.ver_DatosFichaAdopcion(id);
+
                 this.Close();
             }
             catch (Exception ex)
@@ -100,6 +100,8 @@ namespace App_Ecoanimalia_Piura.Graficos
         {
             MessageBox.Show("Ayuda \n 1.- Seleccione un de la Lista\n 2.-Haga Click en aceptar para finalizar");
         }
+
+        
 
 
 

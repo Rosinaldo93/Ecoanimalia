@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             this.grilla_fichaAdopcion = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
-            this.text_buscar_fichaAdopcion = new System.Windows.Forms.TextBox();
-            this.btn_aceptar = new System.Windows.Forms.Button();
-            this.btn_ayuda = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ID_PERSONA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SERIE = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +39,10 @@
             this.Relacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Observaciones = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.text_buscar_fichaAdopcion = new System.Windows.Forms.TextBox();
+            this.btn_aceptar = new System.Windows.Forms.Button();
+            this.btn_ayuda = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grilla_fichaAdopcion)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,6 +70,69 @@
             this.grilla_fichaAdopcion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.grilla_fichaAdopcion.Size = new System.Drawing.Size(733, 262);
             this.grilla_fichaAdopcion.TabIndex = 0;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            // 
+            // ID_PERSONA
+            // 
+            this.ID_PERSONA.HeaderText = "ID_PERSONA";
+            this.ID_PERSONA.Name = "ID_PERSONA";
+            this.ID_PERSONA.ReadOnly = true;
+            this.ID_PERSONA.Visible = false;
+            // 
+            // SERIE
+            // 
+            this.SERIE.HeaderText = "Serie Voluntario";
+            this.SERIE.Name = "SERIE";
+            this.SERIE.ReadOnly = true;
+            this.SERIE.Visible = false;
+            // 
+            // Codigo_usuario
+            // 
+            this.Codigo_usuario.HeaderText = "Codigo Usuario";
+            this.Codigo_usuario.Name = "Codigo_usuario";
+            this.Codigo_usuario.ReadOnly = true;
+            // 
+            // Voluntario
+            // 
+            this.Voluntario.HeaderText = "Nombres Voluntario";
+            this.Voluntario.Name = "Voluntario";
+            this.Voluntario.ReadOnly = true;
+            // 
+            // DNI_ADOPTANTE
+            // 
+            this.DNI_ADOPTANTE.HeaderText = "DNI Adoptante";
+            this.DNI_ADOPTANTE.Name = "DNI_ADOPTANTE";
+            this.DNI_ADOPTANTE.ReadOnly = true;
+            // 
+            // Adoptante
+            // 
+            this.Adoptante.HeaderText = "Adoptante";
+            this.Adoptante.Name = "Adoptante";
+            this.Adoptante.ReadOnly = true;
+            // 
+            // Relacion
+            // 
+            this.Relacion.HeaderText = "Relacion con Responsable";
+            this.Relacion.Name = "Relacion";
+            this.Relacion.ReadOnly = true;
+            // 
+            // Observaciones
+            // 
+            this.Observaciones.HeaderText = "Observaciones";
+            this.Observaciones.Name = "Observaciones";
+            this.Observaciones.ReadOnly = true;
+            // 
+            // Fecha
+            // 
+            this.Fecha.HeaderText = "Fecha Adopcion";
+            this.Fecha.Name = "Fecha";
+            this.Fecha.ReadOnly = true;
             // 
             // label1
             // 
@@ -107,66 +170,6 @@
             this.btn_ayuda.Text = "Ayuda";
             this.btn_ayuda.UseVisualStyleBackColor = true;
             this.btn_ayuda.Click += new System.EventHandler(this.btn_ayuda_Click);
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.Visible = false;
-            // 
-            // ID_PERSONA
-            // 
-            this.ID_PERSONA.HeaderText = "ID_PERSONA";
-            this.ID_PERSONA.Name = "ID_PERSONA";
-            this.ID_PERSONA.ReadOnly = true;
-            this.ID_PERSONA.Visible = false;
-            // 
-            // SERIE
-            // 
-            this.SERIE.HeaderText = "Serie Voluntario";
-            this.SERIE.Name = "SERIE";
-            this.SERIE.ReadOnly = true;
-            this.SERIE.Visible = false;
-            // 
-            // Codigo_usuario
-            // 
-            this.Codigo_usuario.HeaderText = "Codigo Usuario";
-            this.Codigo_usuario.Name = "Codigo_usuario";
-            // 
-            // Voluntario
-            // 
-            this.Voluntario.HeaderText = "Nombres Voluntario";
-            this.Voluntario.Name = "Voluntario";
-            this.Voluntario.ReadOnly = true;
-            // 
-            // DNI_ADOPTANTE
-            // 
-            this.DNI_ADOPTANTE.HeaderText = "DNI Adoptante";
-            this.DNI_ADOPTANTE.Name = "DNI_ADOPTANTE";
-            // 
-            // Adoptante
-            // 
-            this.Adoptante.HeaderText = "Adoptante";
-            this.Adoptante.Name = "Adoptante";
-            this.Adoptante.ReadOnly = true;
-            // 
-            // Relacion
-            // 
-            this.Relacion.HeaderText = "Relacion con Responsable";
-            this.Relacion.Name = "Relacion";
-            this.Relacion.ReadOnly = true;
-            // 
-            // Observaciones
-            // 
-            this.Observaciones.HeaderText = "Observaciones";
-            this.Observaciones.Name = "Observaciones";
-            this.Observaciones.ReadOnly = true;
-            // 
-            // Fecha
-            // 
-            this.Fecha.HeaderText = "Fecha Adopcion";
-            this.Fecha.Name = "Fecha";
-            this.Fecha.ReadOnly = true;
             // 
             // F_ListarFichasAdopcion
             // 

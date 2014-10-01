@@ -49,6 +49,7 @@ namespace App_Ecoanimalia_Piura.Graficos
             btn_editar_ficha.Enabled = false;
             btn_eliminar_ficha.Enabled = false;
             btn_cancelar_ficha.Enabled = false;
+            btn_terminar_ficha.Enabled = false;
 
             llenar_combo_personas();
             llenar_combo_voluntarios();
@@ -56,7 +57,7 @@ namespace App_Ecoanimalia_Piura.Graficos
         }
         public void ver_adoptante(int id)
         {
-           for (int i = 0; i < combo_persona.Items.Count; i++)
+            for (int i = 0; i < combo_persona.Items.Count; i++)
             {
                 Persona per = (Persona)combo_persona.Items[i];
 
@@ -70,8 +71,39 @@ namespace App_Ecoanimalia_Piura.Graficos
         }
         public void ver_DatosFichaAdopcion(int id)
         {
-            Console.Write("id es  : "+id);
-            
+            Console.Write("id es  : " + id);
+            lb_id_ficha.Text = ""+id;
+            FichaAdopcion ficha = new NFichaAdopcion().D_BuscarFichaAdopcionxID(id);
+            Usuario usuario = ficha.Usuario;
+            Persona persona = ficha.Persona;
+            for (int i = 0; i < combo_persona.Items.Count; i++)
+            {
+                Persona per = (Persona)combo_persona.Items[i];
+
+                if (per.Id == persona.Id)
+                {
+                    combo_persona.SelectedIndex = i;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < combo_voluntarios.Items.Count; i++)
+            {
+                Usuario usu = (Usuario)combo_voluntarios.Items[i];
+
+                if (usu.Serie == usuario.Serie)
+                {
+                    combo_voluntarios.SelectedIndex = i;
+                    break;
+                }
+            }
+            text_relacion.Text = ficha.Rel_res;
+            text_observacion_ficha.Text = ficha.Observaciones;
+            fech_adopcion.Text = ficha.Fec_adp.ToString();
+            btn_editar_ficha.Enabled = true;
+
+
+
 
         }
         public void ver_mascota(int serie)
@@ -99,7 +131,7 @@ namespace App_Ecoanimalia_Piura.Graficos
         {
             F_BuscarAdoptante buscar = new F_BuscarAdoptante(this);
             buscar.ShowDialog();
-            
+
         }
 
         private void btn_buscar_voluntario_Click(object sender, EventArgs e)
@@ -125,7 +157,7 @@ namespace App_Ecoanimalia_Piura.Graficos
                     MessageBox.Show("No se encontro el Voluntario");
                 }
             }
-            
+
         }
         public static class Inputbox
         {
@@ -257,7 +289,7 @@ namespace App_Ecoanimalia_Piura.Graficos
 
         private void btn_registrar_ficha_Click(object sender, EventArgs e)
         {
-            
+
             String relacion = "";
             String observa_ficha = "";
             Usuario voluntario = (Usuario)combo_voluntarios.SelectedItem;
@@ -271,7 +303,7 @@ namespace App_Ecoanimalia_Piura.Graficos
             {
                 observa_ficha = text_observacion_ficha.Text;
             }
-            
+
             DateTime fecha_adopcion = Convert.ToDateTime(fech_adopcion.Text);
             int respuesta = new NFichaAdopcion().N_asignar_adopcion(persona, voluntario, relacion, observa_ficha, fecha_adopcion);
             if (respuesta == 0)
@@ -282,16 +314,16 @@ namespace App_Ecoanimalia_Piura.Graficos
             else
             {
                 MessageBox.Show("Registrado Correctamente");
-                int id_ficha_adopcion = new NFichaAdopcion().N_max_FichaAdopcion();
+                int id_ficha_adopcion = new NFichaAdopcion().N_maxima_FichaAdopcion();
                 lb_id_ficha.Text = "" + id_ficha_adopcion;
                 inhabilitar_cajas_ficha();
                 btn_agregar_mascota.Enabled = true;
                 habilitar_cajas_mascota();
                 limpiar_cajas_mascota();
                 btn_registrar_ficha.Enabled = false;
-                btn_buscar_ficha.Enabled = false;
                 btn_nueva_ficha.Enabled = false;
                 btn_listar_ficha.Enabled = false;
+                btn_nuevo_mascota.Enabled = true;
             }
 
         }
@@ -364,9 +396,9 @@ namespace App_Ecoanimalia_Piura.Graficos
 
         public void listar_detalle_adopcion()
         {
-           
 
-            
+
+
         }
         private void btn_buscar_ficha_Click(object sender, EventArgs e)
         {
@@ -379,6 +411,10 @@ namespace App_Ecoanimalia_Piura.Graficos
             limpiar_cajas_ficha();
             habilitar_cajas_ficha();
             btn_registrar_ficha.Enabled = true;
+            btn_cancelar_ficha.Enabled = true;
+            btn_editar_ficha.Enabled = false;
+            btn_editar_ficha.Text = "Editar Ficha Adopcion";
+
 
         }
 
@@ -439,6 +475,12 @@ namespace App_Ecoanimalia_Piura.Graficos
                 {
                     MessageBox.Show("Registrado Correctamente");
                     btn_nuevo_mascota.Enabled = true;
+                    limpiar_cajas_mascota();
+                    inhabilitar_cajas_mascota();
+                    btn_modificar_mascota.Enabled = false;
+                    btn_eliminar_mascota.Enabled = false;
+
+
 
                 }
             }
@@ -449,6 +491,81 @@ namespace App_Ecoanimalia_Piura.Graficos
         {
             F_ListarFichasAdopcion ma = new F_ListarFichasAdopcion(this);
             ma.ShowDialog();
+            btn_editar_ficha.Text = "Editar Ficha Adopcion";
+        }
+
+        private void btn_cancelar_ficha_Click(object sender, EventArgs e)
+        {
+            inhabilitar_cajas_ficha();
+            limpiar_cajas_ficha();
+            limpiar_cajas_mascota();
+            inhabilitar_cajas_mascota();
+            inhabilitar_cajas_mascota_botones();
+            btn_registrar_ficha.Enabled = false;
+            grupo_estado.Enabled = false;
+            btn_editar_ficha.Text = "Editar Ficha Adopcion";
+        }
+
+        private void btn_editar_ficha_Click(object sender, EventArgs e)
+        {
+            if (this.btn_editar_ficha.Text.Equals("Editar Ficha Adopcion"))
+            {
+                btn_editar_ficha.Text = "Guardar Cambios";
+                btn_nueva_ficha.Enabled = true;
+                btn_eliminar_ficha.Enabled =false;
+                btn_cancelar_ficha.Enabled = true;
+                btn_registrar_ficha.Enabled = false;
+                combo_persona.Enabled = true;
+                combo_voluntarios.Enabled = true;
+                habilitar_cajas_ficha();
+
+            }else{
+
+
+            if (btn_editar_ficha.Text.Equals("Guardar Cambios"))
+            {
+                btn_modificar_mascota.Text = "Editar Ficha Adopcion";
+
+                int id_ficha_adopcion = Convert.ToInt32(lb_id_ficha.Text);
+                String relacion = "";
+                String observa_ficha = "";
+                Usuario voluntario = (Usuario)combo_voluntarios.SelectedItem;
+                Persona persona = (Persona)combo_persona.SelectedItem;
+
+                if (!String.IsNullOrEmpty(text_relacion.Text))
+                {
+                    relacion = text_relacion.Text;
+                }
+                if (!String.IsNullOrEmpty(text_observacion_ficha.Text))
+                {
+                    observa_ficha = text_observacion_ficha.Text;
+                }
+
+                DateTime fecha_adopcion = Convert.ToDateTime(fech_adopcion.Text);
+                int respuesta = new NFichaAdopcion().N_modificar_adopcion(id_ficha_adopcion, persona, voluntario, relacion, observa_ficha, fecha_adopcion);
+                if (respuesta == 0)
+                {
+                    MessageBox.Show("Error Al Guardar los Cambios Por favor intente nuevamente");
+
+                }
+                else
+                {
+                    MessageBox.Show("Cambios guardados correctamente");
+                    
+
+                    inhabilitar_cajas_ficha();
+                    
+                    
+                    limpiar_cajas_mascota();
+                    btn_editar_ficha.Enabled = false;
+                    btn_nueva_ficha.Enabled = true;
+                    btn_registrar_ficha.Enabled = false;
+                    btn_eliminar_ficha.Enabled = false;
+                    
+                }
+
+            }
+            }
         }
     }
 }

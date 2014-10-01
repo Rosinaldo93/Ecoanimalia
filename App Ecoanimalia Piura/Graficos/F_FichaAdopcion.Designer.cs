@@ -57,7 +57,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.btn_agregar_mascota = new System.Windows.Forms.Button();
             this.grilla_detalle = new System.Windows.Forms.DataGridView();
-            this.btn_buscar_ficha = new System.Windows.Forms.Button();
             this.btn_modificar_mascota = new System.Windows.Forms.Button();
             this.btn_eliminar_mascota = new System.Windows.Forms.Button();
             this.btn_cancelar_mascota = new System.Windows.Forms.Button();
@@ -268,7 +267,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(763, 292);
+            this.label10.Location = new System.Drawing.Point(520, 300);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(57, 13);
             this.label10.TabIndex = 22;
@@ -279,7 +278,7 @@
             this.grupo_estado.Controls.Add(this.radio_inactivo);
             this.grupo_estado.Controls.Add(this.radio_activo);
             this.grupo_estado.Enabled = false;
-            this.grupo_estado.Location = new System.Drawing.Point(883, 277);
+            this.grupo_estado.Location = new System.Drawing.Point(640, 285);
             this.grupo_estado.Name = "grupo_estado";
             this.grupo_estado.Size = new System.Drawing.Size(166, 39);
             this.grupo_estado.TabIndex = 23;
@@ -310,7 +309,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(763, 358);
+            this.label11.Location = new System.Drawing.Point(520, 366);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(90, 13);
             this.label11.TabIndex = 24;
@@ -319,7 +318,7 @@
             // text_observacion_mascota
             // 
             this.text_observacion_mascota.Enabled = false;
-            this.text_observacion_mascota.Location = new System.Drawing.Point(883, 335);
+            this.text_observacion_mascota.Location = new System.Drawing.Point(640, 343);
             this.text_observacion_mascota.Multiline = true;
             this.text_observacion_mascota.Name = "text_observacion_mascota";
             this.text_observacion_mascota.Size = new System.Drawing.Size(202, 55);
@@ -354,16 +353,6 @@
             this.grilla_detalle.ReadOnly = true;
             this.grilla_detalle.Size = new System.Drawing.Size(523, 150);
             this.grilla_detalle.TabIndex = 28;
-            // 
-            // btn_buscar_ficha
-            // 
-            this.btn_buscar_ficha.Location = new System.Drawing.Point(688, 460);
-            this.btn_buscar_ficha.Name = "btn_buscar_ficha";
-            this.btn_buscar_ficha.Size = new System.Drawing.Size(110, 42);
-            this.btn_buscar_ficha.TabIndex = 29;
-            this.btn_buscar_ficha.Text = "Buscar Ficha";
-            this.btn_buscar_ficha.UseVisualStyleBackColor = true;
-            this.btn_buscar_ficha.Click += new System.EventHandler(this.btn_buscar_ficha_Click);
             // 
             // btn_modificar_mascota
             // 
@@ -410,6 +399,7 @@
             this.btn_editar_ficha.TabIndex = 34;
             this.btn_editar_ficha.Text = "Editar Ficha Adopcion";
             this.btn_editar_ficha.UseVisualStyleBackColor = true;
+            this.btn_editar_ficha.Click += new System.EventHandler(this.btn_editar_ficha_Click);
             // 
             // btn_nueva_ficha
             // 
@@ -439,6 +429,7 @@
             this.btn_cancelar_ficha.TabIndex = 37;
             this.btn_cancelar_ficha.Text = "Cancelar";
             this.btn_cancelar_ficha.UseVisualStyleBackColor = true;
+            this.btn_cancelar_ficha.Click += new System.EventHandler(this.btn_cancelar_ficha_Click);
             // 
             // btn_eliminar_ficha
             // 
@@ -459,9 +450,9 @@
             // 
             // btn_listar_ficha
             // 
-            this.btn_listar_ficha.Location = new System.Drawing.Point(1003, 500);
+            this.btn_listar_ficha.Location = new System.Drawing.Point(688, 457);
             this.btn_listar_ficha.Name = "btn_listar_ficha";
-            this.btn_listar_ficha.Size = new System.Drawing.Size(100, 45);
+            this.btn_listar_ficha.Size = new System.Drawing.Size(110, 45);
             this.btn_listar_ficha.TabIndex = 40;
             this.btn_listar_ficha.Text = "Lista de Fichas";
             this.btn_listar_ficha.UseVisualStyleBackColor = true;
@@ -493,7 +484,6 @@
             this.Controls.Add(this.btn_cancelar_mascota);
             this.Controls.Add(this.btn_eliminar_mascota);
             this.Controls.Add(this.btn_modificar_mascota);
-            this.Controls.Add(this.btn_buscar_ficha);
             this.Controls.Add(this.grilla_detalle);
             this.Controls.Add(this.btn_agregar_mascota);
             this.Controls.Add(this.label12);
@@ -565,7 +555,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btn_agregar_mascota;
         private System.Windows.Forms.DataGridView grilla_detalle;
-        private System.Windows.Forms.Button btn_buscar_ficha;
         private System.Windows.Forms.Button btn_modificar_mascota;
         private System.Windows.Forms.Button btn_eliminar_mascota;
         private System.Windows.Forms.Button btn_cancelar_mascota;
