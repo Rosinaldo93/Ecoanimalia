@@ -40,6 +40,16 @@ namespace App_Ecoanimalia_Piura.Graficos
 
         private void F_FichaAdopcion_Load(object sender, EventArgs e)
         {
+            btn_nuevo_mascota.Enabled = false;
+            btn_agregar_mascota.Enabled = false;
+            btn_eliminar_mascota.Enabled = false;
+            btn_modificar_mascota.Enabled = false;
+            btn_cancelar_mascota.Enabled = false;
+            btn_registrar_ficha.Enabled = false;
+            btn_editar_ficha.Enabled = false;
+            btn_eliminar_ficha.Enabled = false;
+            btn_cancelar_ficha.Enabled = false;
+
             llenar_combo_personas();
             llenar_combo_voluntarios();
             llenar_combo_mascota();
@@ -252,6 +262,7 @@ namespace App_Ecoanimalia_Piura.Graficos
             String observa_ficha = "";
             Usuario voluntario = (Usuario)combo_voluntarios.SelectedItem;
             Persona persona = (Persona)combo_persona.SelectedItem;
+
             if (!String.IsNullOrEmpty(text_relacion.Text))
             {
                 relacion = text_relacion.Text;
@@ -277,6 +288,10 @@ namespace App_Ecoanimalia_Piura.Graficos
                 btn_agregar_mascota.Enabled = true;
                 habilitar_cajas_mascota();
                 limpiar_cajas_mascota();
+                btn_registrar_ficha.Enabled = false;
+                btn_buscar_ficha.Enabled = false;
+                btn_nueva_ficha.Enabled = false;
+                btn_listar_ficha.Enabled = false;
             }
 
         }
@@ -363,6 +378,7 @@ namespace App_Ecoanimalia_Piura.Graficos
             lb_id_ficha.Text = "";
             limpiar_cajas_ficha();
             habilitar_cajas_ficha();
+            btn_registrar_ficha.Enabled = true;
 
         }
 

@@ -69,6 +69,7 @@
             this.btn_eliminar_ficha = new System.Windows.Forms.Button();
             this.text_relacion = new System.Windows.Forms.TextBox();
             this.btn_listar_ficha = new System.Windows.Forms.Button();
+            this.btn_terminar_ficha = new System.Windows.Forms.Button();
             this.grupo_estado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grilla_detalle)).BeginInit();
             this.SuspendLayout();
@@ -458,7 +459,7 @@
             // 
             // btn_listar_ficha
             // 
-            this.btn_listar_ficha.Location = new System.Drawing.Point(1001, 544);
+            this.btn_listar_ficha.Location = new System.Drawing.Point(1003, 500);
             this.btn_listar_ficha.Name = "btn_listar_ficha";
             this.btn_listar_ficha.Size = new System.Drawing.Size(100, 45);
             this.btn_listar_ficha.TabIndex = 40;
@@ -466,11 +467,21 @@
             this.btn_listar_ficha.UseVisualStyleBackColor = true;
             this.btn_listar_ficha.Click += new System.EventHandler(this.btn_listar_ficha_Click);
             // 
+            // btn_terminar_ficha
+            // 
+            this.btn_terminar_ficha.Location = new System.Drawing.Point(1003, 566);
+            this.btn_terminar_ficha.Name = "btn_terminar_ficha";
+            this.btn_terminar_ficha.Size = new System.Drawing.Size(100, 42);
+            this.btn_terminar_ficha.TabIndex = 41;
+            this.btn_terminar_ficha.Text = "Terminar Ficha";
+            this.btn_terminar_ficha.UseVisualStyleBackColor = true;
+            // 
             // F_FichaAdopcion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1133, 698);
+            this.Controls.Add(this.btn_terminar_ficha);
             this.Controls.Add(this.btn_listar_ficha);
             this.Controls.Add(this.text_relacion);
             this.Controls.Add(this.btn_eliminar_ficha);
@@ -566,5 +577,6 @@
         private System.Windows.Forms.Button btn_eliminar_ficha;
         private System.Windows.Forms.TextBox text_relacion;
         private System.Windows.Forms.Button btn_listar_ficha;
+        private System.Windows.Forms.Button btn_terminar_ficha;
     }
 }
